@@ -29,7 +29,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1242,1032.5</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1196,1032.5</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Process_Transaction_2_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="58">
@@ -638,13 +638,13 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:InterruptibleDoWhile>
-            <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" UserName="{x:Null}" AzureAppPermissions="None" DisplayName="Sharepoint application scope" sap:VirtualizedContainerService.HintSize="554,1888" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_2" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SharePointInstanceType="WebLogin" URL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
+            <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" UserName="{x:Null}" AzureAppPermissions="None" DisplayName="Sharepoint application scope" sap:VirtualizedContainerService.HintSize="554,1626" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_2" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SharePointInstanceType="WebLogin" URL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
               <usa:SharepointApplicationScope.Body>
                 <ActivityAction x:TypeArguments="us:SharePointContextInfo">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="us:SharePointContextInfo" Name="SharePointContextInfoTag" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="520,1746" sap2010:WorkflowViewState.IdRef="Sequence_159">
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="520,1484" sap2010:WorkflowViewState.IdRef="Sequence_159">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -653,14 +653,14 @@
                     <usal:GetFile AttachmentsAction="{x:Null}" RelativeUrlHintText="{x:Null}" ChooseFile="False" DisplayName="Get Master Log" sap:VirtualizedContainerService.HintSize="478,104" sap2010:WorkflowViewState.IdRef="GetFile_2" LocalPath="[in_strFolderPath+io_Config(&quot;DDI Log Path&quot;).ToString]" LocalPathHintText="Local path where the file will be saved" RelativeUrl="[strDDILogSharepointFilepath]" ShowAttachFiles="False" ShowCAMLQuery="False" ShowCAMLWarning="False" ShowGroupDescription="False" ShowGroupName="False" ShowLibraryName="False" ShowListName="False" ShowLocalPath="True" ShowMove="False" ShowPermissionDropdown="False" ShowPropertiesDictionary="False" ShowRelativeUrl="True" ShowRename="False" ShowUserName="False" />
                     <Delay DisplayName=" Delay 2 seconds" Duration="00:00:02" sap:VirtualizedContainerService.HintSize="478,22" sap2010:WorkflowViewState.IdRef="Delay_1" />
                     <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="478,134" sap2010:WorkflowViewState.IdRef="KillProcess_2" ProcessName="EXCEL" />
-                    <Sequence DisplayName="Populate Index" sap:VirtualizedContainerService.HintSize="478,896" sap2010:WorkflowViewState.IdRef="Sequence_89">
+                    <Sequence DisplayName="Populate Index" sap:VirtualizedContainerService.HintSize="478,634" sap2010:WorkflowViewState.IdRef="Sequence_89">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ui:ExcelApplicationScope Password="{x:Null}" CreateNewFile="False" DisplayName="Populate Master Log - Excel Application Scope" sap:VirtualizedContainerService.HintSize="436,542" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_6" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[in_strFolderPath+io_Config(&quot;DDI Log Path&quot;).ToString]">
+                      <ui:ExcelApplicationScope Password="{x:Null}" CreateNewFile="False" DisplayName="Populate Master Log - Excel Application Scope" sap:VirtualizedContainerService.HintSize="434,542" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_6" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[in_strFolderPath+io_Config(&quot;DDI Log Path&quot;).ToString]">
                         <ui:ExcelApplicationScope.Body>
                           <ActivityAction x:TypeArguments="ui:WorkbookApplication">
                             <ActivityAction.Argument>
@@ -679,65 +679,6 @@
                           </ActivityAction>
                         </ui:ExcelApplicationScope.Body>
                       </ui:ExcelApplicationScope>
-                      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,222" sap2010:WorkflowViewState.IdRef="CommentOut_47">
-                        <ui:CommentOut.Body>
-                          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="242,144" sap2010:WorkflowViewState.IdRef="Sequence_429">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <If Condition="[CBool(io_Config(&quot;boolPausePoint2&quot;))]" DisplayName="Pause Point 2 Enabled?" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="If_23">
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                              <If.Then>
-                                <ui:ExcelApplicationScope Password="{x:Null}" CreateNewFile="False" DisplayName="Populate Master Log - Excel Application Scope" sap:VirtualizedContainerService.HintSize="434,650" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_5" InstanceCachePeriod="3000" WorkbookPath="[in_strFolderPath+io_Config(&quot;DDI Log Path&quot;).ToString]">
-                                  <ui:ExcelApplicationScope.Body>
-                                    <ActivityAction x:TypeArguments="ui:WorkbookApplication">
-                                      <ActivityAction.Argument>
-                                        <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
-                                      </ActivityAction.Argument>
-                                      <Sequence DisplayName="Populate Master Log" sap:VirtualizedContainerService.HintSize="376,541" sap2010:WorkflowViewState.IdRef="Sequence_87">
-                                        <sap:WorkflowViewStateService.ViewState>
-                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                          </scg:Dictionary>
-                                        </sap:WorkflowViewStateService.ViewState>
-                                        <ui:ExcelAppendRange DataTable="[io_dtDogInformationPass]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_16" SheetName="Passed" />
-                                        <ui:ExcelAppendRange DataTable="[io_dtDogInformationSoftFail]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_17" SheetName="Soft Fail" />
-                                        <ui:ExcelAppendRange DataTable="[io_dtDogInformationHardFail]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_18" SheetName="Hard Fail" />
-                                        <Sequence DisplayName="Present Pause Point" sap:VirtualizedContainerService.HintSize="334,68" sap2010:WorkflowViewState.IdRef="Sequence_86">
-                                          <sap:WorkflowViewStateService.ViewState>
-                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                            </scg:Dictionary>
-                                          </sap:WorkflowViewStateService.ViewState>
-                                          <InvokeMethod DisplayName="Stop Stopwatch" sap:VirtualizedContainerService.HintSize="238.5,135" sap2010:WorkflowViewState.IdRef="InvokeMethod_11" MethodName="Stop">
-                                            <InvokeMethod.TargetObject>
-                                              <InArgument x:TypeArguments="sd:Stopwatch">[io_swProcessingTimer]</InArgument>
-                                            </InvokeMethod.TargetObject>
-                                          </InvokeMethod>
-                                          <p:Generic_PopUp OUT_ProcessType="{x:Null}" OUT_strButtonSelected="{x:Null}" DisplayName="Pause Point 2" sap:VirtualizedContainerService.HintSize="238.5,22" IN_CSS_filepath="[&quot;/file://&quot; + Directory.GetCurrentDirectory + &quot;\Assets\Generic\YesNo.css&quot;]" IN_ErrorMessage="The stop button was pressed" IN_PopupMessage="&lt;h1&gt;Please Check Index Data&lt;/h1&gt;&lt;br&gt;Please check the data in the excel log to make sure it is all correct.&lt;br&gt;&lt;br&gt;" IN_PopupTitle="Pause Point 2" IN_WidthHeight="[{600,400}]" sap2010:WorkflowViewState.IdRef="Generic_PopUp_6" />
-                                          <InvokeMethod DisplayName="Start Stopwatch" sap:VirtualizedContainerService.HintSize="238.5,135" sap2010:WorkflowViewState.IdRef="InvokeMethod_12" MethodName="Start">
-                                            <InvokeMethod.TargetObject>
-                                              <InArgument x:TypeArguments="sd:Stopwatch">[io_swProcessingTimer]</InArgument>
-                                            </InvokeMethod.TargetObject>
-                                          </InvokeMethod>
-                                        </Sequence>
-                                      </Sequence>
-                                    </ActivityAction>
-                                  </ui:ExcelApplicationScope.Body>
-                                </ui:ExcelApplicationScope>
-                              </If.Then>
-                            </If>
-                          </Sequence>
-                        </ui:CommentOut.Body>
-                      </ui:CommentOut>
                     </Sequence>
                     <Delay DisplayName=" Delay 2 seconds" Duration="00:00:02" sap:VirtualizedContainerService.HintSize="478,22" sap2010:WorkflowViewState.IdRef="Delay_3" />
                     <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="478,134" sap2010:WorkflowViewState.IdRef="KillProcess_3" ProcessName="EXCEL" />
@@ -877,7 +818,7 @@
                           </p1:WordApplicationScope>
                         </Sequence>
                       </Sequence>
-                      <Sequence DisplayName="Draft Email" sap:VirtualizedContainerService.HintSize="644,68" sap2010:WorkflowViewState.IdRef="Sequence_359">
+                      <Sequence DisplayName="Draft Email" sap:VirtualizedContainerService.HintSize="376,645" sap2010:WorkflowViewState.IdRef="Sequence_359">
                         <Sequence.Variables>
                           <Variable x:TypeArguments="x:String" Name="EmailText" />
                           <Variable x:TypeArguments="snm:MailMessage" Name="mailMessage" />
@@ -890,7 +831,7 @@
                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <Assign sap:VirtualizedContainerService.HintSize="436,64" sap2010:WorkflowViewState.IdRef="Assign_729">
+                        <Assign sap:VirtualizedContainerService.HintSize="334,64" sap2010:WorkflowViewState.IdRef="Assign_729">
                           <Assign.To>
                             <OutArgument x:TypeArguments="x:String">[EmailText]</OutArgument>
                           </Assign.To>
@@ -912,7 +853,7 @@
 "&lt;p&gt;Index Team&lt;/p&gt;"]</InArgument>
                           </Assign.Value>
                         </Assign>
-                        <Assign sap:VirtualizedContainerService.HintSize="436,60" sap2010:WorkflowViewState.IdRef="Assign_730">
+                        <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_730">
                           <Assign.To>
                             <OutArgument x:TypeArguments="snm:MailMessage">[mailMessage]</OutArgument>
                           </Assign.To>
@@ -920,7 +861,7 @@
                             <InArgument x:TypeArguments="snm:MailMessage">[New System.Net.Mail.MailMessage()]</InArgument>
                           </Assign.Value>
                         </Assign>
-                        <Assign sap:VirtualizedContainerService.HintSize="436,60" sap2010:WorkflowViewState.IdRef="Assign_731">
+                        <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_731">
                           <Assign.To>
                             <OutArgument x:TypeArguments="snm:MailAddress">[sentOnBehalfOfAddress]</OutArgument>
                           </Assign.To>
@@ -928,7 +869,7 @@
                             <InArgument x:TypeArguments="snm:MailAddress">[New System.Net.Mail.MailAddress("AWDDI@defra.gov.uk", "XL Bully Exemption Scheme")]</InArgument>
                           </Assign.Value>
                         </Assign>
-                        <Assign sap:VirtualizedContainerService.HintSize="436,60" sap2010:WorkflowViewState.IdRef="Assign_732">
+                        <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_732">
                           <Assign.To>
                             <OutArgument x:TypeArguments="x:String">[strSentOnBehalfOf]</OutArgument>
                           </Assign.To>
@@ -936,31 +877,13 @@
                             <InArgument x:TypeArguments="x:String">[sentOnBehalfOfAddress.ToString]</InArgument>
                           </Assign.Value>
                         </Assign>
-                        <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Account="[io_Config(&quot;AccountName&quot;).ToString]" Body="[EmailText]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="436,149" sap2010:WorkflowViewState.IdRef="SendOutlookMail_6" Importance="Normal" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" SentOnBehalfOfName="[strSentOnBehalfOf]" Subject="Apply for a Certificate of Exemption to keep an XL Bully dog" To="[CurrentRow(11).ToString]">
+                        <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Account="[io_Config(&quot;AccountName&quot;).ToString]" Body="[EmailText]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="334,149" sap2010:WorkflowViewState.IdRef="SendOutlookMail_6" Importance="Normal" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" SentOnBehalfOfName="[strSentOnBehalfOf]" Subject="Apply for a Certificate of Exemption to keep an XL Bully dog" To="[CurrentRow(11).ToString]">
                           <ui:SendOutlookMail.Files>
                             <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
                               <InArgument x:TypeArguments="x:String">[in_strFolderPath + "\DEFRA-Dangerous-Dogs-Index\" + CurrentRow(23).ToString + " - " + CurrentRow(12).ToString + " - Certificate of Exemption XL Bully.pdf"]</InArgument>
                             </scg:List>
                           </ui:SendOutlookMail.Files>
                         </ui:SendOutlookMail>
-                        <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,317" sap2010:WorkflowViewState.IdRef="CommentOut_48">
-                          <ui:CommentOut.Body>
-                            <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,239" sap2010:WorkflowViewState.IdRef="Sequence_430">
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                              <ui:SendOutlookMail Bcc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Account="[io_Config(&quot;AccountName&quot;).ToString]" Body="[EmailText]" Cc="thor.thorkildsen@defra.gov.uk" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="334,147" sap2010:WorkflowViewState.IdRef="SendOutlookMail_9" Importance="Normal" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" SentOnBehalfOfName="[strSentOnBehalfOf]" Subject="Apply for a Certificate of Exemption to keep an XL Bully dog" To="danny.phelps@defra.gov.uk">
-                                <ui:SendOutlookMail.Files>
-                                  <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
-                                    <InArgument x:TypeArguments="x:String">[in_strFolderPath + "\DEFRA-Dangerous-Dogs-Index\" + CurrentRow(23).ToString + " - " + CurrentRow(12).ToString + " - Certificate of Exemption XL Bully.pdf"]</InArgument>
-                                  </scg:List>
-                                </ui:SendOutlookMail.Files>
-                              </ui:SendOutlookMail>
-                            </Sequence>
-                          </ui:CommentOut.Body>
-                        </ui:CommentOut>
                       </Sequence>
                       <Assign sap:VirtualizedContainerService.HintSize="644,60" sap2010:WorkflowViewState.IdRef="Assign_736">
                         <Assign.To>
@@ -1047,7 +970,7 @@
                         <ActivityAction.Argument>
                           <DelegateInArgument x:TypeArguments="sd1:DataRow" Name="CurrentRow" />
                         </ActivityAction.Argument>
-                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="478,1002" sap2010:WorkflowViewState.IdRef="Sequence_350">
+                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376,645" sap2010:WorkflowViewState.IdRef="Sequence_350">
                           <Sequence.Variables>
                             <Variable x:TypeArguments="x:String" Name="EmailText" />
                             <Variable x:TypeArguments="snm:MailMessage" Name="mailMessage" />
@@ -1059,7 +982,7 @@
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <Assign sap:VirtualizedContainerService.HintSize="436,64" sap2010:WorkflowViewState.IdRef="Assign_725">
+                          <Assign sap:VirtualizedContainerService.HintSize="334,64" sap2010:WorkflowViewState.IdRef="Assign_725">
                             <Assign.To>
                               <OutArgument x:TypeArguments="x:String">[EmailText]</OutArgument>
                             </Assign.To>
@@ -1087,7 +1010,7 @@
             "&lt;/ul&gt;"]</InArgument>
                             </Assign.Value>
                           </Assign>
-                          <Assign sap:VirtualizedContainerService.HintSize="436,60" sap2010:WorkflowViewState.IdRef="Assign_726">
+                          <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_726">
                             <Assign.To>
                               <OutArgument x:TypeArguments="snm:MailMessage">[mailMessage]</OutArgument>
                             </Assign.To>
@@ -1095,7 +1018,7 @@
                               <InArgument x:TypeArguments="snm:MailMessage">[New System.Net.Mail.MailMessage()]</InArgument>
                             </Assign.Value>
                           </Assign>
-                          <Assign sap:VirtualizedContainerService.HintSize="436,60" sap2010:WorkflowViewState.IdRef="Assign_727">
+                          <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_727">
                             <Assign.To>
                               <OutArgument x:TypeArguments="snm:MailAddress">[sentOnBehalfOfAddress]</OutArgument>
                             </Assign.To>
@@ -1103,7 +1026,7 @@
                               <InArgument x:TypeArguments="snm:MailAddress">[New System.Net.Mail.MailAddress("AWDDI@defra.gov.uk", "XL Bully Exemption Scheme")]</InArgument>
                             </Assign.Value>
                           </Assign>
-                          <Assign sap:VirtualizedContainerService.HintSize="436,60" sap2010:WorkflowViewState.IdRef="Assign_728">
+                          <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_728">
                             <Assign.To>
                               <OutArgument x:TypeArguments="x:String">[strSentOnBehalfOf]</OutArgument>
                             </Assign.To>
@@ -1111,23 +1034,7 @@
                               <InArgument x:TypeArguments="x:String">[sentOnBehalfOfAddress.ToString]</InArgument>
                             </Assign.Value>
                           </Assign>
-                          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,317" sap2010:WorkflowViewState.IdRef="CommentOut_49">
-                            <ui:CommentOut.Body>
-                              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,239" sap2010:WorkflowViewState.IdRef="Sequence_431">
-                                <sap:WorkflowViewStateService.ViewState>
-                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                  </scg:Dictionary>
-                                </sap:WorkflowViewStateService.ViewState>
-                                <ui:SendOutlookMail Bcc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Account="[io_Config(&quot;AccountName&quot;).ToString]" Body="[EmailText]" Cc="thor.thorkildsen@defra.gov.uk" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="334,147" sap2010:WorkflowViewState.IdRef="SendOutlookMail_10" Importance="Normal" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" SentOnBehalfOfName="[strSentOnBehalfOf]" Subject="Apply for a Certificate of Exemption to keep an XL Bully dog" To="Danny.Phelps@defra.gov.uk">
-                                  <ui:SendOutlookMail.Files>
-                                    <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
-                                  </ui:SendOutlookMail.Files>
-                                </ui:SendOutlookMail>
-                              </Sequence>
-                            </ui:CommentOut.Body>
-                          </ui:CommentOut>
-                          <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Account="[io_Config(&quot;AccountName&quot;).ToString]" Body="[EmailText]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="436,149" sap2010:WorkflowViewState.IdRef="SendOutlookMail_3" Importance="Normal" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" SentOnBehalfOfName="[strSentOnBehalfOf]" Subject="Apply for a Certificate of Exemption to keep an XL Bully dog" To="[CurrentRow(11).ToString]">
+                          <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Account="[io_Config(&quot;AccountName&quot;).ToString]" Body="[EmailText]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="334,149" sap2010:WorkflowViewState.IdRef="SendOutlookMail_3" Importance="Normal" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" SentOnBehalfOfName="[strSentOnBehalfOf]" Subject="Apply for a Certificate of Exemption to keep an XL Bully dog" To="[CurrentRow(11).ToString]">
                             <ui:SendOutlookMail.Files>
                               <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
                             </ui:SendOutlookMail.Files>
@@ -1177,7 +1084,7 @@
           <av:PointCollection x:Key="ConnectorLocation">300,195.5 300,245.5</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Sequence DisplayName="Get Text from Email" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_328">
+      <Sequence DisplayName="Get Text from Email" sap:VirtualizedContainerService.HintSize="1950,38446" sap2010:WorkflowViewState.IdRef="Sequence_328">
         <Sequence.Variables>
           <Variable x:TypeArguments="x:String" Name="strEmailBody" />
           <Variable x:TypeArguments="x:String" Name="strDataAsTable" />
@@ -1300,7 +1207,7 @@
             <InArgument x:TypeArguments="x:String">Passed</InArgument>
           </Assign.Value>
         </Assign>
-        <Sequence DisplayName="Get Owner Information" sap:VirtualizedContainerService.HintSize="1908,4367" sap2010:WorkflowViewState.IdRef="Sequence_246">
+        <Sequence DisplayName="Get Owner Information" sap:VirtualizedContainerService.HintSize="1908,4650" sap2010:WorkflowViewState.IdRef="Sequence_246">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1605,17 +1512,17 @@
               </If>
             </Sequence>
           </Sequence>
-          <Sequence DisplayName="Get Owner Phone Number" sap:VirtualizedContainerService.HintSize="568,68" sap2010:WorkflowViewState.IdRef="Sequence_244">
+          <Sequence DisplayName="Get Owner Phone Number" sap:VirtualizedContainerService.HintSize="568,351" sap2010:WorkflowViewState.IdRef="Sequence_244">
             <Sequence.Variables>
               <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ieOwnerPhoneNumber" />
             </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:Matches BuilderPattern="(?&lt;=What’s your phone number\?)(?:(?:\+44|0)[1-9]\d{1,4}|\(?(?:(?:0\d{10})|(?:\d{5}\s\d{4})|(?:0\d{3}\s\d{3})|(?:0\d{2}\s\d{4}\s\d{4})|(?:0\d{4}\s\d{2}\s\d{4}))\)?)[\s\d]*\d{5,9}\b" DisplayName="Get Owner Phone Number" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="Matches_103" Input="[strEmailBody]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;(?&lt;=What’s your phone number\\?)(?:(?:\\+44|0)[1-9]\\d{1,4}|\\(?(?:(?:0\\d{10})|(?:\\d{5}\\s\\d{4})|(?:0\\d{3}\\s\\d{3})|(?:0\\d{2}\\s\\d{4}\\s\\d{4})|(?:0\\d{4}\\s\\d{2}\\s\\d{4}))\\)?)[\\s\\d]*\\d{5,9}\\b&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="(?&lt;=What’s your phone number\?)(?:(?:\+44|0)[1-9]\d{1,4}|\(?(?:(?:0\d{10})|(?:\d{5}\s\d{4})|(?:0\d{3}\s\d{3})|(?:0\d{2}\s\d{4}\s\d{4})|(?:0\d{4}\s\d{2}\s\d{4}))\)?)[\s\d]*\d{5,9}\b" RegexOption="IgnoreCase, Compiled" Result="[ieOwnerPhoneNumber]" />
+            <ui:Matches BuilderPattern="(?&lt;=What’s your phone number\?)\D*(?:\+?\d{1,4}[-\s]?)?(?:\(\d{1,}\)[-.\s]?)?\d{1,}[-.\s]?\d{1,}[-.\s]?\d{1,}\b" DisplayName="Get Owner Phone Number" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="Matches_103" Input="[strEmailBody]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;(?&lt;=What’s your phone number\\?)\\D*(?:\\+?\\d{1,4}[-\\s]?)?(?:\\(\\d{1,}\\)[-.\\s]?)?\\d{1,}[-.\\s]?\\d{1,}[-.\\s]?\\d{1,}\\b&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="(?&lt;=What’s your phone number\?)\D*(?:\+?\d{1,4}[-\s]?)?(?:\(\d{1,}\)[-.\s]?)?\d{1,}[-.\s]?\d{1,}[-.\s]?\d{1,}\b" RegexOption="IgnoreCase, Compiled" Result="[ieOwnerPhoneNumber]" />
             <Assign DisplayName="Assign Owner Number to String" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_476">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[strOwnerPhoneNumber]</OutArgument>
@@ -4495,7 +4402,7 @@
                               <ActivityAction.Argument>
                                 <DelegateInArgument x:TypeArguments="s:Exception" Name="Nothing" />
                               </ActivityAction.Argument>
-                              <Sequence sap:VirtualizedContainerService.HintSize="304,652" sap2010:WorkflowViewState.IdRef="Sequence_313">
+                              <Sequence sap:VirtualizedContainerService.HintSize="304,640" sap2010:WorkflowViewState.IdRef="Sequence_313">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>

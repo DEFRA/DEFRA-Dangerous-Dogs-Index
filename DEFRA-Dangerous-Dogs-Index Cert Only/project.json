@@ -1,5 +1,5 @@
 {
-  "name": "DEFRA-Dangerous-Dogs-Index",
+  "name": "DEFRA-Dangerous-Dogs-Index Cert Only",
   "description": "Attended Development Template",
   "main": "Main.xaml",
   "dependencies": {
@@ -22,7 +22,7 @@
   "entitiesStores": [],
   "schemaVersion": "4.0",
   "studioVersion": "22.4.6.0",
-  "projectVersion": "1.0.31",
+  "projectVersion": "1.0.0",
   "runtimeOptions": {
     "autoDispose": false,
     "netFrameworkLazyLoading": false,

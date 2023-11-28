@@ -546,7 +546,7 @@
               <av:PointCollection x:Key="ConnectorLocation">300,549.5 300,599.5</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Sequence DisplayName="Check out Main Index" sap:VirtualizedContainerService.HintSize="554,1665" sap2010:WorkflowViewState.IdRef="Sequence_94">
+          <Sequence DisplayName="Check out Main Index" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_94">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1246,7 +1246,7 @@
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <Sequence DisplayName="Clear Data Tables" sap:VirtualizedContainerService.HintSize="334,68" sap2010:WorkflowViewState.IdRef="Sequence_368">
+        <Sequence DisplayName="Clear Data Tables" sap:VirtualizedContainerService.HintSize="1908,68" sap2010:WorkflowViewState.IdRef="Sequence_368">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -1257,7 +1257,7 @@
           <ui:ClearDataTable DataTable="[io_dtDogInformationPass]" DisplayName="Clear Pass DataTable" sap:VirtualizedContainerService.HintSize="284,80" sap2010:WorkflowViewState.IdRef="ClearDataTable_6" />
           <ui:ClearDataTable DataTable="[io_dtDogInformationSoftFail]" DisplayName="Clear Soft Fail DataTable" sap:VirtualizedContainerService.HintSize="284,80" sap2010:WorkflowViewState.IdRef="ClearDataTable_7" />
         </Sequence>
-        <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" UserName="{x:Null}" AzureAppPermissions="None" DisplayName="Download Current Spreadsheet" sap:VirtualizedContainerService.HintSize="334,52" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_6" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SharePointInstanceType="WebLogin" URL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
+        <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" UserName="{x:Null}" AzureAppPermissions="None" DisplayName="Download Current Spreadsheet" sap:VirtualizedContainerService.HintSize="1908,52" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_6" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SharePointInstanceType="WebLogin" URL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
           <usa:SharepointApplicationScope.Body>
             <ActivityAction x:TypeArguments="us:SharePointContextInfo">
               <ActivityAction.Argument>
@@ -1283,7 +1283,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </usa:SharepointApplicationScope>
-        <Assign DisplayName="Assign Item to strEmailBody" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_445">
+        <Assign DisplayName="Assign Item to strEmailBody" sap:VirtualizedContainerService.HintSize="1908,60" sap2010:WorkflowViewState.IdRef="Assign_445">
           <Assign.To>
             <OutArgument x:TypeArguments="x:String">[strEmailBody]</OutArgument>
           </Assign.To>
@@ -1291,7 +1291,7 @@
             <InArgument x:TypeArguments="x:String">[in_TransactionItem.Body]</InArgument>
           </Assign.Value>
         </Assign>
-        <Assign DisplayName="Replace New Lines in Text" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_446">
+        <Assign DisplayName="Replace New Lines in Text" sap:VirtualizedContainerService.HintSize="1908,60" sap2010:WorkflowViewState.IdRef="Assign_446">
           <Assign.To>
             <OutArgument x:TypeArguments="x:String">[strEmailBody]</OutArgument>
           </Assign.To>
@@ -1299,7 +1299,7 @@
             <InArgument x:TypeArguments="x:String">[strEmailBody.Replace(Environment.NewLine, String.Empty)]</InArgument>
           </Assign.Value>
         </Assign>
-        <Assign DisplayName="Replace &quot;____________________&quot; in text" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_447">
+        <Assign DisplayName="Replace &quot;____________________&quot; in text" sap:VirtualizedContainerService.HintSize="1908,60" sap2010:WorkflowViewState.IdRef="Assign_447">
           <Assign.To>
             <OutArgument x:TypeArguments="x:String">[strEmailBody]</OutArgument>
           </Assign.To>
@@ -1307,13 +1307,13 @@
             <InArgument x:TypeArguments="x:String">[strEmailBody.Replace("________________________________"," ")]</InArgument>
           </Assign.Value>
         </Assign>
-        <ui:BuildDataTable DataTable="[dtCurrentEmail]" DisplayName="Build Current Email DataTable" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="BuildDataTable_8" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;EmailRef&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;FirstName&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;LastName&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;AddressLine1&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_x0020_AddressLine2&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;TownOrCity&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;County&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;PostCode&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Country&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;DateOfBirth&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;PhoneNumber&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;EmailAddress&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;DogsName&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;DogDOB&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;DogColour&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;DogGender&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;InsuranceStartDate&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;PaymentRefNumber&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Neutered&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Microchipped&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;MicrochipNumber&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;FollowUpNeeded&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;FollowUpRequired&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;IndexNumber&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;strCertNeeded&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;strCertSent&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;ApplicationStatus&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
-        <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="Email ID" DisplayName="Get Email ID Asset" sap:VirtualizedContainerService.HintSize="334,139" sap2010:WorkflowViewState.IdRef="GetRobotAsset_5">
+        <ui:BuildDataTable DataTable="[dtCurrentEmail]" DisplayName="Build Current Email DataTable" sap:VirtualizedContainerService.HintSize="1908,59" sap2010:WorkflowViewState.IdRef="BuildDataTable_8" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;EmailRef&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;FirstName&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;LastName&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;AddressLine1&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_x0020_AddressLine2&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;TownOrCity&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;County&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;PostCode&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Country&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;DateOfBirth&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;PhoneNumber&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;EmailAddress&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;DogsName&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;DogDOB&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;DogColour&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;DogGender&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;InsuranceStartDate&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;PaymentRefNumber&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Neutered&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Microchipped&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;MicrochipNumber&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;FollowUpNeeded&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;FollowUpRequired&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;IndexNumber&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;strCertNeeded&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;strCertSent&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;ApplicationStatus&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
+        <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="Email ID" DisplayName="Get Email ID Asset" sap:VirtualizedContainerService.HintSize="1908,139" sap2010:WorkflowViewState.IdRef="GetRobotAsset_5">
           <ui:GetRobotAsset.Value>
             <OutArgument x:TypeArguments="x:String">[strEmailID]</OutArgument>
           </ui:GetRobotAsset.Value>
         </ui:GetRobotAsset>
-        <Assign DisplayName="Set Follow up Needed to No" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_448">
+        <Assign DisplayName="Set Follow up Needed to No" sap:VirtualizedContainerService.HintSize="1908,60" sap2010:WorkflowViewState.IdRef="Assign_448">
           <Assign.To>
             <OutArgument x:TypeArguments="x:String">[strFollowUpNeededDog1]</OutArgument>
           </Assign.To>
@@ -1321,7 +1321,7 @@
             <InArgument x:TypeArguments="x:String">No</InArgument>
           </Assign.Value>
         </Assign>
-        <Assign DisplayName="Set Follow Up Reason for N/A" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_449">
+        <Assign DisplayName="Set Follow Up Reason for N/A" sap:VirtualizedContainerService.HintSize="1908,60" sap2010:WorkflowViewState.IdRef="Assign_449">
           <Assign.To>
             <OutArgument x:TypeArguments="x:String">[strFollowUpReasonDog1]</OutArgument>
           </Assign.To>
@@ -1329,7 +1329,7 @@
             <InArgument x:TypeArguments="x:String">N/A</InArgument>
           </Assign.Value>
         </Assign>
-        <Assign DisplayName="Assign Cert Needed to Yes" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_450">
+        <Assign DisplayName="Assign Cert Needed to Yes" sap:VirtualizedContainerService.HintSize="1908,60" sap2010:WorkflowViewState.IdRef="Assign_450">
           <Assign.To>
             <OutArgument x:TypeArguments="x:String">[strCertNeeded]</OutArgument>
           </Assign.To>
@@ -1337,7 +1337,7 @@
             <InArgument x:TypeArguments="x:String">Yes</InArgument>
           </Assign.Value>
         </Assign>
-        <Assign DisplayName="Assign Cert Needed to No" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_451">
+        <Assign DisplayName="Assign Cert Needed to No" sap:VirtualizedContainerService.HintSize="1908,60" sap2010:WorkflowViewState.IdRef="Assign_451">
           <Assign.To>
             <OutArgument x:TypeArguments="x:String">[strCertSent]</OutArgument>
           </Assign.To>
@@ -1345,7 +1345,7 @@
             <InArgument x:TypeArguments="x:String">Yes</InArgument>
           </Assign.Value>
         </Assign>
-        <Assign DisplayName="Assign Application Status to Passed" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_452">
+        <Assign DisplayName="Assign Application Status to Passed" sap:VirtualizedContainerService.HintSize="1908,60" sap2010:WorkflowViewState.IdRef="Assign_452">
           <Assign.To>
             <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
           </Assign.To>
@@ -1353,7 +1353,7 @@
             <InArgument x:TypeArguments="x:String">Passed</InArgument>
           </Assign.Value>
         </Assign>
-        <Sequence DisplayName="Get Owner Information" sap:VirtualizedContainerService.HintSize="334,68" sap2010:WorkflowViewState.IdRef="Sequence_246">
+        <Sequence DisplayName="Get Owner Information" sap:VirtualizedContainerService.HintSize="1908,68" sap2010:WorkflowViewState.IdRef="Sequence_246">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -1706,10 +1706,10 @@
             </Assign>
           </Sequence>
         </Sequence>
-        <Sequence DisplayName="Get Dog 1 information" sap:VirtualizedContainerService.HintSize="334,68" sap2010:WorkflowViewState.IdRef="Sequence_277">
+        <Sequence DisplayName="Get Dog 1 information" sap:VirtualizedContainerService.HintSize="1908,10092" sap2010:WorkflowViewState.IdRef="Sequence_277">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
@@ -2433,7 +2433,7 @@
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:Matches BuilderPattern="\bWhat’s your payment reference number\?\s*([^\r\n]+)\s*Is your dog neutered\?" sap:VirtualizedContainerService.HintSize="1204,59" sap2010:WorkflowViewState.IdRef="Matches_110" Input="[strEmailBody]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;\\bWhat’s your payment reference number\\?\\s*([^\\r\\n]+)\\s*Is your dog neutered\\?&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="\bWhat’s your payment reference number\?\s*([^\r\n]+)\s*Is your dog neutered\?" RegexOption="IgnoreCase, Compiled" Result="[ieDog1PaymentRef]" />
+                <ui:Matches BuilderPattern="\bWhat’s your payment reference number\?\s*([A-Za-z0-9]{10})\s*Is your dog neutered\?" sap:VirtualizedContainerService.HintSize="1204,59" sap2010:WorkflowViewState.IdRef="Matches_110" Input="[strEmailBody]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;\\bWhat’s your payment reference number\\?\\s*([A-Za-z0-9]{10})\\s*Is your dog neutered\\?&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="\bWhat’s your payment reference number\?\s*([A-Za-z0-9]{10})\s*Is your dog neutered\?" RegexOption="IgnoreCase, Compiled" Result="[ieDog1PaymentRef]" />
                 <Assign sap:VirtualizedContainerService.HintSize="1204,60" sap2010:WorkflowViewState.IdRef="Assign_510">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:String">[strDog1PaymentRef]</OutArgument>
@@ -2717,7 +2717,7 @@
                         <InArgument x:TypeArguments="x:String">No</InArgument>
                       </Assign.Value>
                     </Assign>
-                    <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_529">
+                    <Assign sap:VirtualizedContainerService.HintSize="262,58" sap2010:WorkflowViewState.IdRef="Assign_529">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:String">[strCertSent]</OutArgument>
                       </Assign.To>
@@ -2740,10 +2740,10 @@
           </TryCatch>
           <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{strEmailID,strFirstName,strLastName,strAddressLine1,strAddressLine2,strTown,strCounty,strOwnerCountry,strPostCode,strOwnerDoB,strOwnerPhoneNumber,strOwnerEmailAddress,strDog1Name,strDog1DoB,strDog1Colour,strDog1Gender,strDog1InsuranceStartDate,strDog1PaymentRef,strDog1Neutered,strDog1MicroChipped,strDog1MicroChipNumber,strFollowUpNeededDog1,strFollowUpReasonDog1,strIndexNumber,strCertNeeded,strCertSent,strApplicationStatus}]" DataTable="[dtCurrentEmail]" DisplayName="Add Data Row to Current Email" sap:VirtualizedContainerService.HintSize="1710,188" sap2010:WorkflowViewState.IdRef="AddDataRow_75" />
         </Sequence>
-        <If Condition="[strEmailBody.ToLower.Contains(&quot;second dog&quot;)]" DisplayName="If the Owner has a second dog" sap:VirtualizedContainerService.HintSize="334,52" sap2010:WorkflowViewState.IdRef="If_72">
+        <If Condition="[strEmailBody.ToLower.Contains(&quot;second dog&quot;)]" DisplayName="If the Owner has a second dog" sap:VirtualizedContainerService.HintSize="1908,21880" sap2010:WorkflowViewState.IdRef="If_72">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
@@ -3201,7 +3201,7 @@
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ui:Matches BuilderPattern="What’s your payment reference number for the second dog\?\s*([^\r\n]+)\s*Is your second dog neutered\?" sap:VirtualizedContainerService.HintSize="1308,59" sap2010:WorkflowViewState.IdRef="Matches_119" Input="[strEmailBody]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;What’s your payment reference number for the second dog\\?\\s*([^\\r\\n]+)\\s*Is your second dog neutered\\?&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="What’s your payment reference number for the second dog\?\s*([^\r\n]+)\s*Is your second dog neutered\?" RegexOption="IgnoreCase, Compiled" Result="[ieDog2PaymentRef]" />
+                      <ui:Matches BuilderPattern="\bWhat’s your payment reference number for the second dog\?\s*([A-Za-z0-9]{10})\s*Is your second dog neutered\?" sap:VirtualizedContainerService.HintSize="1308,59" sap2010:WorkflowViewState.IdRef="Matches_119" Input="[strEmailBody]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;\\bWhat’s your payment reference number for the second dog\\?\\s*([A-Za-z0-9]{10})\\s*Is your second dog neutered\\?&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="\bWhat’s your payment reference number for the second dog\?\s*([A-Za-z0-9]{10})\s*Is your second dog neutered\?" RegexOption="IgnoreCase, Compiled" Result="[ieDog2PaymentRef]" />
                       <Assign sap:VirtualizedContainerService.HintSize="1308,60" sap2010:WorkflowViewState.IdRef="Assign_586">
                         <Assign.To>
                           <OutArgument x:TypeArguments="x:String">[strDog2PaymentRef]</OutArgument>
@@ -4273,7 +4273,7 @@
                                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <ui:Matches BuilderPattern="What’s your payment reference number for the third dog\?\s*([^\r\n]+)\s*Is your third dog neutered\?" sap:VirtualizedContainerService.HintSize="1266,59" sap2010:WorkflowViewState.IdRef="Matches_127" Input="[strEmailBody]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;What’s your payment reference number for the third dog\\?\\s*([^\\r\\n]+)\\s*Is your third dog neutered\\?&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="What’s your payment reference number for the third dog\?\s*([^\r\n]+)\s*Is your third dog neutered\?" RegexOption="IgnoreCase, Compiled" Result="[ieDog3PaymentRef]" />
+                            <ui:Matches BuilderPattern="\bWhat’s your payment reference number for the third dog\?\s*([A-Za-z0-9]{10})\s*Is your third dog neutered\?" sap:VirtualizedContainerService.HintSize="1266,59" sap2010:WorkflowViewState.IdRef="Matches_127" Input="[strEmailBody]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;\\bWhat’s your payment reference number for the third dog\\?\\s*([A-Za-z0-9]{10})\\s*Is your third dog neutered\\?&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="\bWhat’s your payment reference number for the third dog\?\s*([A-Za-z0-9]{10})\s*Is your third dog neutered\?" RegexOption="IgnoreCase, Compiled" Result="[ieDog3PaymentRef]" />
                             <Assign sap:VirtualizedContainerService.HintSize="1266,60" sap2010:WorkflowViewState.IdRef="Assign_657">
                               <Assign.To>
                                 <OutArgument x:TypeArguments="x:String">[strDog3PaymentRef]</OutArgument>
@@ -4927,7 +4927,7 @@
             </Sequence>
           </If.Then>
         </If>
-        <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_704">
+        <Assign sap:VirtualizedContainerService.HintSize="1908,60" sap2010:WorkflowViewState.IdRef="Assign_704">
           <Assign.To>
             <OutArgument x:TypeArguments="x:Int32">[intEmailID]</OutArgument>
           </Assign.To>
@@ -4935,7 +4935,7 @@
             <InArgument x:TypeArguments="x:Int32">[CInt(strEmailID)]</InArgument>
           </Assign.Value>
         </Assign>
-        <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_705">
+        <Assign sap:VirtualizedContainerService.HintSize="1908,60" sap2010:WorkflowViewState.IdRef="Assign_705">
           <Assign.To>
             <OutArgument x:TypeArguments="x:Int32">[intEmailID]</OutArgument>
           </Assign.To>
@@ -4943,7 +4943,7 @@
             <InArgument x:TypeArguments="x:Int32">[intEmailID + 1]</InArgument>
           </Assign.Value>
         </Assign>
-        <ui:SetAsset TimeoutMS="{x:Null}" AssetName="Email ID" DisplayName="Set Asset" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="SetAsset_6" Value="[intEmailID.ToString]" />
+        <ui:SetAsset TimeoutMS="{x:Null}" AssetName="Email ID" DisplayName="Set Asset" sap:VirtualizedContainerService.HintSize="1908,134" sap2010:WorkflowViewState.IdRef="SetAsset_6" Value="[intEmailID.ToString]" />
       </Sequence>
       <FlowStep.Next>
         <FlowStep x:Name="__ReferenceID5">

@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Process_Transaction_2" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://schemas.uipath.com/workflow/activities/word" xmlns:p1="clr-namespace:Pop_Ups;assembly=Pop Ups" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:sd1="clr-namespace:System.Diagnostics;assembly=System" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:us="clr-namespace:UiPathTeam.SharePoint;assembly=UiPathTeam.SharePoint" xmlns:usa="clr-namespace:UiPathTeam.SharePoint.Activities;assembly=UiPathTeam.SharePoint.Activities" xmlns:usal="clr-namespace:UiPathTeam.SharePoint.Activities.Libraries;assembly=UiPathTeam.SharePoint.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Process_Transaction_2" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="clr-namespace:Pop_Ups;assembly=Pop Ups" xmlns:p1="http://schemas.uipath.com/workflow/activities/word" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:sd1="clr-namespace:System.Diagnostics;assembly=System" xmlns:sn="clr-namespace:System.Net;assembly=System" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System" xmlns:su="clr-namespace:SharePoint.UiPathTeam_Sharepoint_Activities;assembly=SharePoint" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:us="clr-namespace:UiPathTeam.SharePoint;assembly=UiPathTeam.SharePoint" xmlns:usa="clr-namespace:UiPathTeam.SharePoint.Activities;assembly=UiPathTeam.SharePoint.Activities" xmlns:usal="clr-namespace:UiPathTeam.SharePoint.Activities.Libraries;assembly=UiPathTeam.SharePoint.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(sd:DataRow)" />
     <x:Property Name="io_arrExitPoint" Type="InOutArgument(s:Int32[])" />
@@ -6,14 +6,18 @@
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="io_Config" Type="InOutArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="io_arrCaseID" Type="InOutArgument(s:String[])" />
     <x:Property Name="in_strFolderPath" Type="InArgument(x:String)" />
+    <x:Property Name="in_strSharepointLockFilePath" Type="InArgument(x:String)" />
   </x:Members>
+  <this:Process_Transaction_2.in_strSharepointLockFilePath>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Process_Transaction_2.in_strSharepointLockFilePath>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1194,1135.5</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1135,1135.5</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Process_Transaction_2_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="28">
+    <scg:List x:TypeArguments="x:String" Capacity="49">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -42,10 +46,31 @@
       <x:String>System.Reflection</x:String>
       <x:String>UiPath.Word.Activities</x:String>
       <x:String>UiPath.Core.Activities.Orchestrator</x:String>
+      <x:String>UiPathTeam.SharePoint</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>Microsoft.SharePoint.Client</x:String>
+      <x:String>UiPathTeam.SharePoint.Activities</x:String>
+      <x:String>UiPathTeam.SharePoint.Activities.Libraries</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Net</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>SharePoint.UiPathTeam_Sharepoint_Activities</x:String>
+      <x:String>Pop_Ups</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>OfficeDevPnP.Core.Framework.Provisioning.Model</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>UiPath.Word</x:String>
+      <x:String>UiPath.Shared.Activities.Business</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="31">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="50">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -76,7 +101,26 @@
       <AssemblyReference>UiPath.Word.Activities.Design</AssemblyReference>
       <AssemblyReference>OfficeDevPnP.Core</AssemblyReference>
       <AssemblyReference>UiPathTeam.SharePoint</AssemblyReference>
+      <AssemblyReference>Microsoft.SharePoint.Client.Runtime</AssemblyReference>
+      <AssemblyReference>Microsoft.SharePoint.Client</AssemblyReference>
+      <AssemblyReference>UiPathTeam.SharePoint.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Callout.Activity</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Persistence.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Form.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>SharePoint</AssemblyReference>
+      <AssemblyReference>Pop Ups</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Word</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <Flowchart sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " sap:VirtualizedContainerService.HintSize="672.5,1070.5" sap2010:WorkflowViewState.IdRef="Flowchart_1">
@@ -86,6 +130,8 @@
       <Variable x:TypeArguments="x:String" Name="strCertIndexNumber" />
       <Variable x:TypeArguments="x:String" Name="strOwnerName" />
       <Variable x:TypeArguments="x:Int32" Name="intFolderNumber" />
+      <Variable x:TypeArguments="x:Boolean" Name="booReissue" />
+      <Variable x:TypeArguments="x:String" Name="strDDILogSharepointFilepath" />
     </Flowchart.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -99,16 +145,17 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <Flowchart.StartNode>
-      <x:Reference>__ReferenceID4</x:Reference>
+      <x:Reference>__ReferenceID5</x:Reference>
     </Flowchart.StartNode>
     <FlowStep x:Name="__ReferenceID0">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <av:Point x:Key="ShapeLocation">200,559.5</av:Point>
           <av:Size x:Key="ShapeSize">200,68</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">300,627.5 300,677.5</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Sequence DisplayName="Draft Email" sap:VirtualizedContainerService.HintSize="508,1155" sap2010:WorkflowViewState.IdRef="Sequence_3">
+      <Sequence DisplayName="Draft Email" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_3">
         <Sequence.Variables>
           <Variable x:TypeArguments="x:String" Name="EmailText" />
           <Variable x:TypeArguments="snm:MailMessage" Name="mailMessage" />
@@ -121,7 +168,7 @@
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <Assign sap:VirtualizedContainerService.HintSize="466,64" sap2010:WorkflowViewState.IdRef="Assign_1">
+        <Assign sap:VirtualizedContainerService.HintSize="973,64" sap2010:WorkflowViewState.IdRef="Assign_1">
           <Assign.To>
             <OutArgument x:TypeArguments="x:String">[EmailText]</OutArgument>
           </Assign.To>
@@ -143,7 +190,7 @@
 "&lt;p&gt;Index Team&lt;/p&gt;"]</InArgument>
           </Assign.Value>
         </Assign>
-        <Assign sap:VirtualizedContainerService.HintSize="466,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+        <Assign sap:VirtualizedContainerService.HintSize="973,60" sap2010:WorkflowViewState.IdRef="Assign_2">
           <Assign.To>
             <OutArgument x:TypeArguments="snm:MailMessage">[mailMessage]</OutArgument>
           </Assign.To>
@@ -151,7 +198,7 @@
             <InArgument x:TypeArguments="snm:MailMessage">[New System.Net.Mail.MailMessage()]</InArgument>
           </Assign.Value>
         </Assign>
-        <Assign sap:VirtualizedContainerService.HintSize="466,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+        <Assign sap:VirtualizedContainerService.HintSize="973,60" sap2010:WorkflowViewState.IdRef="Assign_3">
           <Assign.To>
             <OutArgument x:TypeArguments="snm:MailAddress">[sentOnBehalfOfAddress]</OutArgument>
           </Assign.To>
@@ -159,7 +206,7 @@
             <InArgument x:TypeArguments="snm:MailAddress">[New System.Net.Mail.MailAddress("AWDDI@defra.gov.uk", "XL Bully Exemption Scheme")]</InArgument>
           </Assign.Value>
         </Assign>
-        <Assign sap:VirtualizedContainerService.HintSize="466,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+        <Assign sap:VirtualizedContainerService.HintSize="973,60" sap2010:WorkflowViewState.IdRef="Assign_4">
           <Assign.To>
             <OutArgument x:TypeArguments="x:String">[strSentOnBehalfOf]</OutArgument>
           </Assign.To>
@@ -167,137 +214,444 @@
             <InArgument x:TypeArguments="x:String">[sentOnBehalfOfAddress.ToString]</InArgument>
           </Assign.Value>
         </Assign>
-        <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="466,659" sap2010:WorkflowViewState.IdRef="TryCatch_1">
-          <TryCatch.Try>
-            <Sequence sap:VirtualizedContainerService.HintSize="426,361" sap2010:WorkflowViewState.IdRef="Sequence_1">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-              <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Account="[io_Config(&quot;AccountName&quot;).ToString]" Body="[EmailText]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="384,149" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" Importance="Normal" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" SentOnBehalfOfName="[strSentOnBehalfOf]" Subject="Apply for a Certificate of Exemption to keep an XL Bully dog" To="[in_TransactionItem(&quot;EmailAddress&quot;).ToString]">
-                <ui:SendOutlookMail.Files>
-                  <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
-                    <InArgument x:TypeArguments="x:String">
-                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_strFolderPath + &quot;\DEFRA-Dangerous-Dogs-Index\&quot; + strCertIndexNumber + &quot; - &quot; + in_TransactionItem(&quot;DogsName&quot;).ToString + &quot; - Certificate of Exemption XL Bully.pdf&quot;" />
-                    </InArgument>
-                  </scg:List>
-                </ui:SendOutlookMail.Files>
-              </ui:SendOutlookMail>
-              <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="384,80" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[in_strFolderPath + &quot;\DEFRA-Dangerous-Dogs-Index\&quot; + strCertIndexNumber + &quot; - &quot; + in_TransactionItem(&quot;DogsName&quot;).ToString + &quot; - Certificate of Exemption XL Bully.pdf&quot;]" />
-            </Sequence>
-          </TryCatch.Try>
-          <TryCatch.Catches>
-            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="432,493" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+        <If Condition="[booReissue = True]" sap:VirtualizedContainerService.HintSize="973,753" sap2010:WorkflowViewState.IdRef="If_9">
+          <If.Then>
+            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="464,593" sap2010:WorkflowViewState.IdRef="TryCatch_5">
+              <TryCatch.Try>
+                <Sequence sap:VirtualizedContainerService.HintSize="426,361" sap2010:WorkflowViewState.IdRef="Sequence_43">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Account="[io_Config(&quot;AccountName&quot;).ToString]" Body="[EmailText]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="384,149" sap2010:WorkflowViewState.IdRef="SendOutlookMail_3" Importance="Normal" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" SentOnBehalfOfName="[strSentOnBehalfOf]" Subject="Apply for a Certificate of Exemption to keep an XL Bully dog" To="[in_TransactionItem(&quot;EmailAddress&quot;).ToString]">
+                    <ui:SendOutlookMail.Files>
+                      <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                        <InArgument x:TypeArguments="x:String">
+                          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_strFolderPath + &quot;\DEFRA-Dangerous-Dogs-Index\&quot; + strCertIndexNumber + &quot; - &quot; + in_TransactionItem(&quot;DogsName&quot;).ToString + &quot; - Certificate of Exemption XL Bully (Re-Issue).pdf&quot;" />
+                        </InArgument>
+                      </scg:List>
+                    </ui:SendOutlookMail.Files>
+                  </ui:SendOutlookMail>
+                  <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="384,80" sap2010:WorkflowViewState.IdRef="DeleteFileX_3" Path="[in_strFolderPath + &quot;\DEFRA-Dangerous-Dogs-Index\&quot; + strCertIndexNumber + &quot; - &quot; + in_TransactionItem(&quot;DogsName&quot;).ToString + &quot; - Certificate of Exemption XL Bully (Re-Issue).pdf&quot;]" />
+                </Sequence>
+              </TryCatch.Try>
+              <TryCatch.Catches>
+                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="430,22" sap2010:WorkflowViewState.IdRef="Catch`1_5">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ActivityAction x:TypeArguments="s:Exception">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="s:Exception" Name="Nothing" />
+                    </ActivityAction.Argument>
+                    <Sequence sap:VirtualizedContainerService.HintSize="426,423" sap2010:WorkflowViewState.IdRef="Sequence_44">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Account="[io_Config(&quot;AccountName&quot;).ToString]" Body="[EmailText]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="384,149" sap2010:WorkflowViewState.IdRef="SendOutlookMail_4" Importance="Normal" IsBodyHtml="True" IsDraft="True" Sensitivity="Normal" SentOnBehalfOfName="[strSentOnBehalfOf]" Subject="Apply for a Certificate of Exemption to keep an XL Bully dog" To="[in_TransactionItem(&quot;EmailAddress&quot;).ToString]">
+                        <ui:SendOutlookMail.Files>
+                          <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                            <InArgument x:TypeArguments="x:String">
+                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_strFolderPath + &quot;\DEFRA-Dangerous-Dogs-Index\&quot; + strCertIndexNumber + &quot; - &quot; + in_TransactionItem(&quot;DogsName&quot;).ToString + &quot; - Certificate of Exemption XL Bully (Re-Issue).pdf&quot;" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" />
+                          </scg:List>
+                        </ui:SendOutlookMail.Files>
+                      </ui:SendOutlookMail>
+                      <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="384,80" sap2010:WorkflowViewState.IdRef="DeleteFileX_4" Path="[in_strFolderPath + &quot;\DEFRA-Dangerous-Dogs-Index\&quot; + strCertIndexNumber + &quot; - &quot; + in_TransactionItem(&quot;DogsName&quot;).ToString + &quot; - Certificate of Exemption XL Bully (Re-Issue).pdf&quot;]" />
+                      <Throw Exception="[new BusinessRuleException (&quot;Issue sending email. Please check drafts&quot;)]" sap:VirtualizedContainerService.HintSize="384,22" sap2010:WorkflowViewState.IdRef="Throw_2" />
+                    </Sequence>
+                  </ActivityAction>
+                </Catch>
+              </TryCatch.Catches>
+            </TryCatch>
+          </If.Then>
+          <If.Else>
+            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="464,593" sap2010:WorkflowViewState.IdRef="TryCatch_6">
+              <TryCatch.Try>
+                <Sequence sap:VirtualizedContainerService.HintSize="426,361" sap2010:WorkflowViewState.IdRef="Sequence_45">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Account="[io_Config(&quot;AccountName&quot;).ToString]" Body="[EmailText]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="384,149" sap2010:WorkflowViewState.IdRef="SendOutlookMail_5" Importance="Normal" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" SentOnBehalfOfName="[strSentOnBehalfOf]" Subject="Apply for a Certificate of Exemption to keep an XL Bully dog" To="[in_TransactionItem(&quot;EmailAddress&quot;).ToString]">
+                    <ui:SendOutlookMail.Files>
+                      <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                        <InArgument x:TypeArguments="x:String">[in_strFolderPath + "\DEFRA-Dangerous-Dogs-Index\" + strCertIndexNumber + " - " + in_TransactionItem("DogsName").ToString + " - Certificate of Exemption XL Bully.pdf"]</InArgument>
+                      </scg:List>
+                    </ui:SendOutlookMail.Files>
+                  </ui:SendOutlookMail>
+                  <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="384,80" sap2010:WorkflowViewState.IdRef="DeleteFileX_5" Path="[in_strFolderPath + &quot;\DEFRA-Dangerous-Dogs-Index\&quot; + strCertIndexNumber + &quot; - &quot; + in_TransactionItem(&quot;DogsName&quot;).ToString + &quot; - Certificate of Exemption XL Bully.pdf&quot;]" />
+                </Sequence>
+              </TryCatch.Try>
+              <TryCatch.Catches>
+                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="430,22" sap2010:WorkflowViewState.IdRef="Catch`1_6">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ActivityAction x:TypeArguments="s:Exception">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="s:Exception" Name="Nothing" />
+                    </ActivityAction.Argument>
+                    <Sequence sap:VirtualizedContainerService.HintSize="426,423" sap2010:WorkflowViewState.IdRef="Sequence_46">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Account="[io_Config(&quot;AccountName&quot;).ToString]" Body="[EmailText]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="384,149" sap2010:WorkflowViewState.IdRef="SendOutlookMail_6" Importance="Normal" IsBodyHtml="True" IsDraft="True" Sensitivity="Normal" SentOnBehalfOfName="[strSentOnBehalfOf]" Subject="Apply for a Certificate of Exemption to keep an XL Bully dog" To="[in_TransactionItem(&quot;EmailAddress&quot;).ToString]">
+                        <ui:SendOutlookMail.Files>
+                          <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                            <InArgument x:TypeArguments="x:String">[in_strFolderPath + "\DEFRA-Dangerous-Dogs-Index\" + strCertIndexNumber + " - " + in_TransactionItem("DogsName").ToString + " - Certificate of Exemption XL Bully.pdf"]</InArgument>
+                          </scg:List>
+                        </ui:SendOutlookMail.Files>
+                      </ui:SendOutlookMail>
+                      <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="384,80" sap2010:WorkflowViewState.IdRef="DeleteFileX_6" Path="[in_strFolderPath + &quot;\DEFRA-Dangerous-Dogs-Index\&quot; + strCertIndexNumber + &quot; - &quot; + in_TransactionItem(&quot;DogsName&quot;).ToString + &quot; - Certificate of Exemption XL Bully.pdf&quot;]" />
+                      <Throw Exception="[new BusinessRuleException (&quot;Issue sending email. Please check drafts&quot;)]" sap:VirtualizedContainerService.HintSize="384,22" sap2010:WorkflowViewState.IdRef="Throw_3" />
+                    </Sequence>
+                  </ActivityAction>
+                </Catch>
+              </TryCatch.Catches>
+            </TryCatch>
+          </If.Else>
+        </If>
+      </Sequence>
+      <FlowStep.Next>
+        <FlowStep x:Name="__ReferenceID4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:Point x:Key="ShapeLocation">200,677.5</av:Point>
+              <av:Size x:Key="ShapeSize">200,68</av:Size>
+              <av:PointCollection x:Key="ConnectorLocation">300,729.5 300,759.5 299.895,759.5 299.895,779.5</av:PointCollection>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Sequence DisplayName="Update Spreadsheet" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_24">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="s:Exception" Name="exeException" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Sequence DisplayName="Check out Main Index" sap:VirtualizedContainerService.HintSize="834,3809" sap2010:WorkflowViewState.IdRef="Sequence_33">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ActivityAction x:TypeArguments="s:Exception">
-                <ActivityAction.Argument>
-                  <DelegateInArgument x:TypeArguments="s:Exception" Name="Nothing" />
-                </ActivityAction.Argument>
-                <Sequence sap:VirtualizedContainerService.HintSize="426,423" sap2010:WorkflowViewState.IdRef="Sequence_2">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Account="[io_Config(&quot;AccountName&quot;).ToString]" Body="[EmailText]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="384,149" sap2010:WorkflowViewState.IdRef="SendOutlookMail_2" Importance="Normal" IsBodyHtml="True" IsDraft="True" Sensitivity="Normal" SentOnBehalfOfName="[strSentOnBehalfOf]" Subject="Apply for a Certificate of Exemption to keep an XL Bully dog" To="[in_TransactionItem(&quot;EmailAddress&quot;).ToString]">
-                    <ui:SendOutlookMail.Files>
-                      <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
-                        <InArgument x:TypeArguments="x:String">
-                          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_strFolderPath + &quot;\DEFRA-Dangerous-Dogs-Index\&quot; + strCertIndexNumber + &quot; - &quot; + in_TransactionItem(&quot;DogsName&quot;).ToString + &quot; - Certificate of Exemption XL Bully.pdf&quot;" />
-                        </InArgument>
-                      </scg:List>
-                    </ui:SendOutlookMail.Files>
-                  </ui:SendOutlookMail>
-                  <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="384,80" sap2010:WorkflowViewState.IdRef="DeleteFileX_2" Path="[in_strFolderPath + &quot;\DEFRA-Dangerous-Dogs-Index\&quot; + strCertIndexNumber + &quot; - &quot; + in_TransactionItem(&quot;DogsName&quot;).ToString + &quot; - Certificate of Exemption XL Bully.pdf&quot;]" />
-                  <Throw Exception="[new BusinessRuleException (&quot;Issue sending email. Please check drafts&quot;)]" sap:VirtualizedContainerService.HintSize="384,22" sap2010:WorkflowViewState.IdRef="Throw_1" />
-                </Sequence>
-              </ActivityAction>
-            </Catch>
-          </TryCatch.Catches>
-        </TryCatch>
-      </Sequence>
+              <ui:InterruptibleDoWhile Condition="[exeException isNot Nothing]" DisplayName="Check Out Master Index - Do While" sap:VirtualizedContainerService.HintSize="792,1155" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
+                <ui:InterruptibleDoWhile.Body>
+                  <Sequence DisplayName="Check Out Master Log or Present User Assistance Form" sap:VirtualizedContainerService.HintSize="480,988" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Assign DisplayName="Reset Exception" sap:VirtualizedContainerService.HintSize="438,60" sap2010:WorkflowViewState.IdRef="Assign_24">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="s:Exception">[exeException]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="s:Exception">[Nothing]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign DisplayName="Assign  Sharepoint Filepath" sap:VirtualizedContainerService.HintSize="438,60" sap2010:WorkflowViewState.IdRef="Assign_25">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[strDDILogSharepointFilepath]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[io_Config("Log Sharepoint Filepath").ToString]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <TryCatch DisplayName="Try Check Out Master Log" sap:VirtualizedContainerService.HintSize="438,696" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+                      <TryCatch.Try>
+                        <Sequence DisplayName="Handle Stopwatch &amp; Check Out File" sap:VirtualizedContainerService.HintSize="279.5,464" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <InvokeMethod DisplayName="Stop Stopwatch" sap:VirtualizedContainerService.HintSize="237.5,135" sap2010:WorkflowViewState.IdRef="InvokeMethod_4" MethodName="Stop">
+                            <InvokeMethod.TargetObject>
+                              <InArgument x:TypeArguments="sd1:Stopwatch">[io_swProcessingTimer]</InArgument>
+                            </InvokeMethod.TargetObject>
+                          </InvokeMethod>
+                          <su:Check_Out_Sharepoint_File DisplayName="Check Out Sharepoint File" sap:VirtualizedContainerService.HintSize="237.5,22" sap2010:WorkflowViewState.IdRef="Check_Out_Sharepoint_File_1" in_intNumRetries="12" in_strAssetName="Logs Checked Out" in_strSharepointFilePath="[strDDILogSharepointFilepath]" in_strSharepointLockFilePath="[in_strSharepointLockFilePath]" in_strSharepointURL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <su:Check_Out_Sharepoint_File.in_credADCredentials>
+                              <InArgument x:TypeArguments="sn:NetworkCredential" />
+                            </su:Check_Out_Sharepoint_File.in_credADCredentials>
+                          </su:Check_Out_Sharepoint_File>
+                          <InvokeMethod DisplayName="Start Stopwatch" sap:VirtualizedContainerService.HintSize="237.5,135" sap2010:WorkflowViewState.IdRef="InvokeMethod_5" MethodName="Start">
+                            <InvokeMethod.TargetObject>
+                              <InArgument x:TypeArguments="sd1:Stopwatch">[io_swProcessingTimer]</InArgument>
+                            </InvokeMethod.TargetObject>
+                          </InvokeMethod>
+                        </Sequence>
+                      </TryCatch.Try>
+                      <TryCatch.Catches>
+                        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,22" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ActivityAction x:TypeArguments="s:Exception">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Capture Exception" sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <Assign DisplayName="Assign Exception" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_26">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="s:Exception">[exeException]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="s:Exception">[exception]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Sequence>
+                          </ActivityAction>
+                        </Catch>
+                      </TryCatch.Catches>
+                      <TryCatch.Finally>
+                        <If Condition="[exeException isNot Nothing]" DisplayName="Encountered Exception?" sap:VirtualizedContainerService.HintSize="484,481" sap2010:WorkflowViewState.IdRef="If_8">
+                          <If.Then>
+                            <TryCatch DisplayName="Request User Intervention" sap:VirtualizedContainerService.HintSize="438,292" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                              <TryCatch.Try>
+                                <p:Generic_PopUp OUT_ProcessType="{x:Null}" OUT_strButtonSelected="{x:Null}" DisplayName="User Assistance Form" sap:VirtualizedContainerService.HintSize="200,22" IN_CSS_filepath="[&quot;/file://&quot; + System.IO.Directory.GetCurrentDirectory + &quot;\Assets\Generic\InitialisationException.css&quot;]" IN_ErrorMessage="File checkout loop aborted by user" IN_PopupMessage="[&quot;&lt;h1&gt;User assistance required&lt;/h1&gt;&lt;P&gt; I've encountered a problem checking out the file: '&quot;+strDDILogSharepointFilepath+&quot;'&lt;/P&gt;&lt;P&gt; Exception message: &quot;+exeException.Message+&quot;&lt;/P&gt;&lt;P&gt;Please attempt to manually rectify the issue and click Continue for the robot to retry.&lt;/P&gt;&lt;BR&gt;&quot;]" IN_PopupTitle="Department for Environment, Food and Rural Affairs" IN_WidthHeight="[{500,500}]" sap2010:WorkflowViewState.IdRef="Generic_PopUp_2" />
+                              </TryCatch.Try>
+                              <TryCatch.Catches>
+                                <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="404,22" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ActivityAction x:TypeArguments="ui:BusinessRuleException">
+                                    <ActivityAction.Argument>
+                                      <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="exception" />
+                                    </ActivityAction.Argument>
+                                    <Sequence DisplayName="Assign ShouldStop &amp; Rethrow" sap:VirtualizedContainerService.HintSize="304,212" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <Assign DisplayName="Assign ShouldStop" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_27">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:Object">[io_Config("ShouldStop")]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:Object">[True]</InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                      <Rethrow sap:VirtualizedContainerService.HintSize="262,22" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
+                                    </Sequence>
+                                  </ActivityAction>
+                                </Catch>
+                              </TryCatch.Catches>
+                            </TryCatch>
+                          </If.Then>
+                        </If>
+                      </TryCatch.Finally>
+                    </TryCatch>
+                  </Sequence>
+                </ui:InterruptibleDoWhile.Body>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:InterruptibleDoWhile>
+              <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="792,2460" sap2010:WorkflowViewState.IdRef="TryCatch_4">
+                <TryCatch.Try>
+                  <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" UserName="{x:Null}" AzureAppPermissions="None" DisplayName="Sharepoint application scope" sap:VirtualizedContainerService.HintSize="754,2228" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_4" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SharePointInstanceType="WebLogin" URL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
+                    <usa:SharepointApplicationScope.Body>
+                      <ActivityAction x:TypeArguments="us:SharePointContextInfo">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="us:SharePointContextInfo" Name="SharePointContextInfoTag" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="720,2086" sap2010:WorkflowViewState.IdRef="Sequence_31">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <usal:GetFile AttachmentsAction="{x:Null}" RelativeUrlHintText="{x:Null}" ChooseFile="False" DisplayName="Get Master Log" sap:VirtualizedContainerService.HintSize="678,104" sap2010:WorkflowViewState.IdRef="GetFile_1" LocalPath="[in_strFolderPath+io_Config(&quot;DDI Log Path&quot;).ToString]" LocalPathHintText="Local path where the file will be saved" RelativeUrl="[strDDILogSharepointFilepath]" ShowAttachFiles="False" ShowCAMLQuery="False" ShowCAMLWarning="False" ShowGroupDescription="False" ShowGroupName="False" ShowLibraryName="False" ShowListName="False" ShowLocalPath="True" ShowMove="False" ShowPermissionDropdown="False" ShowPropertiesDictionary="False" ShowRelativeUrl="True" ShowRename="False" ShowUserName="False" />
+                          <Delay DisplayName=" Delay 2 seconds" Duration="00:00:02" sap:VirtualizedContainerService.HintSize="678,22" sap2010:WorkflowViewState.IdRef="Delay_3" />
+                          <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="678,134" sap2010:WorkflowViewState.IdRef="KillProcess_2" ProcessName="EXCEL" />
+                          <Sequence DisplayName="Populate Index" sap:VirtualizedContainerService.HintSize="678,1234" sap2010:WorkflowViewState.IdRef="Sequence_30">
+                            <Sequence.Variables>
+                              <Variable x:TypeArguments="sd:DataTable" Name="dtMasterSpreadSheet" />
+                            </Sequence.Variables>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="636,1142" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[in_strFolderPath+io_Config(&quot;DDI Log Path&quot;).ToString]">
+                              <ui:ExcelApplicationScope.Body>
+                                <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                                  </ActivityAction.Argument>
+                                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="602,1033" sap2010:WorkflowViewState.IdRef="Sequence_55">
+                                    <Sequence.Variables>
+                                      <Variable x:TypeArguments="x:Int32" Name="rowIndex" />
+                                    </Sequence.Variables>
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:ExcelReadRange Range="{x:Null}" AddHeaders="True" DataTable="[dtMasterSpreadSheet]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="560,59" sap2010:WorkflowViewState.IdRef="ExcelReadRange_3" SheetName="Manual" />
+                                    <Assign sap:VirtualizedContainerService.HintSize="560,60" sap2010:WorkflowViewState.IdRef="Assign_34">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:Int32">[rowIndex]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:Int32">1</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dtMasterSpreadSheet]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="560,742" sap2010:WorkflowViewState.IdRef="ForEachRow_4">
+                                      <ui:ForEachRow.Body>
+                                        <ActivityAction x:TypeArguments="sd:DataRow">
+                                          <ActivityAction.Argument>
+                                            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Row" />
+                                          </ActivityAction.Argument>
+                                          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="526,622" sap2010:WorkflowViewState.IdRef="Sequence_54">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_35">
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int32">[rowIndex]</OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int32">[rowIndex + 1]</InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <If Condition="[Row(&quot;Cert Sent&quot;).ToString = &quot;No&quot; and Row(&quot;Payment Ref Number&quot;).ToString.Contains(in_TransactionItem(&quot;Payment Ref Number&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="484,430" sap2010:WorkflowViewState.IdRef="If_11">
+                                              <If.Then>
+                                                <Sequence sap:VirtualizedContainerService.HintSize="376,241" sap2010:WorkflowViewState.IdRef="Sequence_53">
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                  <ui:ExcelWriteCell Cell="[&quot;Z&quot; + rowIndex.ToString]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_2" SheetName="Manual" Text="Yes" />
+                                                  <ui:Break sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Break_3" />
+                                                </Sequence>
+                                              </If.Then>
+                                            </If>
+                                          </Sequence>
+                                        </ActivityAction>
+                                      </ui:ForEachRow.Body>
+                                    </ui:ForEachRow>
+                                  </Sequence>
+                                </ActivityAction>
+                              </ui:ExcelApplicationScope.Body>
+                            </ui:ExcelApplicationScope>
+                          </Sequence>
+                          <Delay DisplayName=" Delay 2 seconds" Duration="00:00:02" sap:VirtualizedContainerService.HintSize="678,22" sap2010:WorkflowViewState.IdRef="Delay_4" />
+                          <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="678,134" sap2010:WorkflowViewState.IdRef="KillProcess_3" ProcessName="EXCEL" />
+                          <usal:UploadFile AttachmentsAction="{x:Null}" PropertiesToAdd="{x:Null}" RelativeUrlHintText="{x:Null}" AllowOperationsOnASPXFiles="False" AllowOverwrite="True" CheckInFileAfterCreation="False" CheckOutFileBeforeOverwrite="False" ChooseFile="True" DisplayName="Upload file" sap:VirtualizedContainerService.HintSize="678,104" sap2010:WorkflowViewState.IdRef="UploadFile_4" LocalPath="[in_strFolderPath+io_Config(&quot;DDI Log Path&quot;).ToString]" LocalPathHintText="The current local path of the file" RelativeUrl="[strDDILogSharepointFilepath]" ShowAttachFiles="False" ShowCAMLQuery="False" ShowCAMLWarning="False" ShowGroupDescription="False" ShowGroupName="False" ShowLibraryName="False" ShowListName="False" ShowLocalPath="True" ShowMove="False" ShowPermissionDropdown="False" ShowPropertiesDictionary="False" ShowRelativeUrl="True" ShowRename="False" ShowUserName="False" />
+                        </Sequence>
+                      </ActivityAction>
+                    </usa:SharepointApplicationScope.Body>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </usa:SharepointApplicationScope>
+                </TryCatch.Try>
+                <TryCatch.Catches>
+                  <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="758,22" sap2010:WorkflowViewState.IdRef="Catch`1_4">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ActivityAction x:TypeArguments="s:Exception">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Capture Exception" sap:VirtualizedContainerService.HintSize="376,388" sap2010:WorkflowViewState.IdRef="Sequence_32">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="KillProcess_4" ProcessName="EXCEL" />
+                        <su:Check_In_Sharepoint_File DisplayName="Check In Sharepoint File" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Check_In_Sharepoint_File_1" in_strAssetName="Logs Checked Out" in_strSharepointFilePath="[strDDILogSharepointFilepath]" in_strSharepointLockFilePath="[in_strSharepointLockFilePath]" in_strSharepointURL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <su:Check_In_Sharepoint_File.in_credADCredentials>
+                            <InArgument x:TypeArguments="sn:NetworkCredential" />
+                          </su:Check_In_Sharepoint_File.in_credADCredentials>
+                        </su:Check_In_Sharepoint_File>
+                        <Assign DisplayName="Assign Exception" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_28">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="s:Exception">[exeException]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="s:Exception">[exception]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </ActivityAction>
+                  </Catch>
+                </TryCatch.Catches>
+              </TryCatch>
+              <su:Check_In_Sharepoint_File DisplayName="Check In Sharepoint File" sap:VirtualizedContainerService.HintSize="792,22" sap2010:WorkflowViewState.IdRef="Check_In_Sharepoint_File_2" in_strAssetName="Logs Checked Out" in_strSharepointFilePath="[strDDILogSharepointFilepath]" in_strSharepointLockFilePath="[in_strSharepointLockFilePath]" in_strSharepointURL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <su:Check_In_Sharepoint_File.in_credADCredentials>
+                  <InArgument x:TypeArguments="sn:NetworkCredential" />
+                </su:Check_In_Sharepoint_File.in_credADCredentials>
+              </su:Check_In_Sharepoint_File>
+            </Sequence>
+          </Sequence>
+        </FlowStep>
+      </FlowStep.Next>
     </FlowStep>
     <FlowStep x:Name="__ReferenceID1">
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <av:Point x:Key="ShapeLocation">200,457.5</av:Point>
-          <av:Size x:Key="ShapeSize">200,52</av:Size>
-          <av:PointCollection x:Key="ConnectorLocation">300,509.5 300,559.5</av:PointCollection>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-      <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" UserName="{x:Null}" AzureAppPermissions="None" DisplayName="Sharepoint application scope" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_1" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SharePointInstanceType="WebLogin" URL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
-        <usa:SharepointApplicationScope.Body>
-          <ActivityAction x:TypeArguments="us:SharePointContextInfo">
-            <ActivityAction.Argument>
-              <DelegateInArgument x:TypeArguments="us:SharePointContextInfo" Name="SharePointContextInfoTag" />
-            </ActivityAction.Argument>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="313,340" sap2010:WorkflowViewState.IdRef="Sequence_4">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-              <usal:CreateFolder AttachmentsAction="{x:Null}" LocalPathHintText="{x:Null}" RelativeUrlHintText="{x:Null}" ChooseFile="False" DisplayName="Create folder" sap:VirtualizedContainerService.HintSize="271,104" sap2010:WorkflowViewState.IdRef="CreateFolder_1" LibraryName="DD INDEX FILES" RelativeUrl="[io_Config(&quot;Parent Cert Folder&quot;).ToString + &quot;/&quot; + strCertIndexNumber + &quot; - &quot; + in_TransactionItem(&quot;DogName&quot;).ToString + &quot; - &quot; + strOwnerName]" ShowAttachFiles="False" ShowCAMLQuery="False" ShowCAMLWarning="False" ShowGroupDescription="False" ShowGroupName="False" ShowLibraryName="True" ShowListName="False" ShowLocalPath="False" ShowMove="False" ShowPermissionDropdown="False" ShowPropertiesDictionary="False" ShowRelativeUrl="True" ShowRename="False" ShowUserName="False" />
-              <usal:UploadFile AttachmentsAction="{x:Null}" PropertiesToAdd="{x:Null}" RelativeUrlHintText="{x:Null}" AllowOperationsOnASPXFiles="False" AllowOverwrite="True" CheckInFileAfterCreation="False" CheckOutFileBeforeOverwrite="False" ChooseFile="True" DisplayName="Upload file" sap:VirtualizedContainerService.HintSize="271,104" sap2010:WorkflowViewState.IdRef="UploadFile_1" LocalPath="[in_strFolderPath + &quot;\DEFRA-Dangerous-Dogs-Index\&quot; + strIndexNumber + &quot; - &quot; + in_TransactionItem(&quot;DogsName&quot;).ToString + &quot; - Certificate of Exemption XL Bully.pdf&quot;]" LocalPathHintText="The current local path of the file" RelativeUrl="[io_Config(&quot;Parent Cert Folder&quot;).ToString + &quot;/&quot; + strCertIndexNumber + &quot; - &quot; + in_TransactionItem(&quot;DogName&quot;).ToString + &quot; - &quot; + strOwnerName]" ShowAttachFiles="False" ShowCAMLQuery="False" ShowCAMLWarning="False" ShowGroupDescription="False" ShowGroupName="False" ShowLibraryName="False" ShowListName="False" ShowLocalPath="True" ShowMove="False" ShowPermissionDropdown="False" ShowPropertiesDictionary="False" ShowRelativeUrl="True" ShowRename="False" ShowUserName="False" />
-            </Sequence>
-          </ActivityAction>
-        </usa:SharepointApplicationScope.Body>
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </usa:SharepointApplicationScope>
-      <FlowStep.Next>
-        <x:Reference>__ReferenceID0</x:Reference>
-      </FlowStep.Next>
-    </FlowStep>
-    <FlowStep x:Name="__ReferenceID2">
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <av:Point x:Key="ShapeLocation">200,355.5</av:Point>
-          <av:Size x:Key="ShapeSize">200,52</av:Size>
-          <av:PointCollection x:Key="ConnectorLocation">300,407.5 300,457.5</av:PointCollection>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-      <If Condition="[intFolderNumber mod 500 = 0]" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="If_1">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-        <If.Then>
-          <Sequence sap:VirtualizedContainerService.HintSize="326,326" sap2010:WorkflowViewState.IdRef="Sequence_5">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <Assign sap:VirtualizedContainerService.HintSize="284,60" sap2010:WorkflowViewState.IdRef="Assign_5">
-              <Assign.To>
-                <OutArgument x:TypeArguments="x:Object">[io_Config("Parent Cert Folder")]</OutArgument>
-              </Assign.To>
-              <Assign.Value>
-                <InArgument x:TypeArguments="x:String">[strCertIndexNumber + " - " + (CInt(strCertIndexNumber) + 499).ToString]</InArgument>
-              </Assign.Value>
-            </Assign>
-            <ui:SetAsset TimeoutMS="{x:Null}" AssetName="Parent Cert Folder" DisplayName="Set Asset" sap:VirtualizedContainerService.HintSize="284,134" sap2010:WorkflowViewState.IdRef="SetAsset_1" Value="[io_Config(&quot;Parent Cert Folder&quot;)]" />
-          </Sequence>
-        </If.Then>
-      </If>
-      <FlowStep.Next>
-        <x:Reference>__ReferenceID1</x:Reference>
-      </FlowStep.Next>
-    </FlowStep>
-    <FlowStep x:Name="__ReferenceID3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <av:Point x:Key="ShapeLocation">169,245.5</av:Point>
@@ -314,10 +668,270 @@
         </Assign.Value>
       </Assign>
       <FlowStep.Next>
-        <x:Reference>__ReferenceID2</x:Reference>
+        <FlowStep x:Name="__ReferenceID2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:Point x:Key="ShapeLocation">200,355.5</av:Point>
+              <av:Size x:Key="ShapeSize">200,52</av:Size>
+              <av:PointCollection x:Key="ConnectorLocation">300,407.5 300,457.5</av:PointCollection>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If Condition="[booReissue = False]" DisplayName="Check what the Index number starts with " sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="If_5">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <If Condition="[intFolderNumber mod 500 = 0]" DisplayName="If the Index number starts with 2 then check whether a new folder is needed" sap:VirtualizedContainerService.HintSize="484,516" sap2010:WorkflowViewState.IdRef="If_4">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Sequence DisplayName="Set new Parent Cert Folder" sap:VirtualizedContainerService.HintSize="326,326" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Assign DisplayName="Increase the Parent Cert Folder Number" sap:VirtualizedContainerService.HintSize="284,60" sap2010:WorkflowViewState.IdRef="Assign_14">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Object">[io_Config("Parent Cert Folder")]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[strCertIndexNumber + " - " + (CInt(strCertIndexNumber) + 499).ToString]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:SetAsset TimeoutMS="{x:Null}" AssetName="Parent Cert Folder" DisplayName="Set Asset" sap:VirtualizedContainerService.HintSize="284,134" sap2010:WorkflowViewState.IdRef="SetAsset_4" Value="[io_Config(&quot;Parent Cert Folder&quot;)]" />
+                  </Sequence>
+                </If.Then>
+              </If>
+            </If.Then>
+            <If.Else>
+              <Sequence sap:VirtualizedContainerService.HintSize="602,1974" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="sd:DataTable" Name="dtParentCertFolders" />
+                  <Variable x:TypeArguments="x:Int32" Name="startValue" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:BuildDataTable DataTable="[dtParentCertFolders]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="560,59" sap2010:WorkflowViewState.IdRef="BuildDataTable_2" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Start&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;End&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
+                <Assign sap:VirtualizedContainerService.HintSize="560,60" sap2010:WorkflowViewState.IdRef="Assign_20">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Int32">[startValue]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Int32">100001</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <ui:ForEach x:TypeArguments="x:Int32" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="560,652" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[Enumerable.Range(1, CInt((300000 - StartValue) / 500))]">
+                  <ui:ForEach.Body>
+                    <ActivityAction x:TypeArguments="x:Int32">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="x:Int32" Name="item" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="304,527" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="sd:DataRow" Name="newRow" />
+                        </Sequence.Variables>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_21">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="sd:DataRow">[newRow]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="sd:DataRow">[dtParentCertFolders.NewRow()]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_22">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Object">[newRow("Start")]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Object">[StartValue + (item - 1) * 500]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_23">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Object">[newRow("End")]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Object">[StartValue + item * 500 - 1]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="262,135" sap2010:WorkflowViewState.IdRef="InvokeMethod_3" MethodName="Add">
+                          <InvokeMethod.TargetObject>
+                            <InArgument x:TypeArguments="sd:DataRowCollection">[dtParentCertFolders.Rows]</InArgument>
+                          </InvokeMethod.TargetObject>
+                          <InArgument x:TypeArguments="sd:DataRow">[newRow]</InArgument>
+                        </InvokeMethod>
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:ForEach.Body>
+                </ui:ForEach>
+                <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dtParentCertFolders]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="560,991" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+                  <ui:ForEachRow.Body>
+                    <ActivityAction x:TypeArguments="sd:DataRow">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Row" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="526,870" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="x:Int32" Name="startRange" />
+                          <Variable x:TypeArguments="x:Int32" Name="endRange" />
+                        </Sequence.Variables>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign DisplayName="Assign startRange" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_15">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Int32">[startRange]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Int32">[Convert.ToInt32(row("Start"))]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign DisplayName="Assign endRange " sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_16">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Int32">[endRange]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Int32">[Convert.ToInt32(row("End"))]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <If Condition="[cint(strCertIndexNumber) &gt;= startRange AndAlso cint(strCertIndexNumber) &lt;= endRange]" sap:VirtualizedContainerService.HintSize="484,578" sap2010:WorkflowViewState.IdRef="If_7">
+                          <If.Then>
+                            <Sequence sap:VirtualizedContainerService.HintSize="326,388" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <Assign DisplayName="Increase the Parent Cert Folder Number" sap:VirtualizedContainerService.HintSize="284,60" sap2010:WorkflowViewState.IdRef="Assign_17">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Object">[io_Config("Reissue Parent Cert Folder")]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Object">[startRange.ToString + " - " + endRange.ToString]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <ui:SetAsset TimeoutMS="{x:Null}" AssetName="Parent Cert Folder" DisplayName="Set Asset" sap:VirtualizedContainerService.HintSize="284,134" sap2010:WorkflowViewState.IdRef="SetAsset_5" Value="[io_Config(&quot;Reissue Parent Cert Folder&quot;)]" />
+                              <ui:Break sap:VirtualizedContainerService.HintSize="284,22" sap2010:WorkflowViewState.IdRef="Break_1" />
+                            </Sequence>
+                          </If.Then>
+                        </If>
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:ForEachRow.Body>
+                </ui:ForEachRow>
+              </Sequence>
+            </If.Else>
+          </If>
+          <FlowStep.Next>
+            <FlowStep x:Name="__ReferenceID3">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <av:Point x:Key="ShapeLocation">200,457.5</av:Point>
+                  <av:Size x:Key="ShapeSize">200,52</av:Size>
+                  <av:PointCollection x:Key="ConnectorLocation">300,509.5 300,559.5</av:PointCollection>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If Condition="[booReissue = False]" DisplayName="Check what the Index number starts with " sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="If_6">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Sequence sap:VirtualizedContainerService.HintSize="476,758" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:RenameFileX DisplayName="Rename File" FilePath="[in_strFolderPath + io_Config(&quot;PDF Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="434,144" sap2010:WorkflowViewState.IdRef="RenameFileX_3" KeepExtension="True" NewName="[in_strFolderPath + &quot;\DEFRA-Dangerous-Dogs-Index\&quot; + strCertIndexNumber + &quot; - &quot; + in_TransactionItem(&quot;DogsName&quot;).ToString + &quot; - Certificate of Exemption XL Bully.pdf&quot;]" />
+                    <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" UserName="{x:Null}" AzureAppPermissions="None" DisplayName="Upload new file to Sharepoint" sap:VirtualizedContainerService.HintSize="434,482" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_2" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SharePointInstanceType="WebLogin" URL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
+                      <usa:SharepointApplicationScope.Body>
+                        <ActivityAction x:TypeArguments="us:SharePointContextInfo">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="us:SharePointContextInfo" Name="SharePointContextInfoTag" />
+                          </ActivityAction.Argument>
+                          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="313,340" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <usal:CreateFolder AttachmentsAction="{x:Null}" LocalPathHintText="{x:Null}" RelativeUrlHintText="{x:Null}" ChooseFile="False" DisplayName="Create folder" sap:VirtualizedContainerService.HintSize="271,104" sap2010:WorkflowViewState.IdRef="CreateFolder_2" LibraryName="DD INDEX FILES" RelativeUrl="[io_Config(&quot;Parent Cert Folder&quot;).ToString + &quot;/&quot; + strCertIndexNumber + &quot; - &quot; + in_TransactionItem(&quot;DogName&quot;).ToString + &quot; - &quot; + strOwnerName]" ShowAttachFiles="False" ShowCAMLQuery="False" ShowCAMLWarning="False" ShowGroupDescription="False" ShowGroupName="False" ShowLibraryName="True" ShowListName="False" ShowLocalPath="False" ShowMove="False" ShowPermissionDropdown="False" ShowPropertiesDictionary="False" ShowRelativeUrl="True" ShowRename="False" ShowUserName="False" />
+                            <usal:UploadFile AttachmentsAction="{x:Null}" PropertiesToAdd="{x:Null}" RelativeUrlHintText="{x:Null}" AllowOperationsOnASPXFiles="False" AllowOverwrite="True" CheckInFileAfterCreation="False" CheckOutFileBeforeOverwrite="False" ChooseFile="True" DisplayName="Upload file" sap:VirtualizedContainerService.HintSize="271,104" sap2010:WorkflowViewState.IdRef="UploadFile_2" LocalPath="[in_strFolderPath + &quot;\DEFRA-Dangerous-Dogs-Index\&quot; + strIndexNumber + &quot; - &quot; + in_TransactionItem(&quot;DogsName&quot;).ToString + &quot; - Certificate of Exemption XL Bully.pdf&quot;]" LocalPathHintText="The current local path of the file" RelativeUrl="[io_Config(&quot;Parent Cert Folder&quot;).ToString + &quot;/&quot; + strCertIndexNumber + &quot; - &quot; + in_TransactionItem(&quot;DogName&quot;).ToString + &quot; - &quot; + strOwnerName]" ShowAttachFiles="False" ShowCAMLQuery="False" ShowCAMLWarning="False" ShowGroupDescription="False" ShowGroupName="False" ShowLibraryName="False" ShowListName="False" ShowLocalPath="True" ShowMove="False" ShowPermissionDropdown="False" ShowPropertiesDictionary="False" ShowRelativeUrl="True" ShowRename="False" ShowUserName="False" />
+                          </Sequence>
+                        </ActivityAction>
+                      </usa:SharepointApplicationScope.Body>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </usa:SharepointApplicationScope>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence sap:VirtualizedContainerService.HintSize="476,758" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:RenameFileX DisplayName="Rename File" FilePath="[in_strFolderPath + io_Config(&quot;PDF Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="434,144" sap2010:WorkflowViewState.IdRef="RenameFileX_2" KeepExtension="True" NewName="[in_strFolderPath + &quot;\DEFRA-Dangerous-Dogs-Index\&quot; + strCertIndexNumber + &quot; - &quot; + in_TransactionItem(&quot;DogsName&quot;).ToString + &quot; - Certificate of Exemption XL Bully (Re-Issue).pdf&quot;]" />
+                    <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" UserName="{x:Null}" AzureAppPermissions="None" DisplayName="Upload Re-Issue to Sharepoint" sap:VirtualizedContainerService.HintSize="434,482" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_3" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SharePointInstanceType="WebLogin" URL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
+                      <usa:SharepointApplicationScope.Body>
+                        <ActivityAction x:TypeArguments="us:SharePointContextInfo">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="us:SharePointContextInfo" Name="SharePointContextInfoTag" />
+                          </ActivityAction.Argument>
+                          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="313,340" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <usal:CreateFolder AttachmentsAction="{x:Null}" LocalPathHintText="{x:Null}" RelativeUrlHintText="{x:Null}" ChooseFile="False" DisplayName="Create folder" sap:VirtualizedContainerService.HintSize="271,104" sap2010:WorkflowViewState.IdRef="CreateFolder_3" LibraryName="DD INDEX FILES" RelativeUrl="[io_Config(&quot;Reissue Parent Cert Folder&quot;).ToString + &quot;/&quot; + strCertIndexNumber + &quot; - &quot; + in_TransactionItem(&quot;DogName&quot;).ToString + &quot; - &quot; + strOwnerName]" ShowAttachFiles="False" ShowCAMLQuery="False" ShowCAMLWarning="False" ShowGroupDescription="False" ShowGroupName="False" ShowLibraryName="True" ShowListName="False" ShowLocalPath="False" ShowMove="False" ShowPermissionDropdown="False" ShowPropertiesDictionary="False" ShowRelativeUrl="True" ShowRename="False" ShowUserName="False" />
+                            <usal:UploadFile AttachmentsAction="{x:Null}" PropertiesToAdd="{x:Null}" RelativeUrlHintText="{x:Null}" AllowOperationsOnASPXFiles="False" AllowOverwrite="True" CheckInFileAfterCreation="False" CheckOutFileBeforeOverwrite="False" ChooseFile="True" DisplayName="Upload file" sap:VirtualizedContainerService.HintSize="271,104" sap2010:WorkflowViewState.IdRef="UploadFile_3" LocalPath="[in_strFolderPath + &quot;\DEFRA-Dangerous-Dogs-Index\&quot; + strIndexNumber + &quot; - &quot; + in_TransactionItem(&quot;DogsName&quot;).ToString + &quot; - Certificate of Exemption XL Bully.pdf&quot;]" LocalPathHintText="The current local path of the file" RelativeUrl="[io_Config(&quot;Reissue Parent Cert Folder&quot;).ToString + &quot;/&quot; + strCertIndexNumber + &quot; - &quot; + in_TransactionItem(&quot;DogName&quot;).ToString + &quot; - &quot; + strOwnerName]" ShowAttachFiles="False" ShowCAMLQuery="False" ShowCAMLWarning="False" ShowGroupDescription="False" ShowGroupName="False" ShowLibraryName="False" ShowListName="False" ShowLocalPath="True" ShowMove="False" ShowPermissionDropdown="False" ShowPropertiesDictionary="False" ShowRelativeUrl="True" ShowRename="False" ShowUserName="False" />
+                          </Sequence>
+                        </ActivityAction>
+                      </usa:SharepointApplicationScope.Body>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </usa:SharepointApplicationScope>
+                  </Sequence>
+                </If.Else>
+              </If>
+              <FlowStep.Next>
+                <x:Reference>__ReferenceID0</x:Reference>
+              </FlowStep.Next>
+            </FlowStep>
+          </FlowStep.Next>
+        </FlowStep>
       </FlowStep.Next>
     </FlowStep>
-    <FlowStep x:Name="__ReferenceID4">
+    <FlowStep x:Name="__ReferenceID5">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <av:Point x:Key="ShapeLocation">200,127.5</av:Point>
@@ -325,15 +939,15 @@
           <av:PointCollection x:Key="ConnectorLocation">300,195.5 300,245.5</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Sequence DisplayName="Draft Certificate" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_9">
+      <Sequence DisplayName="Draft Certificate" sap:VirtualizedContainerService.HintSize="1081,4600" sap2010:WorkflowViewState.IdRef="Sequence_9">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="1039,134" sap2010:WorkflowViewState.IdRef="KillProcess_1" ProcessName="WINWORD" />
-        <ui:CopyFile ContinueOnError="{x:Null}" Destination="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" DisplayName="Copy File" sap:VirtualizedContainerService.HintSize="1039,160" sap2010:WorkflowViewState.IdRef="CopyFile_1" Overwrite="True" Path="[in_strFolderPath + io_Config(&quot;Cert Location&quot;).ToString]">
+        <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process Word" sap:VirtualizedContainerService.HintSize="1039,134" sap2010:WorkflowViewState.IdRef="KillProcess_1" ProcessName="WINWORD" />
+        <ui:CopyFile ContinueOnError="{x:Null}" Destination="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" DisplayName="Create Draft of Cert" sap:VirtualizedContainerService.HintSize="1039,160" sap2010:WorkflowViewState.IdRef="CopyFile_1" Overwrite="True" Path="[in_strFolderPath + io_Config(&quot;Cert Location&quot;).ToString]">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -341,14 +955,14 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </ui:CopyFile>
-        <Sequence sap:VirtualizedContainerService.HintSize="1039,4218" sap2010:WorkflowViewState.IdRef="Sequence_8">
+        <Sequence DisplayName="Darft new Certificate" sap:VirtualizedContainerService.HintSize="1039,4134" sap2010:WorkflowViewState.IdRef="Sequence_8">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Assign sap:VirtualizedContainerService.HintSize="997,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+          <Assign DisplayName="Assign Owner Name to String " sap:VirtualizedContainerService.HintSize="997,60" sap2010:WorkflowViewState.IdRef="Assign_7">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[strOwnerName]</OutArgument>
             </Assign.To>
@@ -356,14 +970,14 @@
               <InArgument x:TypeArguments="x:String">[in_TransactionItem("FirstName").ToString + " " + in_TransactionItem("LastName").ToString]</InArgument>
             </Assign.Value>
           </Assign>
-          <p:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="997,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_1" Replace="[strOwnerName]" Search="Owner Name" />
-          <p:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="997,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_2" Replace="[in_TransactionItem(&quot;AddressLine1&quot;).ToString]" Search="Address line 1" />
-          <p:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="997,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_3" Replace="[in_TransactionItem(&quot;AddressLine2&quot;).ToString]" Search="Address line 2" />
-          <p:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="997,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_4" Replace="[in_TransactionItem(&quot;TownOrCity&quot;).ToString]" Search="Address line 3" />
-          <p:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="997,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_5" Replace="[in_TransactionItem(&quot;PostCode&quot;).ToString]" Search="Postcode" />
-          <If Condition="[in_TransactionItem(&quot;Index Number&quot;).ToString.IsNullOrEmpty]" sap:VirtualizedContainerService.HintSize="997,1089" sap2010:WorkflowViewState.IdRef="If_3">
+          <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Owner Name in Cert" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="997,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_1" Replace="[strOwnerName]" Search="Owner Name" />
+          <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Address Line 1 in Cert" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="997,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_2" Replace="[in_TransactionItem(&quot;AddressLine1&quot;).ToString]" Search="Address line 1" />
+          <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Address Line 2 in Cert" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="997,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_3" Replace="[in_TransactionItem(&quot;AddressLine2&quot;).ToString]" Search="Address line 2" />
+          <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Address Line 3 in Cert" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="997,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_4" Replace="[in_TransactionItem(&quot;TownOrCity&quot;).ToString]" Search="Address line 3" />
+          <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace PostCode in Cert" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="997,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_5" Replace="[in_TransactionItem(&quot;PostCode&quot;).ToString]" Search="Postcode" />
+          <If Condition="[in_TransactionItem(&quot;Index Number&quot;).ToString.IsNullOrEmpty]" DisplayName="Check whether Index Number is Empty" sap:VirtualizedContainerService.HintSize="997,1189" sap2010:WorkflowViewState.IdRef="If_3">
             <If.Then>
-              <Sequence sap:VirtualizedContainerService.HintSize="476,929" sap2010:WorkflowViewState.IdRef="Sequence_10">
+              <Sequence DisplayName="If this is a new cert" sap:VirtualizedContainerService.HintSize="476,1029" sap2010:WorkflowViewState.IdRef="Sequence_10">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -382,7 +996,7 @@
                     <InArgument x:TypeArguments="x:String">[strIndexNumber]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <p:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="434,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_16" Replace="[strCertIndexNumber]" Search="Index registration number" />
+                <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="434,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_16" Replace="[strCertIndexNumber]" Search="Index registration number" />
                 <Sequence DisplayName="Increment Index Number" sap:VirtualizedContainerService.HintSize="434,426" sap2010:WorkflowViewState.IdRef="Sequence_13">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -407,10 +1021,18 @@
                   </Assign>
                   <ui:SetAsset TimeoutMS="{x:Null}" AssetName="Index Number" DisplayName="Set Asset" sap:VirtualizedContainerService.HintSize="284,134" sap2010:WorkflowViewState.IdRef="SetAsset_3" Value="[intIndexNumber.ToString]" />
                 </Sequence>
+                <Assign sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="Assign_18">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Boolean">[booReissue]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                  </Assign.Value>
+                </Assign>
               </Sequence>
             </If.Then>
             <If.Else>
-              <Sequence sap:VirtualizedContainerService.HintSize="476,284" sap2010:WorkflowViewState.IdRef="Sequence_11">
+              <Sequence DisplayName="If this is a Re-Issue" sap:VirtualizedContainerService.HintSize="476,384" sap2010:WorkflowViewState.IdRef="Sequence_11">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -424,25 +1046,33 @@
                     <InArgument x:TypeArguments="x:String">[in_TransactionItem("Index Number").ToString]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <p:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="434,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_17" Replace="[strCertIndexNumber]" Search="Index registration number" />
+                <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="434,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_17" Replace="[strCertIndexNumber]" Search="Index registration number" />
+                <Assign sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="Assign_19">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Boolean">[booReissue]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                  </Assign.Value>
+                </Assign>
               </Sequence>
             </If.Else>
           </If>
-          <p:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="997,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_7" Replace="[in_TransactionItem(&quot;MicrochipNumber&quot;).ToString]" Search="Microchip No" />
-          <p:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="997,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_8" Replace="[in_TransactionItem(&quot;DogsName&quot;).ToString]" Search="Dog Name" />
-          <p:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="997,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_9" Replace="XL Bully" Search="Type of dog" />
-          <p:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="997,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_10" Replace="[in_TransactionItem(&quot;DogGender&quot;).ToString]" Search="Sex of dog" />
-          <p:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="997,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_11" Replace="[in_TransactionItem(&quot;DogDOB&quot;).ToString]" Search="Date of birth of dog" />
-          <p:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="997,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_12" Replace="[in_TransactionItem(&quot;DogColour&quot;).ToString]" Search="Main colour of dog" />
-          <p:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="997,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_13" Replace="[Today.ToString(&quot;dd MMMM yyyy&quot;)]" Search="Enter date" />
+          <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="997,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_7" Replace="[in_TransactionItem(&quot;MicrochipNumber&quot;).ToString]" Search="Microchip No" />
+          <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="997,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_8" Replace="[in_TransactionItem(&quot;DogsName&quot;).ToString]" Search="Dog Name" />
+          <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="997,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_9" Replace="XL Bully" Search="Type of dog" />
+          <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="997,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_10" Replace="[in_TransactionItem(&quot;DogGender&quot;).ToString]" Search="Sex of dog" />
+          <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="997,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_11" Replace="[in_TransactionItem(&quot;DogDOB&quot;).ToString]" Search="Date of birth of dog" />
+          <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="997,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_12" Replace="[in_TransactionItem(&quot;DogColour&quot;).ToString]" Search="Main colour of dog" />
+          <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="997,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_13" Replace="[Today.ToString(&quot;dd MMMM yyyy&quot;)]" Search="Enter date" />
           <Delay DisplayName="Delay 2 secs" Duration="00:00:02" sap:VirtualizedContainerService.HintSize="997,22" sap2010:WorkflowViewState.IdRef="Delay_1" />
-          <p:WordApplicationScope DisplayName="Word Application Scope" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="997,1251" sap2010:WorkflowViewState.IdRef="WordApplicationScope_1">
-            <p:WordApplicationScope.Body>
+          <p1:WordApplicationScope DisplayName="Word Application Scope" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="997,1067" sap2010:WorkflowViewState.IdRef="WordApplicationScope_1">
+            <p1:WordApplicationScope.Body>
               <ActivityAction x:TypeArguments="ui:WordDocument">
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="ui:WordDocument" Name="WordDocumentScope" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="526,1142" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="526,958" sap2010:WorkflowViewState.IdRef="Sequence_7">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="x:String" Name="strButtonSelected" />
                   </Sequence.Variables>
@@ -451,27 +1081,27 @@
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <If Condition="[CBool(io_Config(&quot;boolPausePoint3&quot;))]" sap:VirtualizedContainerService.HintSize="484,653" sap2010:WorkflowViewState.IdRef="If_2">
+                  <If Condition="[CBool(io_Config(&quot;boolPausePoint1&quot;))]" sap:VirtualizedContainerService.HintSize="484,653" sap2010:WorkflowViewState.IdRef="If_2">
                     <If.Then>
-                      <Sequence sap:VirtualizedContainerService.HintSize="280.5,464" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                      <Sequence sap:VirtualizedContainerService.HintSize="279.5,464" sap2010:WorkflowViewState.IdRef="Sequence_6">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <InvokeMethod DisplayName="Stop Stopwatch" sap:VirtualizedContainerService.HintSize="238.5,135" sap2010:WorkflowViewState.IdRef="InvokeMethod_1" MethodName="Stop">
+                        <InvokeMethod DisplayName="Stop Stopwatch" sap:VirtualizedContainerService.HintSize="237.5,135" sap2010:WorkflowViewState.IdRef="InvokeMethod_1" MethodName="Stop">
                           <InvokeMethod.TargetObject>
                             <InArgument x:TypeArguments="sd1:Stopwatch">[io_swProcessingTimer]</InArgument>
                           </InvokeMethod.TargetObject>
                         </InvokeMethod>
-                        <p1:Generic_PopUp OUT_ProcessType="{x:Null}" DisplayName="Generic PopUp" sap:VirtualizedContainerService.HintSize="238.5,22" IN_CSS_filepath="[&quot;/file://&quot; + Directory.GetCurrentDirectory + &quot;\Assets\Generic\YesNo.css&quot;]" IN_ErrorMessage="Please check the form has been drafted correctly" IN_PopupMessage="&lt;h1&gt;Draft XL Exemption Cert complete&lt;/h1&gt;&lt;P&gt;The Draft Cert has now been drafted. Please check that everything have populated correctly. Once you are happy please click ok to continue.&lt;/P&gt;&lt;BR&gt;" IN_PopupTitle="Department for Environment, Food and Rural Affairs" IN_WidthHeight="[{800,450}]" sap2010:WorkflowViewState.IdRef="Generic_PopUp_1" OUT_strButtonSelected="[strButtonSelected]">
+                        <p:Generic_PopUp OUT_ProcessType="{x:Null}" DisplayName="Generic PopUp" sap:VirtualizedContainerService.HintSize="237.5,22" IN_CSS_filepath="[&quot;/file://&quot; + System.IO.Directory.GetCurrentDirectory + &quot;\Assets\Generic\YesNo.css&quot;]" IN_ErrorMessage="Please check the form has been drafted correctly" IN_PopupMessage="&lt;h1&gt;Draft XL Exemption Cert complete&lt;/h1&gt;&lt;P&gt;The Draft Cert has now been drafted. Please check that everything have populated correctly. Once you are happy please click ok to continue.&lt;/P&gt;&lt;BR&gt;" IN_PopupTitle="Department for Environment, Food and Rural Affairs" IN_WidthHeight="[{800,450}]" sap2010:WorkflowViewState.IdRef="Generic_PopUp_1" OUT_strButtonSelected="[strButtonSelected]">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                        </p1:Generic_PopUp>
-                        <InvokeMethod DisplayName="Start Stopwatch" sap:VirtualizedContainerService.HintSize="238.5,135" sap2010:WorkflowViewState.IdRef="InvokeMethod_2" MethodName="Start">
+                        </p:Generic_PopUp>
+                        <InvokeMethod DisplayName="Start Stopwatch" sap:VirtualizedContainerService.HintSize="237.5,135" sap2010:WorkflowViewState.IdRef="InvokeMethod_2" MethodName="Start">
                           <InvokeMethod.TargetObject>
                             <InArgument x:TypeArguments="sd1:Stopwatch">[io_swProcessingTimer]</InArgument>
                           </InvokeMethod.TargetObject>
@@ -480,23 +1110,25 @@
                     </If.Then>
                   </If>
                   <Delay DisplayName="Delay 2 secs" Duration="00:00:02" sap:VirtualizedContainerService.HintSize="484,22" sap2010:WorkflowViewState.IdRef="Delay_2" />
-                  <p:WordExportToPdf DisplayName="Save Document as PDF" FilePath="[in_strFolderPath + io_Config(&quot;PDF Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="484,111" sap2010:WorkflowViewState.IdRef="WordExportToPdf_1" />
-                  <ui:RenameFileX DisplayName="Rename File" FilePath="[in_strFolderPath + io_Config(&quot;PDF Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="484,144" sap2010:WorkflowViewState.IdRef="RenameFileX_1" KeepExtension="True" NewName="[in_strFolderPath + &quot;\DEFRA-Dangerous-Dogs-Index\&quot; + strCertIndexNumber + &quot; - &quot; + in_TransactionItem(&quot;DogsName&quot;).ToString + &quot; - Certificate of Exemption XL Bully.pdf&quot;]" />
+                  <p1:WordExportToPdf DisplayName="Save Document as PDF" FilePath="[in_strFolderPath + io_Config(&quot;PDF Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="484,111" sap2010:WorkflowViewState.IdRef="WordExportToPdf_1" />
                 </Sequence>
               </ActivityAction>
-            </p:WordApplicationScope.Body>
+            </p1:WordApplicationScope.Body>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-          </p:WordApplicationScope>
+          </p1:WordApplicationScope>
         </Sequence>
       </Sequence>
       <FlowStep.Next>
-        <x:Reference>__ReferenceID3</x:Reference>
+        <x:Reference>__ReferenceID1</x:Reference>
       </FlowStep.Next>
     </FlowStep>
+    <x:Reference>__ReferenceID2</x:Reference>
+    <x:Reference>__ReferenceID3</x:Reference>
+    <x:Reference>__ReferenceID4</x:Reference>
   </Flowchart>
 </Activity>

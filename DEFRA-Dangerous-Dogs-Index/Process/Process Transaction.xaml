@@ -29,7 +29,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1194,1032.5</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1133,1032.5</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Process_Transaction_2_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="58">
@@ -150,6 +150,7 @@
       <AssemblyReference>UiPath.Callout.Activity</AssemblyReference>
       <AssemblyReference>UiPath.Form.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Persistence.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <sap:WorkflowViewStateService.ViewState>
@@ -242,15 +243,15 @@
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <ui:InterruptibleDoWhile Condition="[exeException isNot Nothing]" DisplayName="Check Out Master Index - Do While" sap:VirtualizedContainerService.HintSize="512,647" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_3">
+        <ui:InterruptibleDoWhile Condition="[exeException isNot Nothing]" DisplayName="Check Out Master Index - Do While" sap:VirtualizedContainerService.HintSize="600,1172" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_3">
           <ui:InterruptibleDoWhile.Body>
-            <Sequence DisplayName="Check Out Master Log or Present User Assistance Form" sap:VirtualizedContainerService.HintSize="476,480" sap2010:WorkflowViewState.IdRef="Sequence_102">
+            <Sequence DisplayName="Check Out Master Log or Present User Assistance Form" sap:VirtualizedContainerService.HintSize="564,1005" sap2010:WorkflowViewState.IdRef="Sequence_102">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Assign DisplayName="Reset Exception" sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="Assign_160">
+              <Assign DisplayName="Reset Exception" sap:VirtualizedContainerService.HintSize="522,60" sap2010:WorkflowViewState.IdRef="Assign_160">
                 <Assign.To>
                   <OutArgument x:TypeArguments="s:Exception">[exeException]</OutArgument>
                 </Assign.To>
@@ -258,7 +259,7 @@
                   <InArgument x:TypeArguments="s:Exception">[Nothing]</InArgument>
                 </Assign.Value>
               </Assign>
-              <Assign DisplayName="Assign  Sharepoint Filepath" sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="Assign_163">
+              <Assign DisplayName="Assign  Sharepoint Filepath" sap:VirtualizedContainerService.HintSize="522,60" sap2010:WorkflowViewState.IdRef="Assign_163">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[strDDIBackupLogSharepointFilepath]</OutArgument>
                 </Assign.To>
@@ -266,7 +267,7 @@
                   <InArgument x:TypeArguments="x:String">[io_Config("Backup Log Sharepoint Filepath").ToString]</InArgument>
                 </Assign.Value>
               </Assign>
-              <TryCatch DisplayName="Try Check Out Master Log" sap:VirtualizedContainerService.HintSize="434,188" sap2010:WorkflowViewState.IdRef="TryCatch_6">
+              <TryCatch DisplayName="Try Check Out Master Log" sap:VirtualizedContainerService.HintSize="522,713" sap2010:WorkflowViewState.IdRef="TryCatch_6">
                 <TryCatch.Try>
                   <Sequence DisplayName="Handle Stopwatch &amp; Check Out File" sap:VirtualizedContainerService.HintSize="280.5,464" sap2010:WorkflowViewState.IdRef="Sequence_99">
                     <sap:WorkflowViewStateService.ViewState>
@@ -297,7 +298,7 @@
                   </Sequence>
                 </TryCatch.Try>
                 <TryCatch.Catches>
-                  <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,22" sap2010:WorkflowViewState.IdRef="Catch`1_5">
+                  <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="488,22" sap2010:WorkflowViewState.IdRef="Catch`1_5">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -331,7 +332,7 @@
                     <If.Then>
                       <TryCatch DisplayName="Request User Intervention" sap:VirtualizedContainerService.HintSize="438,292" sap2010:WorkflowViewState.IdRef="TryCatch_5">
                         <TryCatch.Try>
-                          <p:Generic_PopUp OUT_ProcessType="{x:Null}" OUT_strButtonSelected="{x:Null}" DisplayName="User Assistance Form" sap:VirtualizedContainerService.HintSize="200,22" IN_CSS_filepath="[&quot;/file://&quot; + Directory.GetCurrentDirectory + &quot;\Assets\Generic\InitialisationException.css&quot;]" IN_ErrorMessage="File checkout loop aborted by user" IN_PopupMessage="[&quot;&lt;h1&gt;User assistance required&lt;/h1&gt;&lt;P&gt; I've encountered a problem checking out the file: '&quot;+strDDILogSharepointFilepath+&quot;'&lt;/P&gt;&lt;P&gt; Exception message: &quot;+exeException.Message+&quot;&lt;/P&gt;&lt;P&gt;Please attempt to manually rectify the issue and click Continue for the robot to retry.&lt;/P&gt;&lt;BR&gt;&quot;]" IN_PopupTitle="Department for Environment, Food and Rural Affairs" IN_WidthHeight="[{500,500}]" sap2010:WorkflowViewState.IdRef="Generic_PopUp_9" />
+                          <p:Generic_PopUp OUT_ProcessType="{x:Null}" OUT_strButtonSelected="{x:Null}" DisplayName="User Assistance Form" sap:VirtualizedContainerService.HintSize="200,22" IN_CSS_filepath="[&quot;/file://&quot; + Directory.GetCurrentDirectory + &quot;\Assets\Generic\InitialisationException.css&quot;]" IN_ErrorMessage="File checkout loop aborted by user" IN_PopupMessage="&lt;h1&gt;User assistance required&lt;/h1&gt;&lt;P&gt; User assistance required&lt;/h1&gt;&lt;P&gt; I've encountered a problem trying to get the vets phone number &lt;/P&gt;&lt;P&gt;&lt;/P&gt;&lt;P&gt;Please manually go to the location of the phone number and click Continue for the robot to retry.&lt;/P&gt;&lt;BR&gt;" IN_PopupTitle="Department for Environment, Food and Rural Affairs" IN_WidthHeight="[{500,500}]" sap2010:WorkflowViewState.IdRef="Generic_PopUp_9" />
                         </TryCatch.Try>
                         <TryCatch.Catches>
                           <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="404,22" sap2010:WorkflowViewState.IdRef="Catch`1_6">
@@ -378,7 +379,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </ui:InterruptibleDoWhile>
-        <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="512,624" sap2010:WorkflowViewState.IdRef="TryCatch_23">
+        <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="600,188" sap2010:WorkflowViewState.IdRef="TryCatch_23">
           <TryCatch.Try>
             <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" UserName="{x:Null}" AzureAppPermissions="None" DisplayName="Sharepoint application scope" sap:VirtualizedContainerService.HintSize="434,1022" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_1" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SharePointInstanceType="WebLogin" URL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
               <usa:SharepointApplicationScope.Body>
@@ -485,10 +486,10 @@
             </usa:SharepointApplicationScope>
           </TryCatch.Try>
           <TryCatch.Catches>
-            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,458" sap2010:WorkflowViewState.IdRef="Catch`1_23">
+            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,22" sap2010:WorkflowViewState.IdRef="Catch`1_23">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
@@ -552,9 +553,9 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:InterruptibleDoWhile Condition="[exeException isNot Nothing]" DisplayName="Check Out Master Index - Do While" sap:VirtualizedContainerService.HintSize="512,847" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_2">
+            <ui:InterruptibleDoWhile Condition="[exeException isNot Nothing]" DisplayName="Check Out Master Index - Do While" sap:VirtualizedContainerService.HintSize="512,647" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_2">
               <ui:InterruptibleDoWhile.Body>
-                <Sequence DisplayName="Check Out Master Log or Present User Assistance Form" sap:VirtualizedContainerService.HintSize="476,680" sap2010:WorkflowViewState.IdRef="Sequence_93">
+                <Sequence DisplayName="Check Out Master Log or Present User Assistance Form" sap:VirtualizedContainerService.HintSize="476,480" sap2010:WorkflowViewState.IdRef="Sequence_93">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -576,7 +577,7 @@
                       <InArgument x:TypeArguments="x:String">[io_Config("Log Sharepoint Filepath").ToString]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <TryCatch DisplayName="Try Check Out Master Log" sap:VirtualizedContainerService.HintSize="434,388" sap2010:WorkflowViewState.IdRef="TryCatch_4">
+                  <TryCatch DisplayName="Try Check Out Master Log" sap:VirtualizedContainerService.HintSize="434,188" sap2010:WorkflowViewState.IdRef="TryCatch_4">
                     <TryCatch.Try>
                       <Sequence DisplayName="Handle Stopwatch &amp; Check Out File" sap:VirtualizedContainerService.HintSize="280.5,464" sap2010:WorkflowViewState.IdRef="Sequence_90">
                         <sap:WorkflowViewStateService.ViewState>
@@ -607,10 +608,10 @@
                       </Sequence>
                     </TryCatch.Try>
                     <TryCatch.Catches>
-                      <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,222" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+                      <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,22" sap2010:WorkflowViewState.IdRef="Catch`1_3">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
@@ -618,7 +619,7 @@
                           <ActivityAction.Argument>
                             <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                           </ActivityAction.Argument>
-                          <Sequence DisplayName="Capture Exception" sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_91">
+                          <Sequence DisplayName="Capture Exception" sap:VirtualizedContainerService.HintSize="304,151" sap2010:WorkflowViewState.IdRef="Sequence_91">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -688,7 +689,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:InterruptibleDoWhile>
-            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="512,624" sap2010:WorkflowViewState.IdRef="TryCatch_24">
+            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="512,188" sap2010:WorkflowViewState.IdRef="TryCatch_24">
               <TryCatch.Try>
                 <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" UserName="{x:Null}" AzureAppPermissions="None" DisplayName="Sharepoint application scope" sap:VirtualizedContainerService.HintSize="552,1628" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_2" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SharePointInstanceType="WebLogin" URL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
                   <usa:SharepointApplicationScope.Body>
@@ -747,10 +748,10 @@
                 </usa:SharepointApplicationScope>
               </TryCatch.Try>
               <TryCatch.Catches>
-                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,458" sap2010:WorkflowViewState.IdRef="Catch`1_24">
+                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,22" sap2010:WorkflowViewState.IdRef="Catch`1_24">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
@@ -1230,7 +1231,7 @@
           <av:PointCollection x:Key="ConnectorLocation">300,195.5 300,245.5</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Sequence DisplayName="Get Text from Email" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_328">
+      <Sequence DisplayName="Get Text from Email" sap:VirtualizedContainerService.HintSize="1950,33047" sap2010:WorkflowViewState.IdRef="Sequence_328">
         <Sequence.Variables>
           <Variable x:TypeArguments="x:String" Name="strEmailBody" />
           <Variable x:TypeArguments="x:String" Name="strDataAsTable" />
@@ -1257,28 +1258,52 @@
           <ui:ClearDataTable DataTable="[io_dtDogInformationPass]" DisplayName="Clear Pass DataTable" sap:VirtualizedContainerService.HintSize="284,80" sap2010:WorkflowViewState.IdRef="ClearDataTable_6" />
           <ui:ClearDataTable DataTable="[io_dtDogInformationSoftFail]" DisplayName="Clear Soft Fail DataTable" sap:VirtualizedContainerService.HintSize="284,80" sap2010:WorkflowViewState.IdRef="ClearDataTable_7" />
         </Sequence>
-        <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" UserName="{x:Null}" AzureAppPermissions="None" DisplayName="Download Current Spreadsheet" sap:VirtualizedContainerService.HintSize="1908,52" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_6" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SharePointInstanceType="WebLogin" URL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
+        <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" UserName="{x:Null}" AzureAppPermissions="None" DisplayName="Download Current Spreadsheet" sap:VirtualizedContainerService.HintSize="1908,898" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_6" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SharePointInstanceType="WebLogin" URL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
           <usa:SharepointApplicationScope.Body>
             <ActivityAction x:TypeArguments="us:SharePointContextInfo">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="us:SharePointContextInfo" Name="SharePointContextInfoTag" />
               </ActivityAction.Argument>
-              <Sequence DisplayName="Get Current Passed Files from Spreadsheet" sap:VirtualizedContainerService.HintSize="426,443" sap2010:WorkflowViewState.IdRef="Sequence_394">
+              <Sequence DisplayName="Get Current Passed Files from Spreadsheet" sap:VirtualizedContainerService.HintSize="476,756" sap2010:WorkflowViewState.IdRef="Sequence_394">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <usal:GetFile AttachmentsAction="{x:Null}" RelativeUrlHintText="{x:Null}" ChooseFile="False" DisplayName="Download Main Spreadsheet" sap:VirtualizedContainerService.HintSize="384,104" sap2010:WorkflowViewState.IdRef="GetFile_4" LocalPath="[in_strFolderPath+io_Config(&quot;DDI Log Path&quot;).ToString]" LocalPathHintText="Local path where the file will be saved" RelativeUrl="[io_Config(&quot;Log Sharepoint Filepath&quot;).ToString]" ShowAttachFiles="False" ShowCAMLQuery="False" ShowCAMLWarning="False" ShowGroupDescription="False" ShowGroupName="False" ShowLibraryName="False" ShowListName="False" ShowLocalPath="True" ShowMove="False" ShowPermissionDropdown="False" ShowPropertiesDictionary="False" ShowRelativeUrl="True" ShowRename="False" ShowUserName="False" />
-                <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[dtCheckDataBase]" DisplayName="Read Passed Workbook" sap:VirtualizedContainerService.HintSize="384,87" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Passed" WorkbookPath="[in_strFolderPath+io_Config(&quot;DDI Log Path&quot;).ToString]" />
-                <ui:DeleteFileX DisplayName="Delete Spreadsheet after DT created" sap:VirtualizedContainerService.HintSize="384,80" sap2010:WorkflowViewState.IdRef="DeleteFileX_2" Path="[in_strFolderPath+io_Config(&quot;DDI Log Path&quot;).ToString]" />
+                <usal:GetFile AttachmentsAction="{x:Null}" RelativeUrlHintText="{x:Null}" ChooseFile="False" DisplayName="Download Main Spreadsheet" sap:VirtualizedContainerService.HintSize="434,104" sap2010:WorkflowViewState.IdRef="GetFile_4" LocalPath="[in_strFolderPath+io_Config(&quot;DDI Log Path&quot;).ToString]" LocalPathHintText="Local path where the file will be saved" RelativeUrl="[io_Config(&quot;Log Sharepoint Filepath&quot;).ToString]" ShowAttachFiles="False" ShowCAMLQuery="False" ShowCAMLWarning="False" ShowGroupDescription="False" ShowGroupName="False" ShowLibraryName="False" ShowListName="False" ShowLocalPath="True" ShowMove="False" ShowPermissionDropdown="False" ShowPropertiesDictionary="False" ShowRelativeUrl="True" ShowRename="False" ShowUserName="False" />
+                <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[dtCheckDataBase]" DisplayName="Read Passed Workbook" sap:VirtualizedContainerService.HintSize="434,87" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Passed" WorkbookPath="[in_strFolderPath+io_Config(&quot;DDI Log Path&quot;).ToString]" />
+                <ui:DeleteFileX DisplayName="Delete Spreadsheet after DT created" sap:VirtualizedContainerService.HintSize="434,80" sap2010:WorkflowViewState.IdRef="DeleteFileX_2" Path="[in_strFolderPath+io_Config(&quot;DDI Log Path&quot;).ToString]" />
+                <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dtCheckDataBase]" DisplayName="Change each payment reference number to upper case" sap:VirtualizedContainerService.HintSize="434,273" sap2010:WorkflowViewState.IdRef="ForEachRow_10">
+                  <ui:ForEachRow.Body>
+                    <ActivityAction x:TypeArguments="sd1:DataRow">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="sd1:DataRow" Name="CurrentRow" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_430">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_802">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Object">[CurrentRow("Payment Ref Number")]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[CurrentRow("Payment Ref Number").ToString.ToUpper()]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:ForEachRow.Body>
+                </ui:ForEachRow>
               </Sequence>
             </ActivityAction>
           </usa:SharepointApplicationScope.Body>
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
@@ -1706,14 +1731,14 @@
             </Assign>
           </Sequence>
         </Sequence>
-        <Sequence DisplayName="Get Dog 1 information" sap:VirtualizedContainerService.HintSize="1908,10092" sap2010:WorkflowViewState.IdRef="Sequence_277">
+        <Sequence DisplayName="Get Dog 1 information" sap:VirtualizedContainerService.HintSize="1908,8429" sap2010:WorkflowViewState.IdRef="Sequence_277">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Assign DisplayName="Set Follow up Needed to No" sap:VirtualizedContainerService.HintSize="1710,60" sap2010:WorkflowViewState.IdRef="Assign_783">
+          <Assign DisplayName="Set Follow up Needed to No" sap:VirtualizedContainerService.HintSize="1284,60" sap2010:WorkflowViewState.IdRef="Assign_783">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[strFollowUpNeededDog1]</OutArgument>
             </Assign.To>
@@ -1721,7 +1746,7 @@
               <InArgument x:TypeArguments="x:String">No</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign DisplayName="Set Follow Up Reason for N/A" sap:VirtualizedContainerService.HintSize="1710,60" sap2010:WorkflowViewState.IdRef="Assign_784">
+          <Assign DisplayName="Set Follow Up Reason for N/A" sap:VirtualizedContainerService.HintSize="1284,60" sap2010:WorkflowViewState.IdRef="Assign_784">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[strFollowUpReasonDog1]</OutArgument>
             </Assign.To>
@@ -1729,7 +1754,7 @@
               <InArgument x:TypeArguments="x:String">N/A</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign DisplayName="Assign Cert Needed to Yes" sap:VirtualizedContainerService.HintSize="1710,60" sap2010:WorkflowViewState.IdRef="Assign_785">
+          <Assign DisplayName="Assign Cert Needed to Yes" sap:VirtualizedContainerService.HintSize="1284,60" sap2010:WorkflowViewState.IdRef="Assign_785">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[strCertNeeded]</OutArgument>
             </Assign.To>
@@ -1737,7 +1762,7 @@
               <InArgument x:TypeArguments="x:String">Yes</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign DisplayName="Assign Cert Needed to No" sap:VirtualizedContainerService.HintSize="1710,60" sap2010:WorkflowViewState.IdRef="Assign_786">
+          <Assign DisplayName="Assign Cert Needed to No" sap:VirtualizedContainerService.HintSize="1284,60" sap2010:WorkflowViewState.IdRef="Assign_786">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[strCertSent]</OutArgument>
             </Assign.To>
@@ -1745,7 +1770,7 @@
               <InArgument x:TypeArguments="x:String">Yes</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign DisplayName="Assign Application Status to Passed" sap:VirtualizedContainerService.HintSize="1710,60" sap2010:WorkflowViewState.IdRef="Assign_787">
+          <Assign DisplayName="Assign Application Status to Passed" sap:VirtualizedContainerService.HintSize="1284,60" sap2010:WorkflowViewState.IdRef="Assign_787">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
             </Assign.To>
@@ -1753,7 +1778,7 @@
               <InArgument x:TypeArguments="x:String">Passed</InArgument>
             </Assign.Value>
           </Assign>
-          <Sequence DisplayName="Get Dog Name" sap:VirtualizedContainerService.HintSize="1710,451" sap2010:WorkflowViewState.IdRef="Sequence_247">
+          <Sequence DisplayName="Get Dog Name" sap:VirtualizedContainerService.HintSize="1284,451" sap2010:WorkflowViewState.IdRef="Sequence_247">
             <Sequence.Variables>
               <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ieDog1Name" />
             </Sequence.Variables>
@@ -1789,7 +1814,7 @@
               </Assign.Value>
             </Assign>
           </Sequence>
-          <Sequence DisplayName="Get Dog DoB" sap:VirtualizedContainerService.HintSize="1710,835" sap2010:WorkflowViewState.IdRef="Sequence_250">
+          <Sequence DisplayName="Get Dog DoB" sap:VirtualizedContainerService.HintSize="1284,835" sap2010:WorkflowViewState.IdRef="Sequence_250">
             <Sequence.Variables>
               <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ieDog1DoB" />
             </Sequence.Variables>
@@ -1909,7 +1934,7 @@
               </If>
             </Sequence>
           </Sequence>
-          <Sequence DisplayName="Get Dog Colour" sap:VirtualizedContainerService.HintSize="1710,551" sap2010:WorkflowViewState.IdRef="Sequence_251">
+          <Sequence DisplayName="Get Dog Colour" sap:VirtualizedContainerService.HintSize="1284,551" sap2010:WorkflowViewState.IdRef="Sequence_251">
             <Sequence.Variables>
               <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ieDog1Colour" />
             </Sequence.Variables>
@@ -1953,7 +1978,7 @@
               </Assign.Value>
             </Assign>
           </Sequence>
-          <Sequence DisplayName="Get Dog Gender" sap:VirtualizedContainerService.HintSize="1710,451" sap2010:WorkflowViewState.IdRef="Sequence_252">
+          <Sequence DisplayName="Get Dog Gender" sap:VirtualizedContainerService.HintSize="1284,451" sap2010:WorkflowViewState.IdRef="Sequence_252">
             <Sequence.Variables>
               <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ieDog1Gender" />
             </Sequence.Variables>
@@ -1989,7 +2014,7 @@
               </Assign.Value>
             </Assign>
           </Sequence>
-          <Sequence DisplayName="Get whether Dog is Neutered" sap:VirtualizedContainerService.HintSize="1710,451" sap2010:WorkflowViewState.IdRef="Sequence_253">
+          <Sequence DisplayName="Get whether Dog is Neutered" sap:VirtualizedContainerService.HintSize="1284,451" sap2010:WorkflowViewState.IdRef="Sequence_253">
             <Sequence.Variables>
               <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ieDog1Neutered" />
             </Sequence.Variables>
@@ -2025,7 +2050,7 @@
               </Assign.Value>
             </Assign>
           </Sequence>
-          <Sequence DisplayName="Get the Date that the insurance started" sap:VirtualizedContainerService.HintSize="1710,1395" sap2010:WorkflowViewState.IdRef="Sequence_256">
+          <Sequence DisplayName="Get the Date that the insurance started" sap:VirtualizedContainerService.HintSize="1284,1395" sap2010:WorkflowViewState.IdRef="Sequence_256">
             <Sequence.Variables>
               <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ieInsuranceStartDate" />
             </Sequence.Variables>
@@ -2138,7 +2163,7 @@
               </If>
             </Sequence>
           </Sequence>
-          <Sequence DisplayName="Get Whether Dog Is Microchipped" sap:VirtualizedContainerService.HintSize="1710,451" sap2010:WorkflowViewState.IdRef="Sequence_262">
+          <Sequence DisplayName="Get Whether Dog Is Microchipped" sap:VirtualizedContainerService.HintSize="1284,451" sap2010:WorkflowViewState.IdRef="Sequence_262">
             <Sequence.Variables>
               <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ieDog1MicroChipped" />
             </Sequence.Variables>
@@ -2174,10 +2199,10 @@
               </Assign.Value>
             </Assign>
           </Sequence>
-          <If Condition="[strDog1MicroChipped.ToLower.Contains(&quot;yes&quot;)]" DisplayName="Check Length of MIcrochip number" sap:VirtualizedContainerService.HintSize="1710,1715" sap2010:WorkflowViewState.IdRef="If_62">
+          <If Condition="[strDog1MicroChipped.ToLower.Contains(&quot;yes&quot;)]" DisplayName="Check Length of MIcrochip number" sap:VirtualizedContainerService.HintSize="1284,52" sap2010:WorkflowViewState.IdRef="If_62">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
@@ -2412,7 +2437,7 @@
               </Sequence>
             </If.Else>
           </If>
-          <TryCatch DisplayName="Try getting Payment Ref for Dog 1" sap:VirtualizedContainerService.HintSize="1710,2652" sap2010:WorkflowViewState.IdRef="TryCatch_19">
+          <TryCatch DisplayName="Try getting Payment Ref for Dog 1" sap:VirtualizedContainerService.HintSize="1284,2652" sap2010:WorkflowViewState.IdRef="TryCatch_19">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -2433,7 +2458,7 @@
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:Matches BuilderPattern="\bWhat’s your payment reference number\?\s*([A-Za-z0-9]{10})\s*Is your dog neutered\?" sap:VirtualizedContainerService.HintSize="1204,59" sap2010:WorkflowViewState.IdRef="Matches_110" Input="[strEmailBody]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;\\bWhat’s your payment reference number\\?\\s*([A-Za-z0-9]{10})\\s*Is your dog neutered\\?&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="\bWhat’s your payment reference number\?\s*([A-Za-z0-9]{10})\s*Is your dog neutered\?" RegexOption="IgnoreCase, Compiled" Result="[ieDog1PaymentRef]" />
+                <ui:Matches BuilderPattern="\bWhat’s your payment reference number\?\s*([A-Za-z0-9]{10}|[A-Za-z0-9]{3}\s*[A-Za-z0-9]{4}\s*[A-Za-z0-9]{3})\s*Is your dog neutered\?" sap:VirtualizedContainerService.HintSize="1204,59" sap2010:WorkflowViewState.IdRef="Matches_110" Input="[strEmailBody]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;\\bWhat’s your payment reference number\\?\\s*([A-Za-z0-9]{10}|[A-Za-z0-9]{3}\\s*[A-Za-z0-9]{4}\\s*[A-Za-z0-9]{3})\\s*Is your dog neutered\\?&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="\bWhat’s your payment reference number\?\s*([A-Za-z0-9]{10}|[A-Za-z0-9]{3}\s*[A-Za-z0-9]{4}\s*[A-Za-z0-9]{3})\s*Is your dog neutered\?" RegexOption="IgnoreCase, Compiled" Result="[ieDog1PaymentRef]" />
                 <Assign sap:VirtualizedContainerService.HintSize="1204,60" sap2010:WorkflowViewState.IdRef="Assign_510">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:String">[strDog1PaymentRef]</OutArgument>
@@ -2463,7 +2488,7 @@
                     <OutArgument x:TypeArguments="x:String">[strDog1PaymentRef]</OutArgument>
                   </Assign.To>
                   <Assign.Value>
-                    <InArgument x:TypeArguments="x:String">[strDog1PaymentRef.Replace(" ","").ToString.Trim]</InArgument>
+                    <InArgument x:TypeArguments="x:String">[strDog1PaymentRef.Replace(" ","").ToString.ToUpper.ToString]</InArgument>
                   </Assign.Value>
                 </Assign>
                 <ui:FilterDataTable DataTable="[dtCheckDataBase]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="1204,162" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[dtPayment1Check]" SelectColumnsMode="Keep">
@@ -2677,7 +2702,7 @@
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="s:Exception" Name="Nothing" />
                   </ActivityAction.Argument>
-                  <Sequence sap:VirtualizedContainerService.HintSize="304,652" sap2010:WorkflowViewState.IdRef="Sequence_261">
+                  <Sequence sap:VirtualizedContainerService.HintSize="304,650" sap2010:WorkflowViewState.IdRef="Sequence_261">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -2717,7 +2742,7 @@
                         <InArgument x:TypeArguments="x:String">No</InArgument>
                       </Assign.Value>
                     </Assign>
-                    <Assign sap:VirtualizedContainerService.HintSize="262,58" sap2010:WorkflowViewState.IdRef="Assign_529">
+                    <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_529">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:String">[strCertSent]</OutArgument>
                       </Assign.To>
@@ -2738,7 +2763,7 @@
               </Catch>
             </TryCatch.Catches>
           </TryCatch>
-          <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{strEmailID,strFirstName,strLastName,strAddressLine1,strAddressLine2,strTown,strCounty,strOwnerCountry,strPostCode,strOwnerDoB,strOwnerPhoneNumber,strOwnerEmailAddress,strDog1Name,strDog1DoB,strDog1Colour,strDog1Gender,strDog1InsuranceStartDate,strDog1PaymentRef,strDog1Neutered,strDog1MicroChipped,strDog1MicroChipNumber,strFollowUpNeededDog1,strFollowUpReasonDog1,strIndexNumber,strCertNeeded,strCertSent,strApplicationStatus}]" DataTable="[dtCurrentEmail]" DisplayName="Add Data Row to Current Email" sap:VirtualizedContainerService.HintSize="1710,188" sap2010:WorkflowViewState.IdRef="AddDataRow_75" />
+          <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{strEmailID,strFirstName,strLastName,strAddressLine1,strAddressLine2,strTown,strCounty,strOwnerCountry,strPostCode,strOwnerDoB,strOwnerPhoneNumber,strOwnerEmailAddress,strDog1Name,strDog1DoB,strDog1Colour,strDog1Gender,strDog1InsuranceStartDate,strDog1PaymentRef,strDog1Neutered,strDog1MicroChipped,strDog1MicroChipNumber,strFollowUpNeededDog1,strFollowUpReasonDog1,strIndexNumber,strCertNeeded,strCertSent,strApplicationStatus}]" DataTable="[dtCurrentEmail]" DisplayName="Add Data Row to Current Email" sap:VirtualizedContainerService.HintSize="1284,188" sap2010:WorkflowViewState.IdRef="AddDataRow_75" />
         </Sequence>
         <If Condition="[strEmailBody.ToLower.Contains(&quot;second dog&quot;)]" DisplayName="If the Owner has a second dog" sap:VirtualizedContainerService.HintSize="1908,21880" sap2010:WorkflowViewState.IdRef="If_72">
           <sap:WorkflowViewStateService.ViewState>
@@ -3201,7 +3226,7 @@
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ui:Matches BuilderPattern="\bWhat’s your payment reference number for the second dog\?\s*([A-Za-z0-9]{10})\s*Is your second dog neutered\?" sap:VirtualizedContainerService.HintSize="1308,59" sap2010:WorkflowViewState.IdRef="Matches_119" Input="[strEmailBody]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;\\bWhat’s your payment reference number for the second dog\\?\\s*([A-Za-z0-9]{10})\\s*Is your second dog neutered\\?&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="\bWhat’s your payment reference number for the second dog\?\s*([A-Za-z0-9]{10})\s*Is your second dog neutered\?" RegexOption="IgnoreCase, Compiled" Result="[ieDog2PaymentRef]" />
+                      <ui:Matches BuilderPattern="\bWhat’s your payment reference number for the second dog\?\s*([A-Za-z0-9]{10}|[A-Za-z0-9]{3}\s*[A-Za-z0-9]{4}\s*[A-Za-z0-9]{3})\s*Is your second dog neutered\?" sap:VirtualizedContainerService.HintSize="1308,59" sap2010:WorkflowViewState.IdRef="Matches_119" Input="[strEmailBody]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;\\bWhat’s your payment reference number for the second dog\\?\\s*([A-Za-z0-9]{10}|[A-Za-z0-9]{3}\\s*[A-Za-z0-9]{4}\\s*[A-Za-z0-9]{3})\\s*Is your second dog neutered\\?&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="\bWhat’s your payment reference number for the second dog\?\s*([A-Za-z0-9]{10}|[A-Za-z0-9]{3}\s*[A-Za-z0-9]{4}\s*[A-Za-z0-9]{3})\s*Is your second dog neutered\?" RegexOption="IgnoreCase, Compiled" Result="[ieDog2PaymentRef]" />
                       <Assign sap:VirtualizedContainerService.HintSize="1308,60" sap2010:WorkflowViewState.IdRef="Assign_586">
                         <Assign.To>
                           <OutArgument x:TypeArguments="x:String">[strDog2PaymentRef]</OutArgument>
@@ -3231,7 +3256,7 @@
                           <OutArgument x:TypeArguments="x:String">[strDog2PaymentRef]</OutArgument>
                         </Assign.To>
                         <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">[strDog2PaymentRef.Replace(" ","".ToString).Trim]</InArgument>
+                          <InArgument x:TypeArguments="x:String">[strDog2PaymentRef.Replace(" ","".ToString).ToUpper.Trim]</InArgument>
                         </Assign.Value>
                       </Assign>
                       <ui:FilterDataTable DataTable="[dtCheckDataBase]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="1308,162" sap2010:WorkflowViewState.IdRef="FilterDataTable_3" OutputDataTable="[dtPayment2Check]" SelectColumnsMode="Keep">
@@ -3483,7 +3508,7 @@
                         <ActivityAction.Argument>
                           <DelegateInArgument x:TypeArguments="s:Exception" Name="Nothing" />
                         </ActivityAction.Argument>
-                        <Sequence sap:VirtualizedContainerService.HintSize="304,652" sap2010:WorkflowViewState.IdRef="Sequence_292">
+                        <Sequence sap:VirtualizedContainerService.HintSize="304,650" sap2010:WorkflowViewState.IdRef="Sequence_292">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -4273,7 +4298,7 @@
                                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <ui:Matches BuilderPattern="\bWhat’s your payment reference number for the third dog\?\s*([A-Za-z0-9]{10})\s*Is your third dog neutered\?" sap:VirtualizedContainerService.HintSize="1266,59" sap2010:WorkflowViewState.IdRef="Matches_127" Input="[strEmailBody]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;\\bWhat’s your payment reference number for the third dog\\?\\s*([A-Za-z0-9]{10})\\s*Is your third dog neutered\\?&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="\bWhat’s your payment reference number for the third dog\?\s*([A-Za-z0-9]{10})\s*Is your third dog neutered\?" RegexOption="IgnoreCase, Compiled" Result="[ieDog3PaymentRef]" />
+                            <ui:Matches BuilderPattern="\bWhat’s your payment reference number for the third dog\?\s*([A-Za-z0-9]{10}|[A-Za-z0-9]{3}\s*[A-Za-z0-9]{4}\s*[A-Za-z0-9]{3})\s*Is your third dog neutered\?" sap:VirtualizedContainerService.HintSize="1266,59" sap2010:WorkflowViewState.IdRef="Matches_127" Input="[strEmailBody]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;\\bWhat’s your payment reference number for the third dog\\?\\s*([A-Za-z0-9]{10}|[A-Za-z0-9]{3}\\s*[A-Za-z0-9]{4}\\s*[A-Za-z0-9]{3})\\s*Is your third dog neutered\\?&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="\bWhat’s your payment reference number for the third dog\?\s*([A-Za-z0-9]{10}|[A-Za-z0-9]{3}\s*[A-Za-z0-9]{4}\s*[A-Za-z0-9]{3})\s*Is your third dog neutered\?" RegexOption="IgnoreCase, Compiled" Result="[ieDog3PaymentRef]" />
                             <Assign sap:VirtualizedContainerService.HintSize="1266,60" sap2010:WorkflowViewState.IdRef="Assign_657">
                               <Assign.To>
                                 <OutArgument x:TypeArguments="x:String">[strDog3PaymentRef]</OutArgument>
@@ -4303,7 +4328,7 @@
                                 <OutArgument x:TypeArguments="x:String">[strDog3PaymentRef]</OutArgument>
                               </Assign.To>
                               <Assign.Value>
-                                <InArgument x:TypeArguments="x:String">[strDog3PaymentRef.Replace(" ","").Trim]</InArgument>
+                                <InArgument x:TypeArguments="x:String">[strDog3PaymentRef.Replace(" ","").ToUpper.Trim]</InArgument>
                               </Assign.Value>
                             </Assign>
                             <ui:FilterDataTable DataTable="[dtCheckDataBase]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="1266,162" sap2010:WorkflowViewState.IdRef="FilterDataTable_2" OutputDataTable="[dtPayment3Check]" SelectColumnsMode="Keep">
@@ -4548,7 +4573,7 @@
                               <ActivityAction.Argument>
                                 <DelegateInArgument x:TypeArguments="s:Exception" Name="Nothing" />
                               </ActivityAction.Argument>
-                              <Sequence sap:VirtualizedContainerService.HintSize="304,640" sap2010:WorkflowViewState.IdRef="Sequence_313">
+                              <Sequence sap:VirtualizedContainerService.HintSize="304,648" sap2010:WorkflowViewState.IdRef="Sequence_313">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -4968,13 +4993,13 @@
                 <InArgument x:TypeArguments="x:Int32">[dtCurrentEmail.RowCount]</InArgument>
               </Assign.Value>
             </Assign>
-            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dtCurrentEmail]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="585,2591" sap2010:WorkflowViewState.IdRef="ForEachRow_8">
+            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dtCurrentEmail]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="585,1384" sap2010:WorkflowViewState.IdRef="ForEachRow_8">
               <ui:ForEachRow.Body>
                 <ActivityAction x:TypeArguments="sd1:DataRow">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="sd1:DataRow" Name="CurrentRow" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="539,2470" sap2010:WorkflowViewState.IdRef="Sequence_415">
+                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="539,1263" sap2010:WorkflowViewState.IdRef="Sequence_415">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="sd1:DataTable" Name="dtPaymentChecked" />
                     </Sequence.Variables>
@@ -5053,7 +5078,7 @@
                         </Sequence>
                       </If.Then>
                     </If>
-                    <Switch x:TypeArguments="x:String" DisplayName="Check where we should add the Details" Expression="[CurrentRow.item(&quot;ApplicationStatus&quot;).ToString]" sap:VirtualizedContainerService.HintSize="497,1394" sap2010:WorkflowViewState.IdRef="Switch`1_11">
+                    <Switch x:TypeArguments="x:String" DisplayName="Check where we should add the Details" Expression="[CurrentRow.item(&quot;ApplicationStatus&quot;).ToString]" sap:VirtualizedContainerService.HintSize="497,187" sap2010:WorkflowViewState.IdRef="Switch`1_11">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -5126,7 +5151,7 @@
                         </Assign>
                         <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[CurrentRow.ItemArray]" DataTable="[io_dtDogInformationHardFail]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,188" sap2010:WorkflowViewState.IdRef="AddDataRow_84" />
                       </Sequence>
-                      <Sequence x:Key="Passed" sap:VirtualizedContainerService.HintSize="376,933" sap2010:WorkflowViewState.IdRef="Sequence_418">
+                      <Sequence x:Key="Passed" sap:VirtualizedContainerService.HintSize="376,923" sap2010:WorkflowViewState.IdRef="Sequence_418">
                         <Sequence.Variables>
                           <Variable x:TypeArguments="x:String" Name="strIndexNumber" />
                           <Variable x:TypeArguments="x:Int32" Name="intIndexNumber" />

@@ -16,6 +16,8 @@
     <x:Property Name="io_dtDogInformationSoftFail" Type="InOutArgument(sd1:DataTable)" />
     <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(snm:MailMessage)" />
     <x:Property Name="out_intNoOfDogs" Type="OutArgument(x:Int32)" />
+    <x:Property Name="in_dtSwearWords" Type="InArgument(sd1:DataTable)" />
+    <x:Property Name="out_strApplicationStatus" Type="InArgument(x:String)" />
   </x:Members>
   <this:Process_Transaction_2.in_dateCaseStartTime>
     <InArgument x:TypeArguments="s:DateTime" />
@@ -26,6 +28,9 @@
   <this:Process_Transaction_2.in_strSQLFilePath>
     <InArgument x:TypeArguments="x:String" />
   </this:Process_Transaction_2.in_strSQLFilePath>
+  <this:Process_Transaction_2.out_strApplicationStatus>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Process_Transaction_2.out_strApplicationStatus>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
@@ -94,7 +99,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="110">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="56">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -172,7 +177,6 @@
       <Variable x:TypeArguments="x:String" Name="strCounty" />
       <Variable x:TypeArguments="x:String" Name="strTown" />
       <Variable x:TypeArguments="sd1:DataTable" Name="dtCurrentEmail" />
-      <Variable x:TypeArguments="x:String" Name="strApplicationStatus" />
       <Variable x:TypeArguments="x:String" Name="strDog2MicroChipped" />
       <Variable x:TypeArguments="x:String" Name="strDog1MicroChipped" />
       <Variable x:TypeArguments="x:String" Name="strDog3MicroChipped" />
@@ -212,6 +216,10 @@
       <Variable x:TypeArguments="x:String" Name="strFollowUpReasonDog2" />
       <Variable x:TypeArguments="x:String" Name="strCertNeededDog2" />
       <Variable x:TypeArguments="x:String" Name="strCertSentDog2" />
+      <Variable x:TypeArguments="x:String" Name="Reason1" />
+      <Variable x:TypeArguments="x:String" Name="Reason2" />
+      <Variable x:TypeArguments="x:String" Name="Reason4" />
+      <Variable x:TypeArguments="x:String" Name="Reason3" />
     </Flowchart.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -224,7 +232,7 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <Flowchart.StartNode>
-      <x:Reference>__ReferenceID6</x:Reference>
+      <x:Reference>__ReferenceID5</x:Reference>
     </Flowchart.StartNode>
     <FlowStep x:Name="__ReferenceID1">
       <sap:WorkflowViewStateService.ViewState>
@@ -309,7 +317,7 @@
                       <ActivityAction.Argument>
                         <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                       </ActivityAction.Argument>
-                      <Sequence DisplayName="Capture Exception" sap:VirtualizedContainerService.HintSize="304,151" sap2010:WorkflowViewState.IdRef="Sequence_100">
+                      <Sequence DisplayName="Capture Exception" sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_100">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -332,7 +340,7 @@
                     <If.Then>
                       <TryCatch DisplayName="Request User Intervention" sap:VirtualizedContainerService.HintSize="438,292" sap2010:WorkflowViewState.IdRef="TryCatch_5">
                         <TryCatch.Try>
-                          <p:Generic_PopUp OUT_ProcessType="{x:Null}" OUT_strButtonSelected="{x:Null}" DisplayName="User Assistance Form" sap:VirtualizedContainerService.HintSize="200,22" IN_CSS_filepath="[&quot;/file://&quot; + Directory.GetCurrentDirectory + &quot;\Assets\Generic\InitialisationException.css&quot;]" IN_ErrorMessage="File checkout loop aborted by user" IN_PopupMessage="&lt;h1&gt;User assistance required&lt;/h1&gt;&lt;P&gt; User assistance required&lt;/h1&gt;&lt;P&gt; I've encountered a problem trying to get the vets phone number &lt;/P&gt;&lt;P&gt;&lt;/P&gt;&lt;P&gt;Please manually go to the location of the phone number and click Continue for the robot to retry.&lt;/P&gt;&lt;BR&gt;" IN_PopupTitle="Department for Environment, Food and Rural Affairs" IN_WidthHeight="[{500,500}]" sap2010:WorkflowViewState.IdRef="Generic_PopUp_9" />
+                          <p:Generic_PopUp OUT_ProcessType="{x:Null}" OUT_strButtonSelected="{x:Null}" DisplayName="User Assistance Form" sap:VirtualizedContainerService.HintSize="200,22" IN_CSS_filepath="[&quot;/file://&quot; + Directory.GetCurrentDirectory + &quot;\Assets\Generic\InitialisationException.css&quot;]" IN_ErrorMessage="File checkout loop aborted by user" IN_PopupMessage="[&quot;&lt;h1&gt;User assistance required&lt;/h1&gt;&lt;P&gt; I've encountered a problem checking out the file: '&quot; + strDDIBackupLogSharepointFilepath + &quot;'&lt;/P&gt;&lt;P&gt; Exception message: &quot;+exeException.Message+&quot;&lt;/P&gt;&lt;P&gt;Please attempt to manually rectify the issue and click Continue for the robot to retry.&lt;/P&gt;&lt;BR&gt;&quot;]" IN_PopupTitle="Department for Environment, Food and Rural Affairs" IN_WidthHeight="[{500,500}]" sap2010:WorkflowViewState.IdRef="Generic_PopUp_9" />
                         </TryCatch.Try>
                         <TryCatch.Catches>
                           <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="404,22" sap2010:WorkflowViewState.IdRef="Catch`1_6">
@@ -346,7 +354,7 @@
                               <ActivityAction.Argument>
                                 <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="exception" />
                               </ActivityAction.Argument>
-                              <Sequence DisplayName="Assign ShouldStop &amp; Rethrow" sap:VirtualizedContainerService.HintSize="304,214" sap2010:WorkflowViewState.IdRef="Sequence_101">
+                              <Sequence DisplayName="Assign ShouldStop &amp; Rethrow" sap:VirtualizedContainerService.HintSize="304,213" sap2010:WorkflowViewState.IdRef="Sequence_101">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -379,9 +387,9 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </ui:InterruptibleDoWhile>
-        <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="600,188" sap2010:WorkflowViewState.IdRef="TryCatch_23">
+        <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="600,624" sap2010:WorkflowViewState.IdRef="TryCatch_23">
           <TryCatch.Try>
-            <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" UserName="{x:Null}" AzureAppPermissions="None" DisplayName="Sharepoint application scope" sap:VirtualizedContainerService.HintSize="434,1022" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_1" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SharePointInstanceType="WebLogin" URL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
+            <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" UserName="{x:Null}" AzureAppPermissions="None" DisplayName="Sharepoint application scope" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_1" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SharePointInstanceType="WebLogin" URL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
               <usa:SharepointApplicationScope.Body>
                 <ActivityAction x:TypeArguments="us:SharePointContextInfo">
                   <ActivityAction.Argument>
@@ -486,10 +494,10 @@
             </usa:SharepointApplicationScope>
           </TryCatch.Try>
           <TryCatch.Catches>
-            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,22" sap2010:WorkflowViewState.IdRef="Catch`1_23">
+            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,458" sap2010:WorkflowViewState.IdRef="Catch`1_23">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
@@ -527,7 +535,7 @@
             </Catch>
           </TryCatch.Catches>
         </TryCatch>
-        <su:Check_In_Sharepoint_File DisplayName="Check In Sharepoint File" sap:VirtualizedContainerService.HintSize="512,22" sap2010:WorkflowViewState.IdRef="Check_In_Sharepoint_File_3" in_strAssetName="Backup Logs Checked Out" in_strSharepointFilePath="[strDDIBackupLogSharepointFilepath]" in_strSharepointLockFilePath="[in_strSharepointLockFilePath]" in_strSharepointURL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
+        <su:Check_In_Sharepoint_File DisplayName="Check In Sharepoint File" sap:VirtualizedContainerService.HintSize="600,22" sap2010:WorkflowViewState.IdRef="Check_In_Sharepoint_File_3" in_strAssetName="Backup Logs Checked Out" in_strSharepointFilePath="[strDDIBackupLogSharepointFilepath]" in_strSharepointLockFilePath="[in_strSharepointLockFilePath]" in_strSharepointURL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -553,15 +561,15 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:InterruptibleDoWhile Condition="[exeException isNot Nothing]" DisplayName="Check Out Master Index - Do While" sap:VirtualizedContainerService.HintSize="512,647" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_2">
+            <ui:InterruptibleDoWhile Condition="[exeException isNot Nothing]" DisplayName="Check Out Master Index - Do While" sap:VirtualizedContainerService.HintSize="600,1172" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_2">
               <ui:InterruptibleDoWhile.Body>
-                <Sequence DisplayName="Check Out Master Log or Present User Assistance Form" sap:VirtualizedContainerService.HintSize="476,480" sap2010:WorkflowViewState.IdRef="Sequence_93">
+                <Sequence DisplayName="Check Out Master Log or Present User Assistance Form" sap:VirtualizedContainerService.HintSize="564,1005" sap2010:WorkflowViewState.IdRef="Sequence_93">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Assign DisplayName="Reset Exception" sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="Assign_157">
+                  <Assign DisplayName="Reset Exception" sap:VirtualizedContainerService.HintSize="522,60" sap2010:WorkflowViewState.IdRef="Assign_157">
                     <Assign.To>
                       <OutArgument x:TypeArguments="s:Exception">[exeException]</OutArgument>
                     </Assign.To>
@@ -569,7 +577,7 @@
                       <InArgument x:TypeArguments="s:Exception">[Nothing]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Assign DisplayName="Assign  Sharepoint Filepath" sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="Assign_164">
+                  <Assign DisplayName="Assign  Sharepoint Filepath" sap:VirtualizedContainerService.HintSize="522,60" sap2010:WorkflowViewState.IdRef="Assign_164">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[strDDILogSharepointFilepath]</OutArgument>
                     </Assign.To>
@@ -577,7 +585,7 @@
                       <InArgument x:TypeArguments="x:String">[io_Config("Log Sharepoint Filepath").ToString]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <TryCatch DisplayName="Try Check Out Master Log" sap:VirtualizedContainerService.HintSize="434,188" sap2010:WorkflowViewState.IdRef="TryCatch_4">
+                  <TryCatch DisplayName="Try Check Out Master Log" sap:VirtualizedContainerService.HintSize="522,713" sap2010:WorkflowViewState.IdRef="TryCatch_4">
                     <TryCatch.Try>
                       <Sequence DisplayName="Handle Stopwatch &amp; Check Out File" sap:VirtualizedContainerService.HintSize="280.5,464" sap2010:WorkflowViewState.IdRef="Sequence_90">
                         <sap:WorkflowViewStateService.ViewState>
@@ -608,7 +616,7 @@
                       </Sequence>
                     </TryCatch.Try>
                     <TryCatch.Catches>
-                      <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,22" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+                      <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="488,22" sap2010:WorkflowViewState.IdRef="Catch`1_3">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -619,7 +627,7 @@
                           <ActivityAction.Argument>
                             <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                           </ActivityAction.Argument>
-                          <Sequence DisplayName="Capture Exception" sap:VirtualizedContainerService.HintSize="304,151" sap2010:WorkflowViewState.IdRef="Sequence_91">
+                          <Sequence DisplayName="Capture Exception" sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_91">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -689,7 +697,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:InterruptibleDoWhile>
-            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="512,188" sap2010:WorkflowViewState.IdRef="TryCatch_24">
+            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="600,1860" sap2010:WorkflowViewState.IdRef="TryCatch_24">
               <TryCatch.Try>
                 <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" UserName="{x:Null}" AzureAppPermissions="None" DisplayName="Sharepoint application scope" sap:VirtualizedContainerService.HintSize="552,1628" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_2" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SharePointInstanceType="WebLogin" URL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
                   <usa:SharepointApplicationScope.Body>
@@ -1072,7 +1080,7 @@
                                 <ActivityAction.Argument>
                                   <DelegateInArgument x:TypeArguments="s:Exception" Name="Nothing" />
                                 </ActivityAction.Argument>
-                                <Sequence sap:VirtualizedContainerService.HintSize="426,423" sap2010:WorkflowViewState.IdRef="Sequence_426">
+                                <Sequence sap:VirtualizedContainerService.HintSize="426,421" sap2010:WorkflowViewState.IdRef="Sequence_426">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1108,33 +1116,48 @@
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <av:Point x:Key="ShapeLocation">200,701.5</av:Point>
                       <av:Size x:Key="ShapeSize">200,52</av:Size>
-                      <av:PointCollection x:Key="ConnectorLocation">300,753.5 300,803.5</av:PointCollection>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[io_dtDogInformationHardFail]" DisplayName="For Each Row Hard Fail DataTable" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="ForEachRow_6">
+                  <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[io_dtDogInformationHardFail]" DisplayName="For Each Row Hard Fail DataTable" sap:VirtualizedContainerService.HintSize="636,1925" sap2010:WorkflowViewState.IdRef="ForEachRow_6">
                     <ui:ForEachRow.Body>
                       <ActivityAction x:TypeArguments="sd1:DataRow">
                         <ActivityAction.Argument>
                           <DelegateInArgument x:TypeArguments="sd1:DataRow" Name="CurrentRow" />
                         </ActivityAction.Argument>
-                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376,645" sap2010:WorkflowViewState.IdRef="Sequence_350">
-                          <Sequence.Variables>
-                            <Variable x:TypeArguments="x:String" Name="EmailText" />
-                            <Variable x:TypeArguments="snm:MailMessage" Name="mailMessage" />
-                            <Variable x:TypeArguments="snm:MailAddress" Name="sentOnBehalfOfAddress" />
-                            <Variable x:TypeArguments="x:String" Name="strSentOnBehalfOf" />
-                          </Sequence.Variables>
+                        <Sequence sap:VirtualizedContainerService.HintSize="602,1804" sap2010:WorkflowViewState.IdRef="Sequence_433">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <Assign sap:VirtualizedContainerService.HintSize="334,64" sap2010:WorkflowViewState.IdRef="Assign_725">
-                            <Assign.To>
-                              <OutArgument x:TypeArguments="x:String">[EmailText]</OutArgument>
-                            </Assign.To>
-                            <Assign.Value>
-                              <InArgument x:TypeArguments="x:String" xml:space="preserve">["&lt;p&gt;Dear " &amp; CurrentRow(1).ToString &amp; " " &amp; CurrentRow(2).ToString &amp; ",&lt;/p&gt;" &amp;
+                          <ui:CommentOut DisplayName="Comment Out - Old Email" sap:VirtualizedContainerService.HintSize="560,52" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+                            <ui:CommentOut.Body>
+                              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="418,727" sap2010:WorkflowViewState.IdRef="Sequence_435">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376,643" sap2010:WorkflowViewState.IdRef="Sequence_432">
+                                  <Sequence.Variables>
+                                    <Variable x:TypeArguments="x:String" Name="EmailText" />
+                                    <Variable x:TypeArguments="snm:MailMessage" Name="mailMessage" />
+                                    <Variable x:TypeArguments="snm:MailAddress" Name="sentOnBehalfOfAddress" />
+                                    <Variable x:TypeArguments="x:String" Name="strSentOnBehalfOf" />
+                                  </Sequence.Variables>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <Assign sap:VirtualizedContainerService.HintSize="334,64" sap2010:WorkflowViewState.IdRef="Assign_803">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:String">[EmailText]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:String" xml:space="preserve">["&lt;p&gt;Dear " &amp; CurrentRow(1).ToString &amp; " " &amp; CurrentRow(2).ToString &amp; ",&lt;/p&gt;" &amp;
             "&lt;p&gt;&lt;strong&gt;Re: Application for exemption for " &amp; CurrentRow(12).ToString &amp; "&lt;/strong&gt;&lt;/p&gt;" &amp;
             "&lt;p&gt;&lt;em&gt;Please do not reply to this email. This response has been automatically generated, and the inbox is not monitored.&lt;/em&gt;&lt;/p&gt;" &amp;
             "&lt;p&gt;Thank you for your application which will be processed shortly. If your application is successful, we’ll email you a Certificate of Exemption. If your application is unsuccessful, Defra will contact you with more information.&lt;/p&gt;" &amp;
@@ -1155,37 +1178,205 @@
             "&lt;li&gt;name of the dog&lt;/li&gt;" &amp;
             "&lt;li&gt;microchip number (if your dog has one)&lt;/li&gt;" &amp;
             "&lt;/ul&gt;"]</InArgument>
-                            </Assign.Value>
-                          </Assign>
-                          <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_726">
-                            <Assign.To>
-                              <OutArgument x:TypeArguments="snm:MailMessage">[mailMessage]</OutArgument>
-                            </Assign.To>
-                            <Assign.Value>
-                              <InArgument x:TypeArguments="snm:MailMessage">[New System.Net.Mail.MailMessage()]</InArgument>
-                            </Assign.Value>
-                          </Assign>
-                          <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_727">
-                            <Assign.To>
-                              <OutArgument x:TypeArguments="snm:MailAddress">[sentOnBehalfOfAddress]</OutArgument>
-                            </Assign.To>
-                            <Assign.Value>
-                              <InArgument x:TypeArguments="snm:MailAddress">[New System.Net.Mail.MailAddress("AWDDI@defra.gov.uk", "XL Bully Exemption Scheme")]</InArgument>
-                            </Assign.Value>
-                          </Assign>
-                          <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_728">
-                            <Assign.To>
-                              <OutArgument x:TypeArguments="x:String">[strSentOnBehalfOf]</OutArgument>
-                            </Assign.To>
-                            <Assign.Value>
-                              <InArgument x:TypeArguments="x:String">[sentOnBehalfOfAddress.ToString]</InArgument>
-                            </Assign.Value>
-                          </Assign>
-                          <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Account="[io_Config(&quot;AccountName&quot;).ToString]" Body="[EmailText]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="334,149" sap2010:WorkflowViewState.IdRef="SendOutlookMail_3" Importance="Normal" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" SentOnBehalfOfName="[strSentOnBehalfOf]" Subject="Apply for a Certificate of Exemption to keep an XL Bully dog" To="[CurrentRow(11).ToString]">
-                            <ui:SendOutlookMail.Files>
-                              <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
-                            </ui:SendOutlookMail.Files>
-                          </ui:SendOutlookMail>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_804">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="snm:MailMessage">[mailMessage]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="snm:MailMessage">[New System.Net.Mail.MailMessage()]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_805">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="snm:MailAddress">[sentOnBehalfOfAddress]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="snm:MailAddress">[New System.Net.Mail.MailAddress("AWDDI@defra.gov.uk", "XL Bully Exemption Scheme")]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_806">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:String">[strSentOnBehalfOf]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:String">[sentOnBehalfOfAddress.ToString]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Account="[io_Config(&quot;AccountName&quot;).ToString]" Body="[EmailText]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="334,147" sap2010:WorkflowViewState.IdRef="SendOutlookMail_9" Importance="Normal" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" SentOnBehalfOfName="[strSentOnBehalfOf]" Subject="Apply for a Certificate of Exemption to keep an XL Bully dog" To="[CurrentRow(11).ToString]">
+                                    <ui:SendOutlookMail.Files>
+                                      <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                                    </ui:SendOutlookMail.Files>
+                                  </ui:SendOutlookMail>
+                                </Sequence>
+                              </Sequence>
+                            </ui:CommentOut.Body>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:CommentOut>
+                          <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[in_dtSwearWords]" DisplayName="Check whether email is abusive " sap:VirtualizedContainerService.HintSize="560,463" sap2010:WorkflowViewState.IdRef="ForEachRow_11">
+                            <ui:ForEachRow.Body>
+                              <ActivityAction x:TypeArguments="sd1:DataRow">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="sd1:DataRow" Name="Row" />
+                                </ActivityAction.Argument>
+                                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="526,342" sap2010:WorkflowViewState.IdRef="Sequence_449">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <If Condition="[(Row.ToString.Contains(CurrentRow(1).ToString)) OR (Row.ToString.Contains(CurrentRow(2).ToString)) OR (Row.ToString.Contains(CurrentRow(12).ToString)) OR (Row.ToString.Contains(CurrentRow(11).ToString))]" sap:VirtualizedContainerService.HintSize="484,250" sap2010:WorkflowViewState.IdRef="If_103">
+                                    <If.Then>
+                                      <Throw Exception="[new BusinessRuleException(&quot;Unable to Send. Email Contains Abusive Language&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_4" />
+                                    </If.Then>
+                                  </If>
+                                </Sequence>
+                              </ActivityAction>
+                            </ui:ForEachRow.Body>
+                          </ui:ForEachRow>
+                          <Sequence DisplayName="Draft Rejection Email" sap:VirtualizedContainerService.HintSize="560,1117" sap2010:WorkflowViewState.IdRef="Sequence_350">
+                            <Sequence.Variables>
+                              <Variable x:TypeArguments="x:String" Name="EmailText" />
+                              <Variable x:TypeArguments="snm:MailMessage" Name="mailMessage" />
+                              <Variable x:TypeArguments="snm:MailAddress" Name="sentOnBehalfOfAddress" />
+                              <Variable x:TypeArguments="x:String" Name="strSentOnBehalfOf" />
+                              <Variable x:TypeArguments="x:String" Name="EmailBody" />
+                            </Sequence.Variables>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign DisplayName="Assign text to start of Email Body" sap:VirtualizedContainerService.HintSize="334,64" sap2010:WorkflowViewState.IdRef="Assign_725">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[EmailBody]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String" xml:space="preserve">["&lt;p&gt;Dear " &amp; CurrentRow(1).ToString &amp; " " &amp; CurrentRow(2).ToString &amp; ",&lt;/p&gt;" +
+		"&lt;p&gt;&lt;strong&gt;Re: Application For exemption For " &amp; CurrentRow(12).ToString &amp; "&lt;/strong&gt;&lt;/p&gt;" +
+        "&lt;p&gt;Your application For a Certificate Of Exemption For your XL Bully dog has Not been approved For the following reason:&lt;/p&gt;"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <If Condition="[Not String.IsNullOrEmpty(Reason1)]" DisplayName="If reason 1 is populated" sap:VirtualizedContainerService.HintSize="334,52" sap2010:WorkflowViewState.IdRef="If_99">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <If.Then>
+                                <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_826">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[EmailBody]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">[EmailBody + "&lt;li&gt;" + Reason1 + "&lt;/li&gt;"]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </If.Then>
+                            </If>
+                            <If Condition="[Not String.IsNullOrEmpty(Reason2)]" DisplayName="If reason 2 is populated" sap:VirtualizedContainerService.HintSize="334,52" sap2010:WorkflowViewState.IdRef="If_100">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <If.Then>
+                                <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_827">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[EmailBody]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">[EmailBody + "&lt;li&gt;" + Reason2 + "&lt;/li&gt;"]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </If.Then>
+                            </If>
+                            <If Condition="[Not String.IsNullOrEmpty(Reason3)]" DisplayName="If reason 3 is populated" sap:VirtualizedContainerService.HintSize="334,52" sap2010:WorkflowViewState.IdRef="If_101">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <If.Then>
+                                <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_828">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[EmailBody]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">[EmailBody + "&lt;li&gt;" + Reason3 + "&lt;/li&gt;"]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </If.Then>
+                            </If>
+                            <If Condition="[Not String.IsNullOrEmpty(Reason4)]" DisplayName="If reason 4 is populated" sap:VirtualizedContainerService.HintSize="334,52" sap2010:WorkflowViewState.IdRef="If_102">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <If.Then>
+                                <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_829">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[EmailBody]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">[EmailBody + "&lt;li&gt;" + Reason4 + "&lt;/li&gt;"]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </If.Then>
+                            </If>
+                            <Assign sap:VirtualizedContainerService.HintSize="334,64" sap2010:WorkflowViewState.IdRef="Assign_830">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[EmailText]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String" xml:space="preserve">[EmailBody + "&lt;p&gt;You can re-apply for a Certificate of Exemption before the closing date of midday on 31 January.&lt;/p&gt;" +
+                      "&lt;p&gt;From 1 February 2024, it will be a criminal offence to own an XL Bully dog in England and Wales unless you have a Certificate of Exemption for your dog. Find out how to prepare for the ban on XL Bully dogs.&lt;/p&gt;" +
+                      "&lt;p&gt;Please do not reply to this email. This response has been automatically generated, and the inbox is not monitored.&lt;/p&gt;" +
+                      "&lt;p&gt;Regards,&lt;br&gt;Index Team&lt;/p&gt;"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_726">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="snm:MailMessage">[mailMessage]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="snm:MailMessage">[New System.Net.Mail.MailMessage()]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_727">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="snm:MailAddress">[sentOnBehalfOfAddress]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="snm:MailAddress">[New System.Net.Mail.MailAddress("AWDDI@defra.gov.uk", "XL Bully Exemption Scheme")]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_728">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[strSentOnBehalfOf]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">[sentOnBehalfOfAddress.ToString]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Account="[io_Config(&quot;AccountName&quot;).ToString]" Body="[EmailText]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="334,149" sap2010:WorkflowViewState.IdRef="SendOutlookMail_3" Importance="Normal" IsBodyHtml="True" IsDraft="False" MailMessage="[mailMessage]" Sensitivity="Normal" SentOnBehalfOfName="[strSentOnBehalfOf]" Subject="Apply for a Certificate of Exemption to keep an XL Bully dog" To="[CurrentRow(11).ToString]">
+                              <ui:SendOutlookMail.Files>
+                                <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                              </ui:SendOutlookMail.Files>
+                            </ui:SendOutlookMail>
+                          </Sequence>
                         </Sequence>
                       </ActivityAction>
                     </ui:ForEachRow.Body>
@@ -1195,26 +1386,6 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </ui:ForEachRow>
-                  <FlowStep.Next>
-                    <FlowStep x:Name="__ReferenceID4">
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <av:Point x:Key="ShapeLocation">200,803.5</av:Point>
-                          <av:Size x:Key="ShapeSize">200,52</av:Size>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                      <If Condition="[io_dtDogInformationHardFail.RowCount &gt; 0]" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="If_93">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <If.Then>
-                          <Throw Exception="[new BusinessRuleException(&quot;Hard Fail on Email&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_2" />
-                        </If.Then>
-                      </If>
-                    </FlowStep>
-                  </FlowStep.Next>
                 </FlowStep>
               </FlowStep.Next>
             </FlowStep>
@@ -1223,7 +1394,7 @@
       </FlowStep.Next>
     </FlowStep>
     <x:Reference>__ReferenceID0</x:Reference>
-    <FlowStep x:Name="__ReferenceID6">
+    <FlowStep x:Name="__ReferenceID5">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <av:Point x:Key="ShapeLocation">200,127.5</av:Point>
@@ -1231,7 +1402,7 @@
           <av:PointCollection x:Key="ConnectorLocation">300,195.5 300,245.5</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Sequence DisplayName="Get Text from Email" sap:VirtualizedContainerService.HintSize="1950,33047" sap2010:WorkflowViewState.IdRef="Sequence_328">
+      <Sequence DisplayName="Get Text from Email" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_328">
         <Sequence.Variables>
           <Variable x:TypeArguments="x:String" Name="strEmailBody" />
           <Variable x:TypeArguments="x:String" Name="strDataAsTable" />
@@ -1258,7 +1429,7 @@
           <ui:ClearDataTable DataTable="[io_dtDogInformationPass]" DisplayName="Clear Pass DataTable" sap:VirtualizedContainerService.HintSize="284,80" sap2010:WorkflowViewState.IdRef="ClearDataTable_6" />
           <ui:ClearDataTable DataTable="[io_dtDogInformationSoftFail]" DisplayName="Clear Soft Fail DataTable" sap:VirtualizedContainerService.HintSize="284,80" sap2010:WorkflowViewState.IdRef="ClearDataTable_7" />
         </Sequence>
-        <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" UserName="{x:Null}" AzureAppPermissions="None" DisplayName="Download Current Spreadsheet" sap:VirtualizedContainerService.HintSize="1908,898" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_6" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SharePointInstanceType="WebLogin" URL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
+        <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" UserName="{x:Null}" AzureAppPermissions="None" DisplayName="Download Current Spreadsheet" sap:VirtualizedContainerService.HintSize="1908,52" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_6" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SharePointInstanceType="WebLogin" URL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
           <usa:SharepointApplicationScope.Body>
             <ActivityAction x:TypeArguments="us:SharePointContextInfo">
               <ActivityAction.Argument>
@@ -1303,7 +1474,7 @@
           </usa:SharepointApplicationScope.Body>
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
@@ -1332,7 +1503,7 @@
             <InArgument x:TypeArguments="x:String">[strEmailBody.Replace("________________________________"," ")]</InArgument>
           </Assign.Value>
         </Assign>
-        <ui:BuildDataTable DataTable="[dtCurrentEmail]" DisplayName="Build Current Email DataTable" sap:VirtualizedContainerService.HintSize="1908,59" sap2010:WorkflowViewState.IdRef="BuildDataTable_8" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;EmailRef&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;FirstName&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;LastName&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;AddressLine1&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_x0020_AddressLine2&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;TownOrCity&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;County&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;PostCode&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Country&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;DateOfBirth&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;PhoneNumber&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;EmailAddress&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;DogsName&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;DogDOB&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;DogColour&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;DogGender&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;InsuranceStartDate&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;PaymentRefNumber&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Neutered&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Microchipped&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;MicrochipNumber&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;FollowUpNeeded&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;FollowUpRequired&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;IndexNumber&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;strCertNeeded&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;strCertSent&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;ApplicationStatus&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
+        <ui:BuildDataTable DataTable="[dtCurrentEmail]" DisplayName="Build Current Email DataTable" sap:VirtualizedContainerService.HintSize="1908,59" sap2010:WorkflowViewState.IdRef="BuildDataTable_8" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;EmailRef&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;FirstName&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;LastName&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;AddressLine1&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_x0020_AddressLine2&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;TownOrCity&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;County&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;PostCode&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Country&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;DateOfBirth&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;PhoneNumber&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;EmailAddress&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;DogsName&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;DogDOB&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;DogColour&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;DogGender&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;InsuranceStartDate&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;PaymentRefNumber&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Neutered&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Microchipped&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;MicrochipNumber&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;FollowUpNeeded&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;FollowUpRequired&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;IndexNumber&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;strCertNeeded&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;strCertSent&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;ApplicationStatus&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Reason1&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Reason2&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Reason3&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Reason4&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
         <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="Email ID" DisplayName="Get Email ID Asset" sap:VirtualizedContainerService.HintSize="1908,139" sap2010:WorkflowViewState.IdRef="GetRobotAsset_5">
           <ui:GetRobotAsset.Value>
             <OutArgument x:TypeArguments="x:String">[strEmailID]</OutArgument>
@@ -1372,10 +1543,42 @@
         </Assign>
         <Assign DisplayName="Assign Application Status to Passed" sap:VirtualizedContainerService.HintSize="1908,60" sap2010:WorkflowViewState.IdRef="Assign_452">
           <Assign.To>
-            <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
+            <OutArgument x:TypeArguments="x:String">[out_strApplicationStatus]</OutArgument>
           </Assign.To>
           <Assign.Value>
             <InArgument x:TypeArguments="x:String">Passed</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="1908,60" sap2010:WorkflowViewState.IdRef="Assign_831">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[Reason1]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[Nothing]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="1908,60" sap2010:WorkflowViewState.IdRef="Assign_832">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[Reason2]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[Nothing]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="1908,60" sap2010:WorkflowViewState.IdRef="Assign_833">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[Reason3]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[Nothing]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="1908,60" sap2010:WorkflowViewState.IdRef="Assign_834">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[Reason4]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[Nothing]</InArgument>
           </Assign.Value>
         </Assign>
         <Sequence DisplayName="Get Owner Information" sap:VirtualizedContainerService.HintSize="1908,68" sap2010:WorkflowViewState.IdRef="Sequence_246">
@@ -1573,7 +1776,7 @@
               </Assign.Value>
             </Assign>
           </Sequence>
-          <Sequence DisplayName="Get Owner DoB" sap:VirtualizedContainerService.HintSize="568,1395" sap2010:WorkflowViewState.IdRef="Sequence_243">
+          <Sequence DisplayName="Get Owner DoB" sap:VirtualizedContainerService.HintSize="568,1495" sap2010:WorkflowViewState.IdRef="Sequence_243">
             <Sequence.Variables>
               <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ieOwnerDoB" />
             </Sequence.Variables>
@@ -1600,7 +1803,7 @@
                 <InArgument x:TypeArguments="x:String">[strOwnerDoB.Trim]</InArgument>
               </Assign.Value>
             </Assign>
-            <Sequence DisplayName="Check Whether Own is Over 16" sap:VirtualizedContainerService.HintSize="526,1004" sap2010:WorkflowViewState.IdRef="Sequence_242">
+            <Sequence DisplayName="Check Whether Own is Over 16" sap:VirtualizedContainerService.HintSize="526,1104" sap2010:WorkflowViewState.IdRef="Sequence_242">
               <Sequence.Variables>
                 <Variable x:TypeArguments="s:DateTime" Name="currentDate" />
                 <Variable x:TypeArguments="s:DateTime" Name="dateOfBirth" />
@@ -1627,12 +1830,9 @@
                   <InArgument x:TypeArguments="s:DateTime">[datetime.Now]</InArgument>
                 </Assign.Value>
               </Assign>
-              <If Condition="[(currentDate - dateOfBirth).TotalDays / 365 &gt;= 16]" DisplayName="Check whether the Owner is over the age of 16" sap:VirtualizedContainerService.HintSize="484,712" sap2010:WorkflowViewState.IdRef="If_56">
+              <If Condition="[(currentDate - dateOfBirth).TotalDays / 365 &gt;= 16]" DisplayName="Check whether the Owner is over the age of 16" sap:VirtualizedContainerService.HintSize="484,812" sap2010:WorkflowViewState.IdRef="If_56">
                 <If.Else>
-                  <Sequence DisplayName="Owner Under 16" sap:VirtualizedContainerService.HintSize="304,552" sap2010:WorkflowViewState.IdRef="Sequence_241">
-                    <Sequence.Variables>
-                      <Variable x:TypeArguments="x:String" Name="str" />
-                    </Sequence.Variables>
+                  <Sequence DisplayName="Owner Under 16" sap:VirtualizedContainerService.HintSize="304,652" sap2010:WorkflowViewState.IdRef="Sequence_241">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1651,7 +1851,7 @@
                         <OutArgument x:TypeArguments="x:String">[strFollowUpReasonDog1]</OutArgument>
                       </Assign.To>
                       <Assign.Value>
-                        <InArgument x:TypeArguments="x:String">Owner is under the age of 16</InArgument>
+                        <InArgument x:TypeArguments="x:String">Owner is under 16 years</InArgument>
                       </Assign.Value>
                     </Assign>
                     <Assign DisplayName="Assign Cert Needed to No" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_473">
@@ -1670,9 +1870,17 @@
                         <InArgument x:TypeArguments="x:String">No</InArgument>
                       </Assign.Value>
                     </Assign>
+                    <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_807">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[Reason1]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String" xml:space="preserve">The owner is under 16 years of age. </InArgument>
+                      </Assign.Value>
+                    </Assign>
                     <Assign DisplayName="Assign Application Status to Hard Fail" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_475">
                       <Assign.To>
-                        <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
+                        <OutArgument x:TypeArguments="x:String">[out_strApplicationStatus]</OutArgument>
                       </Assign.To>
                       <Assign.Value>
                         <InArgument x:TypeArguments="x:String">Hard Fail</InArgument>
@@ -1731,14 +1939,14 @@
             </Assign>
           </Sequence>
         </Sequence>
-        <Sequence DisplayName="Get Dog 1 information" sap:VirtualizedContainerService.HintSize="1908,8429" sap2010:WorkflowViewState.IdRef="Sequence_277">
+        <Sequence DisplayName="Get Dog 1 information" sap:VirtualizedContainerService.HintSize="610,6967" sap2010:WorkflowViewState.IdRef="Sequence_277">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Assign DisplayName="Set Follow up Needed to No" sap:VirtualizedContainerService.HintSize="1284,60" sap2010:WorkflowViewState.IdRef="Assign_783">
+          <Assign DisplayName="Set Follow up Needed to No" sap:VirtualizedContainerService.HintSize="568,60" sap2010:WorkflowViewState.IdRef="Assign_783">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[strFollowUpNeededDog1]</OutArgument>
             </Assign.To>
@@ -1746,7 +1954,7 @@
               <InArgument x:TypeArguments="x:String">No</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign DisplayName="Set Follow Up Reason for N/A" sap:VirtualizedContainerService.HintSize="1284,60" sap2010:WorkflowViewState.IdRef="Assign_784">
+          <Assign DisplayName="Set Follow Up Reason for N/A" sap:VirtualizedContainerService.HintSize="568,60" sap2010:WorkflowViewState.IdRef="Assign_784">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[strFollowUpReasonDog1]</OutArgument>
             </Assign.To>
@@ -1754,7 +1962,7 @@
               <InArgument x:TypeArguments="x:String">N/A</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign DisplayName="Assign Cert Needed to Yes" sap:VirtualizedContainerService.HintSize="1284,60" sap2010:WorkflowViewState.IdRef="Assign_785">
+          <Assign DisplayName="Assign Cert Needed to Yes" sap:VirtualizedContainerService.HintSize="568,60" sap2010:WorkflowViewState.IdRef="Assign_785">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[strCertNeeded]</OutArgument>
             </Assign.To>
@@ -1762,7 +1970,7 @@
               <InArgument x:TypeArguments="x:String">Yes</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign DisplayName="Assign Cert Needed to No" sap:VirtualizedContainerService.HintSize="1284,60" sap2010:WorkflowViewState.IdRef="Assign_786">
+          <Assign DisplayName="Assign Cert Needed to No" sap:VirtualizedContainerService.HintSize="568,60" sap2010:WorkflowViewState.IdRef="Assign_786">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[strCertSent]</OutArgument>
             </Assign.To>
@@ -1770,15 +1978,15 @@
               <InArgument x:TypeArguments="x:String">Yes</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign DisplayName="Assign Application Status to Passed" sap:VirtualizedContainerService.HintSize="1284,60" sap2010:WorkflowViewState.IdRef="Assign_787">
+          <Assign DisplayName="Assign Application Status to Passed" sap:VirtualizedContainerService.HintSize="568,60" sap2010:WorkflowViewState.IdRef="Assign_787">
             <Assign.To>
-              <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
+              <OutArgument x:TypeArguments="x:String">[out_strApplicationStatus]</OutArgument>
             </Assign.To>
             <Assign.Value>
               <InArgument x:TypeArguments="x:String">Passed</InArgument>
             </Assign.Value>
           </Assign>
-          <Sequence DisplayName="Get Dog Name" sap:VirtualizedContainerService.HintSize="1284,451" sap2010:WorkflowViewState.IdRef="Sequence_247">
+          <Sequence DisplayName="Get Dog Name" sap:VirtualizedContainerService.HintSize="568,451" sap2010:WorkflowViewState.IdRef="Sequence_247">
             <Sequence.Variables>
               <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ieDog1Name" />
             </Sequence.Variables>
@@ -1814,7 +2022,7 @@
               </Assign.Value>
             </Assign>
           </Sequence>
-          <Sequence DisplayName="Get Dog DoB" sap:VirtualizedContainerService.HintSize="1284,835" sap2010:WorkflowViewState.IdRef="Sequence_250">
+          <Sequence DisplayName="Get Dog DoB" sap:VirtualizedContainerService.HintSize="568,1625" sap2010:WorkflowViewState.IdRef="Sequence_250">
             <Sequence.Variables>
               <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ieDog1DoB" />
             </Sequence.Variables>
@@ -1824,8 +2032,8 @@
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:Matches BuilderPattern="What’s your dog’s date of birth\?\s*(\d{2}/\d{2}/\d{4})" DisplayName="Get Dog DoB ieDog1DoB" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="Matches_105" Input="[strEmailBody]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;What’s your dog’s date of birth\\?\\s*(\\d{2}\/\\d{2}\/\\d{4})&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="What’s your dog’s date of birth\?\s*(\d{2}/\d{2}/\d{4})" RegexOption="IgnoreCase, Compiled" Result="[ieDog1DoB]" />
-            <Assign DisplayName="Assign ieDog1DoB to String" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_481">
+            <ui:Matches BuilderPattern="What’s your dog’s date of birth\?\s*(\d{2}/\d{2}/\d{4})" DisplayName="Get Dog DoB ieDog1DoB" sap:VirtualizedContainerService.HintSize="526,59" sap2010:WorkflowViewState.IdRef="Matches_105" Input="[strEmailBody]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;What’s your dog’s date of birth\\?\\s*(\\d{2}\/\\d{2}\/\\d{4})&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="What’s your dog’s date of birth\?\s*(\d{2}/\d{2}/\d{4})" RegexOption="IgnoreCase, Compiled" Result="[ieDog1DoB]" />
+            <Assign DisplayName="Assign ieDog1DoB to String" sap:VirtualizedContainerService.HintSize="526,60" sap2010:WorkflowViewState.IdRef="Assign_481">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[strDog1DoB]</OutArgument>
               </Assign.To>
@@ -1833,7 +2041,7 @@
                 <InArgument x:TypeArguments="x:String">[ieDog1DoB(0).value]</InArgument>
               </Assign.Value>
             </Assign>
-            <Assign DisplayName="Remove Deadspace from strDog1DoB" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_482">
+            <Assign DisplayName="Remove Deadspace from strDog1DoB" sap:VirtualizedContainerService.HintSize="526,60" sap2010:WorkflowViewState.IdRef="Assign_482">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[strDog1DoB]</OutArgument>
               </Assign.To>
@@ -1841,7 +2049,7 @@
                 <InArgument x:TypeArguments="x:String">[strDog1DoB.Replace(Environment.NewLine, String.Empty)]</InArgument>
               </Assign.Value>
             </Assign>
-            <Assign DisplayName="Replace Un-needed text from strDog1DoB" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_483">
+            <Assign DisplayName="Replace Un-needed text from strDog1DoB" sap:VirtualizedContainerService.HintSize="526,60" sap2010:WorkflowViewState.IdRef="Assign_483">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[strDog1DoB]</OutArgument>
               </Assign.To>
@@ -1849,7 +2057,7 @@
                 <InArgument x:TypeArguments="x:String">[strDog1DoB.Replace("What’s your dog’s date of birth?","").Trim]</InArgument>
               </Assign.Value>
             </Assign>
-            <Sequence DisplayName="Check Dogs DoB is not in the future" sap:VirtualizedContainerService.HintSize="334,344" sap2010:WorkflowViewState.IdRef="Sequence_249">
+            <Sequence DisplayName="Check Dogs DoB is not in the future" sap:VirtualizedContainerService.HintSize="526,1134" sap2010:WorkflowViewState.IdRef="Sequence_249">
               <Sequence.Variables>
                 <Variable x:TypeArguments="s:DateTime" Name="currentDate" />
                 <Variable x:TypeArguments="s:DateTime" Name="dateOfBirth" />
@@ -1859,7 +2067,7 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Assign DisplayName="Assign currentDate to todays day" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_484">
+              <Assign DisplayName="Assign currentDate to todays day" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_484">
                 <Assign.To>
                   <OutArgument x:TypeArguments="s:DateTime">[currentDate]</OutArgument>
                 </Assign.To>
@@ -1867,7 +2075,7 @@
                   <InArgument x:TypeArguments="s:DateTime">[DateTime.Now]</InArgument>
                 </Assign.Value>
               </Assign>
-              <Assign DisplayName="Assign Dogs Date of Birth to the correct format" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_485">
+              <Assign DisplayName="Assign Dogs Date of Birth to the correct format" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_485">
                 <Assign.To>
                   <OutArgument x:TypeArguments="s:DateTime">[dateOfBirth]</OutArgument>
                 </Assign.To>
@@ -1875,15 +2083,15 @@
                   <InArgument x:TypeArguments="s:DateTime">[DateTime.ParseExact(strDog1DoB, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture)]</InArgument>
                 </Assign.Value>
               </Assign>
-              <If Condition="[dateOfBirth &gt; currentDate]" DisplayName="Check whether the Dogs DOB is in the furture" sap:VirtualizedContainerService.HintSize="262,52" sap2010:WorkflowViewState.IdRef="If_57">
+              <If Condition="[dateOfBirth &gt; currentDate]" DisplayName="Check whether the Dogs DOB is in the furture" sap:VirtualizedContainerService.HintSize="484,842" sap2010:WorkflowViewState.IdRef="If_57">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
                 <If.Then>
-                  <Sequence sap:VirtualizedContainerService.HintSize="304,552" sap2010:WorkflowViewState.IdRef="Sequence_248">
+                  <Sequence sap:VirtualizedContainerService.HintSize="304,652" sap2010:WorkflowViewState.IdRef="Sequence_248">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1902,7 +2110,7 @@
                         <OutArgument x:TypeArguments="x:String">[strFollowUpReasonDog1]</OutArgument>
                       </Assign.To>
                       <Assign.Value>
-                        <InArgument x:TypeArguments="x:String">Dogs Date of Birth is in the Future</InArgument>
+                        <InArgument x:TypeArguments="x:String">Dog DOB is in future</InArgument>
                       </Assign.Value>
                     </Assign>
                     <Assign DisplayName="Assign steCertNeeded to No" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_488">
@@ -1921,9 +2129,17 @@
                         <InArgument x:TypeArguments="x:String">No</InArgument>
                       </Assign.Value>
                     </Assign>
+                    <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_808">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[Reason2]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">["The dog’s date of birth is in the future. "]</InArgument>
+                      </Assign.Value>
+                    </Assign>
                     <Assign DisplayName="Assign Application status to Hard Fail" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_490">
                       <Assign.To>
-                        <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
+                        <OutArgument x:TypeArguments="x:String">[out_strApplicationStatus]</OutArgument>
                       </Assign.To>
                       <Assign.Value>
                         <InArgument x:TypeArguments="x:String">Hard Fail</InArgument>
@@ -1934,7 +2150,7 @@
               </If>
             </Sequence>
           </Sequence>
-          <Sequence DisplayName="Get Dog Colour" sap:VirtualizedContainerService.HintSize="1284,551" sap2010:WorkflowViewState.IdRef="Sequence_251">
+          <Sequence DisplayName="Get Dog Colour" sap:VirtualizedContainerService.HintSize="568,551" sap2010:WorkflowViewState.IdRef="Sequence_251">
             <Sequence.Variables>
               <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ieDog1Colour" />
             </Sequence.Variables>
@@ -1978,7 +2194,7 @@
               </Assign.Value>
             </Assign>
           </Sequence>
-          <Sequence DisplayName="Get Dog Gender" sap:VirtualizedContainerService.HintSize="1284,451" sap2010:WorkflowViewState.IdRef="Sequence_252">
+          <Sequence DisplayName="Get Dog Gender" sap:VirtualizedContainerService.HintSize="568,451" sap2010:WorkflowViewState.IdRef="Sequence_252">
             <Sequence.Variables>
               <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ieDog1Gender" />
             </Sequence.Variables>
@@ -2014,7 +2230,7 @@
               </Assign.Value>
             </Assign>
           </Sequence>
-          <Sequence DisplayName="Get whether Dog is Neutered" sap:VirtualizedContainerService.HintSize="1284,451" sap2010:WorkflowViewState.IdRef="Sequence_253">
+          <Sequence DisplayName="Get whether Dog is Neutered" sap:VirtualizedContainerService.HintSize="568,451" sap2010:WorkflowViewState.IdRef="Sequence_253">
             <Sequence.Variables>
               <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ieDog1Neutered" />
             </Sequence.Variables>
@@ -2050,7 +2266,7 @@
               </Assign.Value>
             </Assign>
           </Sequence>
-          <Sequence DisplayName="Get the Date that the insurance started" sap:VirtualizedContainerService.HintSize="1284,1395" sap2010:WorkflowViewState.IdRef="Sequence_256">
+          <Sequence DisplayName="Get the Date that the insurance started" sap:VirtualizedContainerService.HintSize="568,1495" sap2010:WorkflowViewState.IdRef="Sequence_256">
             <Sequence.Variables>
               <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ieInsuranceStartDate" />
             </Sequence.Variables>
@@ -2077,7 +2293,7 @@
                 <InArgument x:TypeArguments="x:String">[strDog1InsuranceStartDate.replace("When does your insurance policy start?","").Trim]</InArgument>
               </Assign.Value>
             </Assign>
-            <Sequence DisplayName="Check when the insurance starts" sap:VirtualizedContainerService.HintSize="526,1004" sap2010:WorkflowViewState.IdRef="Sequence_255">
+            <Sequence DisplayName="Check when the insurance starts" sap:VirtualizedContainerService.HintSize="526,1104" sap2010:WorkflowViewState.IdRef="Sequence_255">
               <Sequence.Variables>
                 <Variable x:TypeArguments="s:DateTime" Name="dateInsuranceStartDate" />
                 <Variable x:TypeArguments="s:DateTime" Name="dateComparisonDate" />
@@ -2104,7 +2320,7 @@
                   <InArgument x:TypeArguments="s:DateTime">[new DateTime(2024, 2, 1)]</InArgument>
                 </Assign.Value>
               </Assign>
-              <If Condition="[(dateInsuranceStartDate &lt;= dateComparisonDate)]" DisplayName="If the insurance date is after the 1st Feb" sap:VirtualizedContainerService.HintSize="484,712" sap2010:WorkflowViewState.IdRef="If_58">
+              <If Condition="[(dateInsuranceStartDate &lt;= dateComparisonDate)]" DisplayName="If the insurance date is after the 1st Feb" sap:VirtualizedContainerService.HintSize="484,812" sap2010:WorkflowViewState.IdRef="If_58">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -2112,7 +2328,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
                 <If.Else>
-                  <Sequence sap:VirtualizedContainerService.HintSize="304,552" sap2010:WorkflowViewState.IdRef="Sequence_254">
+                  <Sequence sap:VirtualizedContainerService.HintSize="304,652" sap2010:WorkflowViewState.IdRef="Sequence_254">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -2131,7 +2347,7 @@
                         <OutArgument x:TypeArguments="x:String">[strFollowUpReasonDog1]</OutArgument>
                       </Assign.To>
                       <Assign.Value>
-                        <InArgument x:TypeArguments="x:String">Insurance date after the 1st Feb 2024</InArgument>
+                        <InArgument x:TypeArguments="x:String">Insurance start date is after 1st Feb</InArgument>
                       </Assign.Value>
                     </Assign>
                     <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_507">
@@ -2150,9 +2366,17 @@
                         <InArgument x:TypeArguments="x:String">No</InArgument>
                       </Assign.Value>
                     </Assign>
+                    <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_809">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[Reason3]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">The start date of your insurance is later than 1st February 2024. Third Party Liability insurance cover must start no later than 1st February 2024.</InArgument>
+                      </Assign.Value>
+                    </Assign>
                     <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_509">
                       <Assign.To>
-                        <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
+                        <OutArgument x:TypeArguments="x:String">[out_strApplicationStatus]</OutArgument>
                       </Assign.To>
                       <Assign.Value>
                         <InArgument x:TypeArguments="x:String">Hard Fail</InArgument>
@@ -2163,7 +2387,7 @@
               </If>
             </Sequence>
           </Sequence>
-          <Sequence DisplayName="Get Whether Dog Is Microchipped" sap:VirtualizedContainerService.HintSize="1284,451" sap2010:WorkflowViewState.IdRef="Sequence_262">
+          <Sequence DisplayName="Get Whether Dog Is Microchipped" sap:VirtualizedContainerService.HintSize="568,451" sap2010:WorkflowViewState.IdRef="Sequence_262">
             <Sequence.Variables>
               <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ieDog1MicroChipped" />
             </Sequence.Variables>
@@ -2199,7 +2423,7 @@
               </Assign.Value>
             </Assign>
           </Sequence>
-          <If Condition="[strDog1MicroChipped.ToLower.Contains(&quot;yes&quot;)]" DisplayName="Check Length of MIcrochip number" sap:VirtualizedContainerService.HintSize="1284,52" sap2010:WorkflowViewState.IdRef="If_62">
+          <If Condition="[strDog1MicroChipped.ToLower.Contains(&quot;yes&quot;)]" DisplayName="Check Length of MIcrochip number" sap:VirtualizedContainerService.HintSize="568,52" sap2010:WorkflowViewState.IdRef="If_62">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -2258,7 +2482,7 @@
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <If Condition="[strApplicationStatus.Contains(&quot;Hard Fail&quot;)]" sap:VirtualizedContainerService.HintSize="484,712" sap2010:WorkflowViewState.IdRef="If_84">
+                      <If Condition="[out_strApplicationStatus.Contains(&quot;Hard Fail&quot;)]" sap:VirtualizedContainerService.HintSize="484,712" sap2010:WorkflowViewState.IdRef="If_84">
                         <If.Else>
                           <Sequence sap:VirtualizedContainerService.HintSize="304,552" sap2010:WorkflowViewState.IdRef="Sequence_341">
                             <sap:WorkflowViewStateService.ViewState>
@@ -2302,7 +2526,7 @@
                             </Assign>
                             <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_541">
                               <Assign.To>
-                                <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
+                                <OutArgument x:TypeArguments="x:String">[out_strApplicationStatus]</OutArgument>
                               </Assign.To>
                               <Assign.Value>
                                 <InArgument x:TypeArguments="x:String">Passed</InArgument>
@@ -2320,7 +2544,7 @@
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <If Condition="[strApplicationStatus.Contains(&quot;Hard Fail&quot;)]" sap:VirtualizedContainerService.HintSize="484,712" sap2010:WorkflowViewState.IdRef="If_85">
+                      <If Condition="[out_strApplicationStatus.Contains(&quot;Hard Fail&quot;)]" sap:VirtualizedContainerService.HintSize="484,712" sap2010:WorkflowViewState.IdRef="If_85">
                         <If.Else>
                           <Sequence sap:VirtualizedContainerService.HintSize="304,552" sap2010:WorkflowViewState.IdRef="Sequence_342">
                             <sap:WorkflowViewStateService.ViewState>
@@ -2362,7 +2586,7 @@
                             </Assign>
                             <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_724">
                               <Assign.To>
-                                <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
+                                <OutArgument x:TypeArguments="x:String">[out_strApplicationStatus]</OutArgument>
                               </Assign.To>
                               <Assign.Value>
                                 <InArgument x:TypeArguments="x:String">Soft Fail</InArgument>
@@ -2383,7 +2607,7 @@
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <If Condition="[strApplicationStatus.Contains(&quot;Hard Fail&quot;)]" sap:VirtualizedContainerService.HintSize="484,712" sap2010:WorkflowViewState.IdRef="If_83">
+                <If Condition="[out_strApplicationStatus.Contains(&quot;Hard Fail&quot;)]" sap:VirtualizedContainerService.HintSize="484,712" sap2010:WorkflowViewState.IdRef="If_83">
                   <If.Else>
                     <Sequence sap:VirtualizedContainerService.HintSize="304,552" sap2010:WorkflowViewState.IdRef="Sequence_343">
                       <sap:WorkflowViewStateService.ViewState>
@@ -2393,7 +2617,7 @@
                       </sap:WorkflowViewStateService.ViewState>
                       <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_551">
                         <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
+                          <OutArgument x:TypeArguments="x:String">[out_strApplicationStatus]</OutArgument>
                         </Assign.To>
                         <Assign.Value>
                           <InArgument x:TypeArguments="x:String">Soft Fail</InArgument>
@@ -2437,7 +2661,7 @@
               </Sequence>
             </If.Else>
           </If>
-          <TryCatch DisplayName="Try getting Payment Ref for Dog 1" sap:VirtualizedContainerService.HintSize="1284,2652" sap2010:WorkflowViewState.IdRef="TryCatch_19">
+          <TryCatch DisplayName="Try getting Payment Ref for Dog 1" sap:VirtualizedContainerService.HintSize="568,300" sap2010:WorkflowViewState.IdRef="TryCatch_19">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -2445,7 +2669,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <TryCatch.Try>
-              <Sequence DisplayName="Get Payment Ref" sap:VirtualizedContainerService.HintSize="1246,2420" sap2010:WorkflowViewState.IdRef="Sequence_260">
+              <Sequence DisplayName="Get Payment Ref" sap:VirtualizedContainerService.HintSize="1246,2520" sap2010:WorkflowViewState.IdRef="Sequence_260">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ieDog1PaymentRef" />
                   <Variable x:TypeArguments="x:String" Name="strResponse" />
@@ -2454,7 +2678,7 @@
                 </Sequence.Variables>
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
@@ -2510,7 +2734,7 @@
                     </scg:List>
                   </ui:FilterDataTable.SelectColumns>
                 </ui:FilterDataTable>
-                <If Condition="[dtPayment1Check.RowCount &gt; 0]" sap:VirtualizedContainerService.HintSize="1204,1627" sap2010:WorkflowViewState.IdRef="If_94">
+                <If Condition="[dtPayment1Check.RowCount &gt; 0]" sap:VirtualizedContainerService.HintSize="1204,1727" sap2010:WorkflowViewState.IdRef="If_94">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -2518,7 +2742,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <If.Then>
-                    <Sequence sap:VirtualizedContainerService.HintSize="304,552" sap2010:WorkflowViewState.IdRef="Sequence_396">
+                    <Sequence sap:VirtualizedContainerService.HintSize="304,652" sap2010:WorkflowViewState.IdRef="Sequence_396">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -2537,7 +2761,7 @@
                           <OutArgument x:TypeArguments="x:String">[strFollowUpReasonDog1]</OutArgument>
                         </Assign.To>
                         <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">["Payment reference found multiple times on spreadsheat"]</InArgument>
+                          <InArgument x:TypeArguments="x:String">Payment ref is a duplicate</InArgument>
                         </Assign.Value>
                       </Assign>
                       <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_750">
@@ -2556,9 +2780,17 @@
                           <InArgument x:TypeArguments="x:String">No</InArgument>
                         </Assign.Value>
                       </Assign>
+                      <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_810">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[Reason4]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">["The payment reference you provided has already been used for another application for exemption."]</InArgument>
+                        </Assign.Value>
+                      </Assign>
                       <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_752">
                         <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
+                          <OutArgument x:TypeArguments="x:String">[out_strApplicationStatus]</OutArgument>
                         </Assign.To>
                         <Assign.Value>
                           <InArgument x:TypeArguments="x:String">Hard Fail</InArgument>
@@ -2567,7 +2799,7 @@
                     </Sequence>
                   </If.Then>
                   <If.Else>
-                    <Sequence sap:VirtualizedContainerService.HintSize="855,1467" sap2010:WorkflowViewState.IdRef="Sequence_397">
+                    <Sequence sap:VirtualizedContainerService.HintSize="855,1567" sap2010:WorkflowViewState.IdRef="Sequence_397">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -2592,7 +2824,7 @@
                           <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
                         </ui:HttpClient.UrlSegments>
                       </ui:HttpClient>
-                      <If Condition="[intStatusCode = 200]" sap:VirtualizedContainerService.HintSize="813,1163" sap2010:WorkflowViewState.IdRef="If_60">
+                      <If Condition="[intStatusCode = 200]" sap:VirtualizedContainerService.HintSize="813,1263" sap2010:WorkflowViewState.IdRef="If_60">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -2600,7 +2832,7 @@
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                         <If.Then>
-                          <Sequence sap:VirtualizedContainerService.HintSize="526,1003" sap2010:WorkflowViewState.IdRef="Sequence_258">
+                          <Sequence sap:VirtualizedContainerService.HintSize="526,1103" sap2010:WorkflowViewState.IdRef="Sequence_258">
                             <Sequence.Variables>
                               <Variable x:TypeArguments="njl:JArray" Name="arrResponse" />
                               <Variable x:TypeArguments="njl:JObject" Name="jsonObject" />
@@ -2620,9 +2852,9 @@
                                 <InArgument x:TypeArguments="x:String">[jsonObject("total").ToString]</InArgument>
                               </Assign.Value>
                             </Assign>
-                            <If Condition="[CInt(strTotalValue) = 1]" sap:VirtualizedContainerService.HintSize="484,712" sap2010:WorkflowViewState.IdRef="If_59">
+                            <If Condition="[CInt(strTotalValue) = 1]" sap:VirtualizedContainerService.HintSize="484,812" sap2010:WorkflowViewState.IdRef="If_59">
                               <If.Else>
-                                <Sequence sap:VirtualizedContainerService.HintSize="304,552" sap2010:WorkflowViewState.IdRef="Sequence_257">
+                                <Sequence sap:VirtualizedContainerService.HintSize="304,652" sap2010:WorkflowViewState.IdRef="Sequence_257">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -2641,7 +2873,7 @@
                                       <OutArgument x:TypeArguments="x:String">[strFollowUpReasonDog1]</OutArgument>
                                     </Assign.To>
                                     <Assign.Value>
-                                      <InArgument x:TypeArguments="x:String">["Amount of Payment records found on Gov pay = " + strTotalValue +"."]</InArgument>
+                                      <InArgument x:TypeArguments="x:String">Payment ref does not exist</InArgument>
                                     </Assign.Value>
                                   </Assign>
                                   <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_516">
@@ -2660,9 +2892,17 @@
                                       <InArgument x:TypeArguments="x:String">No</InArgument>
                                     </Assign.Value>
                                   </Assign>
+                                  <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_811">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:String">[Reason4]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:String">We cannot match the payment reference you provided with a valid payment in our records.</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
                                   <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_518">
                                     <Assign.To>
-                                      <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
+                                      <OutArgument x:TypeArguments="x:String">[out_strApplicationStatus]</OutArgument>
                                     </Assign.To>
                                     <Assign.Value>
                                       <InArgument x:TypeArguments="x:String">Hard Fail</InArgument>
@@ -2691,7 +2931,7 @@
               </Sequence>
             </TryCatch.Try>
             <TryCatch.Catches>
-              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="1250,22" sap2010:WorkflowViewState.IdRef="Catch`1_19">
+              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,22" sap2010:WorkflowViewState.IdRef="Catch`1_19">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -2702,7 +2942,7 @@
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="s:Exception" Name="Nothing" />
                   </ActivityAction.Argument>
-                  <Sequence sap:VirtualizedContainerService.HintSize="304,650" sap2010:WorkflowViewState.IdRef="Sequence_261">
+                  <Sequence sap:VirtualizedContainerService.HintSize="304,746" sap2010:WorkflowViewState.IdRef="Sequence_261">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -2750,9 +2990,17 @@
                         <InArgument x:TypeArguments="x:String">No</InArgument>
                       </Assign.Value>
                     </Assign>
+                    <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_822">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[Reason4]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">We cannot match the payment reference you provided with a valid payment in our records.</InArgument>
+                      </Assign.Value>
+                    </Assign>
                     <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_530">
                       <Assign.To>
-                        <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
+                        <OutArgument x:TypeArguments="x:String">[out_strApplicationStatus]</OutArgument>
                       </Assign.To>
                       <Assign.Value>
                         <InArgument x:TypeArguments="x:String">Hard Fail</InArgument>
@@ -2763,9 +3011,9 @@
               </Catch>
             </TryCatch.Catches>
           </TryCatch>
-          <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{strEmailID,strFirstName,strLastName,strAddressLine1,strAddressLine2,strTown,strCounty,strOwnerCountry,strPostCode,strOwnerDoB,strOwnerPhoneNumber,strOwnerEmailAddress,strDog1Name,strDog1DoB,strDog1Colour,strDog1Gender,strDog1InsuranceStartDate,strDog1PaymentRef,strDog1Neutered,strDog1MicroChipped,strDog1MicroChipNumber,strFollowUpNeededDog1,strFollowUpReasonDog1,strIndexNumber,strCertNeeded,strCertSent,strApplicationStatus}]" DataTable="[dtCurrentEmail]" DisplayName="Add Data Row to Current Email" sap:VirtualizedContainerService.HintSize="1284,188" sap2010:WorkflowViewState.IdRef="AddDataRow_75" />
+          <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{strEmailID,strFirstName,strLastName,strAddressLine1,strAddressLine2,strTown,strCounty,strOwnerCountry,strPostCode,strOwnerDoB,strOwnerPhoneNumber,strOwnerEmailAddress,strDog1Name,strDog1DoB,strDog1Colour,strDog1Gender,strDog1InsuranceStartDate,strDog1PaymentRef,strDog1Neutered,strDog1MicroChipped,strDog1MicroChipNumber,strFollowUpNeededDog1,strFollowUpReasonDog1,strIndexNumber,strCertNeeded,strCertSent,out_strApplicationStatus,Reason1,Reason2,Reason3,Reason4}]" DataTable="[dtCurrentEmail]" DisplayName="Add Data Row to Current Email" sap:VirtualizedContainerService.HintSize="568,188" sap2010:WorkflowViewState.IdRef="AddDataRow_75" />
         </Sequence>
-        <If Condition="[strEmailBody.ToLower.Contains(&quot;second dog&quot;)]" DisplayName="If the Owner has a second dog" sap:VirtualizedContainerService.HintSize="1908,21880" sap2010:WorkflowViewState.IdRef="If_72">
+        <If Condition="[strEmailBody.ToLower.Contains(&quot;second dog&quot;)]" DisplayName="If the Owner has a second dog" sap:VirtualizedContainerService.HintSize="1908,17270" sap2010:WorkflowViewState.IdRef="If_72">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -2773,59 +3021,89 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <If.Then>
-            <Sequence sap:VirtualizedContainerService.HintSize="1872,21690" sap2010:WorkflowViewState.IdRef="Sequence_393">
+            <Sequence sap:VirtualizedContainerService.HintSize="1872,17080" sap2010:WorkflowViewState.IdRef="Sequence_393">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence DisplayName="Get Dog 2 information" sap:VirtualizedContainerService.HintSize="1830,10297" sap2010:WorkflowViewState.IdRef="Sequence_299">
+              <Sequence DisplayName="Get Dog 2 information" sap:VirtualizedContainerService.HintSize="1830,7992" sap2010:WorkflowViewState.IdRef="Sequence_299">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Assign DisplayName="Set Follow up Needed to No" sap:VirtualizedContainerService.HintSize="1710,60" sap2010:WorkflowViewState.IdRef="Assign_763">
-                  <Assign.To>
-                    <OutArgument x:TypeArguments="x:String">[strFollowUpNeededDog2]</OutArgument>
-                  </Assign.To>
-                  <Assign.Value>
-                    <InArgument x:TypeArguments="x:String">No</InArgument>
-                  </Assign.Value>
-                </Assign>
-                <Assign DisplayName="Set Follow Up Reason for N/A" sap:VirtualizedContainerService.HintSize="1710,60" sap2010:WorkflowViewState.IdRef="Assign_764">
-                  <Assign.To>
-                    <OutArgument x:TypeArguments="x:String">[strFollowUpReasonDog2]</OutArgument>
-                  </Assign.To>
-                  <Assign.Value>
-                    <InArgument x:TypeArguments="x:String">N/A</InArgument>
-                  </Assign.Value>
-                </Assign>
-                <Assign DisplayName="Assign Cert Needed to Yes" sap:VirtualizedContainerService.HintSize="1710,60" sap2010:WorkflowViewState.IdRef="Assign_765">
-                  <Assign.To>
-                    <OutArgument x:TypeArguments="x:String">[strCertNeededDog2]</OutArgument>
-                  </Assign.To>
-                  <Assign.Value>
-                    <InArgument x:TypeArguments="x:String">Yes</InArgument>
-                  </Assign.Value>
-                </Assign>
-                <Assign DisplayName="Assign Cert Needed to No" sap:VirtualizedContainerService.HintSize="1710,60" sap2010:WorkflowViewState.IdRef="Assign_766">
-                  <Assign.To>
-                    <OutArgument x:TypeArguments="x:String">[strCertSentDog2]</OutArgument>
-                  </Assign.To>
-                  <Assign.Value>
-                    <InArgument x:TypeArguments="x:String">Yes</InArgument>
-                  </Assign.Value>
-                </Assign>
-                <Assign DisplayName="Assign Application Status to Passed" sap:VirtualizedContainerService.HintSize="1710,60" sap2010:WorkflowViewState.IdRef="Assign_767">
-                  <Assign.To>
-                    <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
-                  </Assign.To>
-                  <Assign.Value>
-                    <InArgument x:TypeArguments="x:String">Passed</InArgument>
-                  </Assign.Value>
-                </Assign>
+                <ui:MultipleAssign DisplayName="Reset Variables" sap:VirtualizedContainerService.HintSize="1710,317" sap2010:WorkflowViewState.IdRef="MultipleAssign_11">
+                  <ui:MultipleAssign.AssignOperations>
+                    <scg:List x:TypeArguments="ui:AssignOperation" Capacity="16">
+                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_138">
+                        <ui:AssignOperation.To>
+                          <OutArgument x:TypeArguments="x:String">[strFollowUpNeededDog2]</OutArgument>
+                        </ui:AssignOperation.To>
+                        <ui:AssignOperation.Value>
+                          <InArgument x:TypeArguments="x:String">No</InArgument>
+                        </ui:AssignOperation.Value>
+                      </ui:AssignOperation>
+                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_139">
+                        <ui:AssignOperation.To>
+                          <OutArgument x:TypeArguments="x:String">[strFollowUpReasonDog2]</OutArgument>
+                        </ui:AssignOperation.To>
+                        <ui:AssignOperation.Value>
+                          <InArgument x:TypeArguments="x:String">N/A</InArgument>
+                        </ui:AssignOperation.Value>
+                      </ui:AssignOperation>
+                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_140">
+                        <ui:AssignOperation.To>
+                          <OutArgument x:TypeArguments="x:String">[strCertNeededDog2]</OutArgument>
+                        </ui:AssignOperation.To>
+                        <ui:AssignOperation.Value>
+                          <InArgument x:TypeArguments="x:String">Yes</InArgument>
+                        </ui:AssignOperation.Value>
+                      </ui:AssignOperation>
+                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_141">
+                        <ui:AssignOperation.To>
+                          <OutArgument x:TypeArguments="x:String">[strCertSentDog2]</OutArgument>
+                        </ui:AssignOperation.To>
+                        <ui:AssignOperation.Value>
+                          <InArgument x:TypeArguments="x:String">Yes</InArgument>
+                        </ui:AssignOperation.Value>
+                      </ui:AssignOperation>
+                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_142">
+                        <ui:AssignOperation.To>
+                          <OutArgument x:TypeArguments="x:String">[out_strApplicationStatus]</OutArgument>
+                        </ui:AssignOperation.To>
+                        <ui:AssignOperation.Value>
+                          <InArgument x:TypeArguments="x:String">Passed</InArgument>
+                        </ui:AssignOperation.Value>
+                      </ui:AssignOperation>
+                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_144">
+                        <ui:AssignOperation.To>
+                          <OutArgument x:TypeArguments="x:String">[Reason2]</OutArgument>
+                        </ui:AssignOperation.To>
+                        <ui:AssignOperation.Value>
+                          <InArgument x:TypeArguments="x:String">[Nothing]</InArgument>
+                        </ui:AssignOperation.Value>
+                      </ui:AssignOperation>
+                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_145">
+                        <ui:AssignOperation.To>
+                          <OutArgument x:TypeArguments="x:String">[Reason3]</OutArgument>
+                        </ui:AssignOperation.To>
+                        <ui:AssignOperation.Value>
+                          <InArgument x:TypeArguments="x:String">[Nothing]</InArgument>
+                        </ui:AssignOperation.Value>
+                      </ui:AssignOperation>
+                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_146">
+                        <ui:AssignOperation.To>
+                          <OutArgument x:TypeArguments="x:String">[Reason4]</OutArgument>
+                        </ui:AssignOperation.To>
+                        <ui:AssignOperation.Value>
+                          <InArgument x:TypeArguments="x:String">[Nothing]</InArgument>
+                        </ui:AssignOperation.Value>
+                      </ui:AssignOperation>
+                    </scg:List>
+                  </ui:MultipleAssign.AssignOperations>
+                </ui:MultipleAssign>
                 <Sequence DisplayName="Get Dog 2 Name" sap:VirtualizedContainerService.HintSize="1710,68" sap2010:WorkflowViewState.IdRef="Sequence_278">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ieDog2Name" />
@@ -2862,7 +3140,7 @@
                     </Assign.Value>
                   </Assign>
                 </Sequence>
-                <Sequence DisplayName="Get Dog DoB" sap:VirtualizedContainerService.HintSize="1710,1525" sap2010:WorkflowViewState.IdRef="Sequence_281">
+                <Sequence DisplayName="Get Dog DoB" sap:VirtualizedContainerService.HintSize="1710,1625" sap2010:WorkflowViewState.IdRef="Sequence_281">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ieDog2DoB" />
                   </Sequence.Variables>
@@ -2897,7 +3175,7 @@
                       <InArgument x:TypeArguments="x:String">[strDog2DoB.Replace("What’s the date of birth for your second dog?","").Trim]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Sequence DisplayName="Check Dogs DoB is not in the future" sap:VirtualizedContainerService.HintSize="526,1034" sap2010:WorkflowViewState.IdRef="Sequence_280">
+                  <Sequence DisplayName="Check Dogs DoB is not in the future" sap:VirtualizedContainerService.HintSize="526,1134" sap2010:WorkflowViewState.IdRef="Sequence_280">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="s:DateTime" Name="currentDate" />
                       <Variable x:TypeArguments="s:DateTime" Name="dateOfBirth" />
@@ -2923,7 +3201,7 @@
                         <InArgument x:TypeArguments="s:DateTime">[DateTime.ParseExact(strDog2DoB, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture)]</InArgument>
                       </Assign.Value>
                     </Assign>
-                    <If Condition="[dateOfBirth &gt; currentDate]" sap:VirtualizedContainerService.HintSize="484,742" sap2010:WorkflowViewState.IdRef="If_65">
+                    <If Condition="[dateOfBirth &gt; currentDate]" sap:VirtualizedContainerService.HintSize="484,842" sap2010:WorkflowViewState.IdRef="If_65">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -2931,7 +3209,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                       <If.Then>
-                        <Sequence sap:VirtualizedContainerService.HintSize="304,552" sap2010:WorkflowViewState.IdRef="Sequence_279">
+                        <Sequence sap:VirtualizedContainerService.HintSize="304,652" sap2010:WorkflowViewState.IdRef="Sequence_279">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -2950,7 +3228,7 @@
                               <OutArgument x:TypeArguments="x:String">[strFollowUpReasonDog2]</OutArgument>
                             </Assign.To>
                             <Assign.Value>
-                              <InArgument x:TypeArguments="x:String">Dogs Date of Birth is in the Future</InArgument>
+                              <InArgument x:TypeArguments="x:String">Dog DOB is in future</InArgument>
                             </Assign.Value>
                           </Assign>
                           <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_564">
@@ -2969,9 +3247,17 @@
                               <InArgument x:TypeArguments="x:String">No</InArgument>
                             </Assign.Value>
                           </Assign>
+                          <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_812">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[Reason2]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">["The dog’s date of birth is in the future. "]</InArgument>
+                            </Assign.Value>
+                          </Assign>
                           <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_566">
                             <Assign.To>
-                              <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
+                              <OutArgument x:TypeArguments="x:String">[out_strApplicationStatus]</OutArgument>
                             </Assign.To>
                             <Assign.Value>
                               <InArgument x:TypeArguments="x:String">Hard Fail</InArgument>
@@ -3098,7 +3384,7 @@
                     </Assign.Value>
                   </Assign>
                 </Sequence>
-                <Sequence DisplayName="Get the Date that the insurance started" sap:VirtualizedContainerService.HintSize="1710,1395" sap2010:WorkflowViewState.IdRef="Sequence_287">
+                <Sequence DisplayName="Get the Date that the insurance started" sap:VirtualizedContainerService.HintSize="1710,1495" sap2010:WorkflowViewState.IdRef="Sequence_287">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ieInsuranceStartDate" />
                   </Sequence.Variables>
@@ -3125,7 +3411,7 @@
                       <InArgument x:TypeArguments="x:String">[strDog2InsuranceStartDate.replace("When does your insurance policy start for the second dog?","").Trim]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Sequence DisplayName="Check when the insurance starts" sap:VirtualizedContainerService.HintSize="526,1004" sap2010:WorkflowViewState.IdRef="Sequence_286">
+                  <Sequence DisplayName="Check when the insurance starts" sap:VirtualizedContainerService.HintSize="526,1104" sap2010:WorkflowViewState.IdRef="Sequence_286">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="s:DateTime" Name="dateInsuranceStartDate" />
                       <Variable x:TypeArguments="s:DateTime" Name="dateComparisonDate" />
@@ -3151,9 +3437,9 @@
                         <InArgument x:TypeArguments="s:DateTime">[new DateTime(2024, 2, 1)]</InArgument>
                       </Assign.Value>
                     </Assign>
-                    <If Condition="[(dateInsuranceStartDate &lt;= dateComparisonDate)]" DisplayName="If the insurance date is after the 1st Feb" sap:VirtualizedContainerService.HintSize="484,712" sap2010:WorkflowViewState.IdRef="If_66">
+                    <If Condition="[(dateInsuranceStartDate &lt;= dateComparisonDate)]" DisplayName="If the insurance date is after the 1st Feb" sap:VirtualizedContainerService.HintSize="484,812" sap2010:WorkflowViewState.IdRef="If_66">
                       <If.Else>
-                        <Sequence sap:VirtualizedContainerService.HintSize="304,552" sap2010:WorkflowViewState.IdRef="Sequence_285">
+                        <Sequence sap:VirtualizedContainerService.HintSize="304,652" sap2010:WorkflowViewState.IdRef="Sequence_285">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -3172,7 +3458,7 @@
                               <OutArgument x:TypeArguments="x:String">[strFollowUpReasonDog2]</OutArgument>
                             </Assign.To>
                             <Assign.Value>
-                              <InArgument x:TypeArguments="x:String">Insurance date after the 1st Feb 2024</InArgument>
+                              <InArgument x:TypeArguments="x:String">Insurance start date is after 1st Feb</InArgument>
                             </Assign.Value>
                           </Assign>
                           <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_583">
@@ -3191,9 +3477,17 @@
                               <InArgument x:TypeArguments="x:String">No</InArgument>
                             </Assign.Value>
                           </Assign>
+                          <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_813">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[Reason3]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">The start date of your insurance is later than 1st February 2024. Third Party Liability insurance cover must start no later than 1st February 2024.</InArgument>
+                            </Assign.Value>
+                          </Assign>
                           <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_585">
                             <Assign.To>
-                              <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
+                              <OutArgument x:TypeArguments="x:String">[out_strApplicationStatus]</OutArgument>
                             </Assign.To>
                             <Assign.Value>
                               <InArgument x:TypeArguments="x:String">Hard Fail</InArgument>
@@ -3204,7 +3498,7 @@
                     </If>
                   </Sequence>
                 </Sequence>
-                <TryCatch DisplayName="Try getting Payment Ref for Dog 2" sap:VirtualizedContainerService.HintSize="1710,2550" sap2010:WorkflowViewState.IdRef="TryCatch_20">
+                <TryCatch DisplayName="Try getting Payment Ref for Dog 2" sap:VirtualizedContainerService.HintSize="1710,188" sap2010:WorkflowViewState.IdRef="TryCatch_20">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -3212,7 +3506,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <TryCatch.Try>
-                    <Sequence DisplayName="Get Payment Ref" sap:VirtualizedContainerService.HintSize="1350,2318" sap2010:WorkflowViewState.IdRef="Sequence_291">
+                    <Sequence DisplayName="Get Payment Ref" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_291">
                       <Sequence.Variables>
                         <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ieDog1PaymentRef" />
                         <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ieDog2PaymentRef" />
@@ -3222,7 +3516,7 @@
                       </Sequence.Variables>
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
@@ -3278,15 +3572,15 @@
                           </scg:List>
                         </ui:FilterDataTable.SelectColumns>
                       </ui:FilterDataTable>
-                      <If Condition="[dtPayment2Check.RowCount &gt; 0]" sap:VirtualizedContainerService.HintSize="1308,1525" sap2010:WorkflowViewState.IdRef="If_96">
+                      <If Condition="[dtPayment2Check.RowCount &gt; 0]" sap:VirtualizedContainerService.HintSize="1308,1625" sap2010:WorkflowViewState.IdRef="If_96">
                         <If.Then>
-                          <Sequence sap:VirtualizedContainerService.HintSize="346,644" sap2010:WorkflowViewState.IdRef="Sequence_401">
+                          <Sequence sap:VirtualizedContainerService.HintSize="346,744" sap2010:WorkflowViewState.IdRef="Sequence_401">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <Sequence sap:VirtualizedContainerService.HintSize="304,552" sap2010:WorkflowViewState.IdRef="Sequence_403">
+                            <Sequence sap:VirtualizedContainerService.HintSize="304,652" sap2010:WorkflowViewState.IdRef="Sequence_403">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -3305,7 +3599,7 @@
                                   <OutArgument x:TypeArguments="x:String">[strFollowUpReasonDog2]</OutArgument>
                                 </Assign.To>
                                 <Assign.Value>
-                                  <InArgument x:TypeArguments="x:String">Payment Reference found muliple times on Spreadsheet</InArgument>
+                                  <InArgument x:TypeArguments="x:String">Payment ref is a duplicate</InArgument>
                                 </Assign.Value>
                               </Assign>
                               <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_760">
@@ -3324,9 +3618,17 @@
                                   <InArgument x:TypeArguments="x:String">No</InArgument>
                                 </Assign.Value>
                               </Assign>
+                              <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_814">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[Reason4]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">The payment reference you provided has already been used for another application for exemption.</InArgument>
+                                </Assign.Value>
+                              </Assign>
                               <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_762">
                                 <Assign.To>
-                                  <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
+                                  <OutArgument x:TypeArguments="x:String">[out_strApplicationStatus]</OutArgument>
                                 </Assign.To>
                                 <Assign.Value>
                                   <InArgument x:TypeArguments="x:String">Hard Fail</InArgument>
@@ -3336,7 +3638,7 @@
                           </Sequence>
                         </If.Then>
                         <If.Else>
-                          <Sequence sap:VirtualizedContainerService.HintSize="917,1365" sap2010:WorkflowViewState.IdRef="Sequence_402">
+                          <Sequence sap:VirtualizedContainerService.HintSize="917,1465" sap2010:WorkflowViewState.IdRef="Sequence_402">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -3360,7 +3662,7 @@
                                 <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
                               </ui:HttpClient.UrlSegments>
                             </ui:HttpClient>
-                            <If Condition="[intStatusCode = 200]" sap:VirtualizedContainerService.HintSize="875,1163" sap2010:WorkflowViewState.IdRef="If_68">
+                            <If Condition="[intStatusCode = 200]" sap:VirtualizedContainerService.HintSize="875,1263" sap2010:WorkflowViewState.IdRef="If_68">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -3368,7 +3670,7 @@
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                               <If.Then>
-                                <Sequence sap:VirtualizedContainerService.HintSize="526,1003" sap2010:WorkflowViewState.IdRef="Sequence_289">
+                                <Sequence sap:VirtualizedContainerService.HintSize="526,1103" sap2010:WorkflowViewState.IdRef="Sequence_289">
                                   <Sequence.Variables>
                                     <Variable x:TypeArguments="njl:JArray" Name="arrResponse" />
                                     <Variable x:TypeArguments="njl:JObject" Name="jsonObject" />
@@ -3388,9 +3690,9 @@
                                       <InArgument x:TypeArguments="x:String">[jsonObject("total").ToString]</InArgument>
                                     </Assign.Value>
                                   </Assign>
-                                  <If Condition="[CInt(totalValue) = 1]" sap:VirtualizedContainerService.HintSize="484,712" sap2010:WorkflowViewState.IdRef="If_67">
+                                  <If Condition="[CInt(totalValue) = 1]" sap:VirtualizedContainerService.HintSize="484,812" sap2010:WorkflowViewState.IdRef="If_67">
                                     <If.Else>
-                                      <Sequence sap:VirtualizedContainerService.HintSize="304,552" sap2010:WorkflowViewState.IdRef="Sequence_288">
+                                      <Sequence sap:VirtualizedContainerService.HintSize="304,652" sap2010:WorkflowViewState.IdRef="Sequence_288">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -3409,7 +3711,7 @@
                                             <OutArgument x:TypeArguments="x:String">[strFollowUpReasonDog2]</OutArgument>
                                           </Assign.To>
                                           <Assign.Value>
-                                            <InArgument x:TypeArguments="x:String">["Amount of Payment records found on Gov pay = " + totalValue +"."]</InArgument>
+                                            <InArgument x:TypeArguments="x:String">Payment ref does not exist</InArgument>
                                           </Assign.Value>
                                         </Assign>
                                         <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_592">
@@ -3428,9 +3730,17 @@
                                             <InArgument x:TypeArguments="x:String">No</InArgument>
                                           </Assign.Value>
                                         </Assign>
+                                        <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_815">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:String">[Reason4]</OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:String">["We cannot match the payment reference you provided with a valid payment in our records."]</InArgument>
+                                          </Assign.Value>
+                                        </Assign>
                                         <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_594">
                                           <Assign.To>
-                                            <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
+                                            <OutArgument x:TypeArguments="x:String">[out_strApplicationStatus]</OutArgument>
                                           </Assign.To>
                                           <Assign.Value>
                                             <InArgument x:TypeArguments="x:String">Hard Fail</InArgument>
@@ -3442,7 +3752,7 @@
                                 </Sequence>
                               </If.Then>
                               <If.Else>
-                                <Sequence sap:VirtualizedContainerService.HintSize="304,552" sap2010:WorkflowViewState.IdRef="Sequence_290">
+                                <Sequence sap:VirtualizedContainerService.HintSize="304,652" sap2010:WorkflowViewState.IdRef="Sequence_290">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -3461,7 +3771,7 @@
                                       <OutArgument x:TypeArguments="x:String">[strFollowUpReasonDog2]</OutArgument>
                                     </Assign.To>
                                     <Assign.Value>
-                                      <InArgument x:TypeArguments="x:String">Payment Reference Doesnt Exist on Gov Pay</InArgument>
+                                      <InArgument x:TypeArguments="x:String">Payment ref does not exist</InArgument>
                                     </Assign.Value>
                                   </Assign>
                                   <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_598">
@@ -3480,9 +3790,17 @@
                                       <InArgument x:TypeArguments="x:String">No</InArgument>
                                     </Assign.Value>
                                   </Assign>
+                                  <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_816">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:String">[Reason4]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:String">["We cannot match the payment reference you provided with a valid payment in our records."]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
                                   <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_600">
                                     <Assign.To>
-                                      <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
+                                      <OutArgument x:TypeArguments="x:String">[out_strApplicationStatus]</OutArgument>
                                     </Assign.To>
                                     <Assign.Value>
                                       <InArgument x:TypeArguments="x:String">Hard Fail</InArgument>
@@ -3497,7 +3815,7 @@
                     </Sequence>
                   </TryCatch.Try>
                   <TryCatch.Catches>
-                    <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="1354,22" sap2010:WorkflowViewState.IdRef="Catch`1_20">
+                    <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,22" sap2010:WorkflowViewState.IdRef="Catch`1_20">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -3508,7 +3826,7 @@
                         <ActivityAction.Argument>
                           <DelegateInArgument x:TypeArguments="s:Exception" Name="Nothing" />
                         </ActivityAction.Argument>
-                        <Sequence sap:VirtualizedContainerService.HintSize="304,650" sap2010:WorkflowViewState.IdRef="Sequence_292">
+                        <Sequence sap:VirtualizedContainerService.HintSize="304,752" sap2010:WorkflowViewState.IdRef="Sequence_292">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -3556,9 +3874,17 @@
                               <InArgument x:TypeArguments="x:String">No</InArgument>
                             </Assign.Value>
                           </Assign>
+                          <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_823">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[Reason4]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">We cannot match the payment reference you provided with a valid payment in our records.</InArgument>
+                            </Assign.Value>
+                          </Assign>
                           <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_606">
                             <Assign.To>
-                              <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
+                              <OutArgument x:TypeArguments="x:String">[out_strApplicationStatus]</OutArgument>
                             </Assign.To>
                             <Assign.Value>
                               <InArgument x:TypeArguments="x:String">Hard Fail</InArgument>
@@ -3664,7 +3990,7 @@
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <If Condition="[strApplicationStatus.Contains(&quot;Hard Fail&quot;)]" sap:VirtualizedContainerService.HintSize="484,712" sap2010:WorkflowViewState.IdRef="If_88">
+                            <If Condition="[out_strApplicationStatus.Contains(&quot;Hard Fail&quot;)]" sap:VirtualizedContainerService.HintSize="484,712" sap2010:WorkflowViewState.IdRef="If_88">
                               <If.Else>
                                 <Sequence sap:VirtualizedContainerService.HintSize="304,552" sap2010:WorkflowViewState.IdRef="Sequence_346">
                                   <sap:WorkflowViewStateService.ViewState>
@@ -3708,7 +4034,7 @@
                                   </Assign>
                                   <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_617">
                                     <Assign.To>
-                                      <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
+                                      <OutArgument x:TypeArguments="x:String">[out_strApplicationStatus]</OutArgument>
                                     </Assign.To>
                                     <Assign.Value>
                                       <InArgument x:TypeArguments="x:String">Passed</InArgument>
@@ -3726,7 +4052,7 @@
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <If Condition="[strApplicationStatus.Contains(&quot;Hard Fail&quot;)]" sap:VirtualizedContainerService.HintSize="484,712" sap2010:WorkflowViewState.IdRef="If_87">
+                            <If Condition="[out_strApplicationStatus.Contains(&quot;Hard Fail&quot;)]" sap:VirtualizedContainerService.HintSize="484,712" sap2010:WorkflowViewState.IdRef="If_87">
                               <If.Else>
                                 <Sequence sap:VirtualizedContainerService.HintSize="304,552" sap2010:WorkflowViewState.IdRef="Sequence_345">
                                   <sap:WorkflowViewStateService.ViewState>
@@ -3768,7 +4094,7 @@
                                   </Assign>
                                   <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_622">
                                     <Assign.To>
-                                      <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
+                                      <OutArgument x:TypeArguments="x:String">[out_strApplicationStatus]</OutArgument>
                                     </Assign.To>
                                     <Assign.Value>
                                       <InArgument x:TypeArguments="x:String">Soft Fail</InArgument>
@@ -3789,7 +4115,7 @@
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <If Condition="[strApplicationStatus.Contains(&quot;Hard Fail&quot;)]" sap:VirtualizedContainerService.HintSize="484,712" sap2010:WorkflowViewState.IdRef="If_86">
+                      <If Condition="[out_strApplicationStatus.Contains(&quot;Hard Fail&quot;)]" sap:VirtualizedContainerService.HintSize="484,712" sap2010:WorkflowViewState.IdRef="If_86">
                         <If.Else>
                           <Sequence sap:VirtualizedContainerService.HintSize="304,552" sap2010:WorkflowViewState.IdRef="Sequence_344">
                             <sap:WorkflowViewStateService.ViewState>
@@ -3831,7 +4157,7 @@
                             </Assign>
                             <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_627">
                               <Assign.To>
-                                <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
+                                <OutArgument x:TypeArguments="x:String">[out_strApplicationStatus]</OutArgument>
                               </Assign.To>
                               <Assign.Value>
                                 <InArgument x:TypeArguments="x:String">Soft Fail</InArgument>
@@ -3843,9 +4169,9 @@
                     </Sequence>
                   </If.Else>
                 </If>
-                <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{strEmailID,strFirstName,strLastName,strAddressLine1,strAddressLine2,strTown,strCounty,strOwnerCountry,strPostCode,strOwnerDoB,strOwnerPhoneNumber,strOwnerEmailAddress,strDog2Name,strDog2DoB,strDog2Colour,strDog2Gender,strDog2InsuranceStartDate,strDog2PaymentRef,strDog2Neutered,strDog2MicroChipped,strDog2MicroChipNumber,strFollowUpNeededDog2,strFollowUpReasonDog2,strIndexNumber,strCertNeededDog2,strCertSentDog2,strApplicationStatus}]" DataTable="[dtCurrentEmail]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="1710,188" sap2010:WorkflowViewState.IdRef="AddDataRow_63" />
+                <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{strEmailID,strFirstName,strLastName,strAddressLine1,strAddressLine2,strTown,strCounty,strOwnerCountry,strPostCode,strOwnerDoB,strOwnerPhoneNumber,strOwnerEmailAddress,strDog2Name,strDog2DoB,strDog2Colour,strDog2Gender,strDog2InsuranceStartDate,strDog2PaymentRef,strDog2Neutered,strDog2MicroChipped,strDog2MicroChipNumber,strFollowUpNeededDog2,strFollowUpReasonDog2,strIndexNumber,strCertNeededDog2,strCertSentDog2,out_strApplicationStatus,Reason1,Reason2,Reason3,Reason4}]" DataTable="[dtCurrentEmail]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="1710,188" sap2010:WorkflowViewState.IdRef="AddDataRow_63" />
               </Sequence>
-              <Sequence DisplayName="Check Whether the Owner has a Third Dog" sap:VirtualizedContainerService.HintSize="1830,11261" sap2010:WorkflowViewState.IdRef="Sequence_392">
+              <Sequence DisplayName="Check Whether the Owner has a Third Dog" sap:VirtualizedContainerService.HintSize="1830,8956" sap2010:WorkflowViewState.IdRef="Sequence_392">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="x:String" Name="strThirdDogOwned" />
                   <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ieThirdDogOwned" />
@@ -3873,7 +4199,7 @@
                     <InArgument x:TypeArguments="x:String">[strThirdDogOwned.Trim]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <If Condition="[strThirdDogOwned.ToLower.Contains(&quot;yes&quot;)]" DisplayName="If the Owner has a third" sap:VirtualizedContainerService.HintSize="1788,10870" sap2010:WorkflowViewState.IdRef="If_80">
+                <If Condition="[strThirdDogOwned.ToLower.Contains(&quot;yes&quot;)]" DisplayName="If the Owner has a third" sap:VirtualizedContainerService.HintSize="1788,8565" sap2010:WorkflowViewState.IdRef="If_80">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -3881,7 +4207,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <If.Then>
-                    <Sequence DisplayName="Get Dog 3 information" sap:VirtualizedContainerService.HintSize="1752,10680" sap2010:WorkflowViewState.IdRef="Sequence_321">
+                    <Sequence DisplayName="Get Dog 3 information" sap:VirtualizedContainerService.HintSize="1752,8375" sap2010:WorkflowViewState.IdRef="Sequence_321">
                       <Sequence.Variables>
                         <Variable x:TypeArguments="x:String" Name="strFollowUpNeededDog3" />
                         <Variable x:TypeArguments="x:String" Name="strFollowUpReasonDog3" />
@@ -3894,46 +4220,76 @@
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <Assign DisplayName="Set Follow up Needed to No" sap:VirtualizedContainerService.HintSize="1710,60" sap2010:WorkflowViewState.IdRef="Assign_768">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[strFollowUpNeededDog3]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">No</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign DisplayName="Set Follow Up Reason for N/A" sap:VirtualizedContainerService.HintSize="1710,60" sap2010:WorkflowViewState.IdRef="Assign_769">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[strFollowUpReasonDog3]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">N/A</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign DisplayName="Assign Cert Needed to Yes" sap:VirtualizedContainerService.HintSize="1710,60" sap2010:WorkflowViewState.IdRef="Assign_770">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[strCertNeededDog3]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">Yes</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign DisplayName="Assign Cert Needed to No" sap:VirtualizedContainerService.HintSize="1710,60" sap2010:WorkflowViewState.IdRef="Assign_771">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[strCertSentDog3]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">Yes</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign DisplayName="Assign Application Status to Passed" sap:VirtualizedContainerService.HintSize="1710,60" sap2010:WorkflowViewState.IdRef="Assign_772">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">Passed</InArgument>
-                        </Assign.Value>
-                      </Assign>
+                      <ui:MultipleAssign DisplayName="Reset Dog3 Variables" sap:VirtualizedContainerService.HintSize="1710,317" sap2010:WorkflowViewState.IdRef="MultipleAssign_12">
+                        <ui:MultipleAssign.AssignOperations>
+                          <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
+                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_147">
+                              <ui:AssignOperation.To>
+                                <OutArgument x:TypeArguments="x:String">[strFollowUpNeededDog3]</OutArgument>
+                              </ui:AssignOperation.To>
+                              <ui:AssignOperation.Value>
+                                <InArgument x:TypeArguments="x:String">No</InArgument>
+                              </ui:AssignOperation.Value>
+                            </ui:AssignOperation>
+                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_148">
+                              <ui:AssignOperation.To>
+                                <OutArgument x:TypeArguments="x:String">[strFollowUpReasonDog3]</OutArgument>
+                              </ui:AssignOperation.To>
+                              <ui:AssignOperation.Value>
+                                <InArgument x:TypeArguments="x:String">N/A</InArgument>
+                              </ui:AssignOperation.Value>
+                            </ui:AssignOperation>
+                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_149">
+                              <ui:AssignOperation.To>
+                                <OutArgument x:TypeArguments="x:String">[strCertNeededDog3]</OutArgument>
+                              </ui:AssignOperation.To>
+                              <ui:AssignOperation.Value>
+                                <InArgument x:TypeArguments="x:String">Yes</InArgument>
+                              </ui:AssignOperation.Value>
+                            </ui:AssignOperation>
+                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_150">
+                              <ui:AssignOperation.To>
+                                <OutArgument x:TypeArguments="x:String">[strCertSentDog3]</OutArgument>
+                              </ui:AssignOperation.To>
+                              <ui:AssignOperation.Value>
+                                <InArgument x:TypeArguments="x:String">Yes</InArgument>
+                              </ui:AssignOperation.Value>
+                            </ui:AssignOperation>
+                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_151">
+                              <ui:AssignOperation.To>
+                                <OutArgument x:TypeArguments="x:String">[out_strApplicationStatus]</OutArgument>
+                              </ui:AssignOperation.To>
+                              <ui:AssignOperation.Value>
+                                <InArgument x:TypeArguments="x:String">Passed</InArgument>
+                              </ui:AssignOperation.Value>
+                            </ui:AssignOperation>
+                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_152">
+                              <ui:AssignOperation.To>
+                                <OutArgument x:TypeArguments="x:String">[Reason2]</OutArgument>
+                              </ui:AssignOperation.To>
+                              <ui:AssignOperation.Value>
+                                <InArgument x:TypeArguments="x:String">[Nothing]</InArgument>
+                              </ui:AssignOperation.Value>
+                            </ui:AssignOperation>
+                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_153">
+                              <ui:AssignOperation.To>
+                                <OutArgument x:TypeArguments="x:String">[Reason3]</OutArgument>
+                              </ui:AssignOperation.To>
+                              <ui:AssignOperation.Value>
+                                <InArgument x:TypeArguments="x:String">[Nothing]</InArgument>
+                              </ui:AssignOperation.Value>
+                            </ui:AssignOperation>
+                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_154">
+                              <ui:AssignOperation.To>
+                                <OutArgument x:TypeArguments="x:String">[Reason4]</OutArgument>
+                              </ui:AssignOperation.To>
+                              <ui:AssignOperation.Value>
+                                <InArgument x:TypeArguments="x:String">[Nothing]</InArgument>
+                              </ui:AssignOperation.Value>
+                            </ui:AssignOperation>
+                          </scg:List>
+                        </ui:MultipleAssign.AssignOperations>
+                      </ui:MultipleAssign>
                       <Sequence DisplayName="Get Dog Name" sap:VirtualizedContainerService.HintSize="1710,451" sap2010:WorkflowViewState.IdRef="Sequence_300">
                         <Sequence.Variables>
                           <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ieDog3Name" />
@@ -3970,7 +4326,7 @@
                           </Assign.Value>
                         </Assign>
                       </Sequence>
-                      <Sequence DisplayName="Get Dog DoB" sap:VirtualizedContainerService.HintSize="1710,1525" sap2010:WorkflowViewState.IdRef="Sequence_303">
+                      <Sequence DisplayName="Get Dog DoB" sap:VirtualizedContainerService.HintSize="1710,1625" sap2010:WorkflowViewState.IdRef="Sequence_303">
                         <Sequence.Variables>
                           <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ieDog3DoB" />
                         </Sequence.Variables>
@@ -4005,7 +4361,7 @@
                             <InArgument x:TypeArguments="x:String">[strDog3DoB.Replace("What’s the date of birth of your third dog?","").Trim]</InArgument>
                           </Assign.Value>
                         </Assign>
-                        <Sequence DisplayName="Check Dogs DoB is not in the future" sap:VirtualizedContainerService.HintSize="526,1034" sap2010:WorkflowViewState.IdRef="Sequence_302">
+                        <Sequence DisplayName="Check Dogs DoB is not in the future" sap:VirtualizedContainerService.HintSize="526,1134" sap2010:WorkflowViewState.IdRef="Sequence_302">
                           <Sequence.Variables>
                             <Variable x:TypeArguments="s:DateTime" Name="currentDate" />
                             <Variable x:TypeArguments="s:DateTime" Name="dateOfBirth" />
@@ -4031,7 +4387,7 @@
                               <InArgument x:TypeArguments="s:DateTime">[DateTime.ParseExact(strDog3DoB, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture)]</InArgument>
                             </Assign.Value>
                           </Assign>
-                          <If Condition="[dateOfBirth &gt; currentDate]" sap:VirtualizedContainerService.HintSize="484,742" sap2010:WorkflowViewState.IdRef="If_73">
+                          <If Condition="[dateOfBirth &gt; currentDate]" sap:VirtualizedContainerService.HintSize="484,842" sap2010:WorkflowViewState.IdRef="If_73">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -4039,7 +4395,7 @@
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
                             <If.Then>
-                              <Sequence sap:VirtualizedContainerService.HintSize="304,552" sap2010:WorkflowViewState.IdRef="Sequence_301">
+                              <Sequence sap:VirtualizedContainerService.HintSize="304,652" sap2010:WorkflowViewState.IdRef="Sequence_301">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -4058,7 +4414,7 @@
                                     <OutArgument x:TypeArguments="x:String">[strFollowUpReasonDog3]</OutArgument>
                                   </Assign.To>
                                   <Assign.Value>
-                                    <InArgument x:TypeArguments="x:String">Dogs Date of Birth is in the Future</InArgument>
+                                    <InArgument x:TypeArguments="x:String">Dog DOB is in future</InArgument>
                                   </Assign.Value>
                                 </Assign>
                                 <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_638">
@@ -4077,9 +4433,17 @@
                                     <InArgument x:TypeArguments="x:String">No</InArgument>
                                   </Assign.Value>
                                 </Assign>
+                                <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_817">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[Reason2]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">The dog’s date of birth is in the future.</InArgument>
+                                  </Assign.Value>
+                                </Assign>
                                 <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_640">
                                   <Assign.To>
-                                    <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
+                                    <OutArgument x:TypeArguments="x:String">[out_strApplicationStatus]</OutArgument>
                                   </Assign.To>
                                   <Assign.Value>
                                     <InArgument x:TypeArguments="x:String">Hard Fail</InArgument>
@@ -4170,7 +4534,7 @@
                           </Assign.Value>
                         </Assign>
                       </Sequence>
-                      <Sequence DisplayName="Get the Date that the insurance started" sap:VirtualizedContainerService.HintSize="1710,1395" sap2010:WorkflowViewState.IdRef="Sequence_308">
+                      <Sequence DisplayName="Get the Date that the insurance started" sap:VirtualizedContainerService.HintSize="1710,1495" sap2010:WorkflowViewState.IdRef="Sequence_308">
                         <Sequence.Variables>
                           <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ieInsuranceStartDate" />
                         </Sequence.Variables>
@@ -4197,7 +4561,7 @@
                             <InArgument x:TypeArguments="x:String">[strDog3InsuranceStartDate.replace("When does your insurance policy start for the third dog?","").Trim]</InArgument>
                           </Assign.Value>
                         </Assign>
-                        <Sequence DisplayName="Check when the insurance starts" sap:VirtualizedContainerService.HintSize="526,1004" sap2010:WorkflowViewState.IdRef="Sequence_307">
+                        <Sequence DisplayName="Check when the insurance starts" sap:VirtualizedContainerService.HintSize="526,1104" sap2010:WorkflowViewState.IdRef="Sequence_307">
                           <Sequence.Variables>
                             <Variable x:TypeArguments="s:DateTime" Name="dateInsuranceStartDate" />
                             <Variable x:TypeArguments="s:DateTime" Name="dateComparisonDate" />
@@ -4223,9 +4587,9 @@
                               <InArgument x:TypeArguments="s:DateTime">[new DateTime(2024, 2, 1)]</InArgument>
                             </Assign.Value>
                           </Assign>
-                          <If Condition="[(dateInsuranceStartDate &lt;= dateComparisonDate)]" DisplayName="If the insurance date is after the 1st Feb" sap:VirtualizedContainerService.HintSize="484,712" sap2010:WorkflowViewState.IdRef="If_74">
+                          <If Condition="[(dateInsuranceStartDate &lt;= dateComparisonDate)]" DisplayName="If the insurance date is after the 1st Feb" sap:VirtualizedContainerService.HintSize="484,812" sap2010:WorkflowViewState.IdRef="If_74">
                             <If.Else>
-                              <Sequence sap:VirtualizedContainerService.HintSize="304,552" sap2010:WorkflowViewState.IdRef="Sequence_306">
+                              <Sequence sap:VirtualizedContainerService.HintSize="304,652" sap2010:WorkflowViewState.IdRef="Sequence_306">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -4244,7 +4608,7 @@
                                     <OutArgument x:TypeArguments="x:String">[strFollowUpReasonDog3]</OutArgument>
                                   </Assign.To>
                                   <Assign.Value>
-                                    <InArgument x:TypeArguments="x:String">Insurance date after the 1st Feb 2024</InArgument>
+                                    <InArgument x:TypeArguments="x:String">Insurance start date is after 1st Feb</InArgument>
                                   </Assign.Value>
                                 </Assign>
                                 <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_654">
@@ -4263,9 +4627,17 @@
                                     <InArgument x:TypeArguments="x:String">No</InArgument>
                                   </Assign.Value>
                                 </Assign>
+                                <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_818">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[Reason3]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">The start date of your insurance is later than 1st February 2024. Third Party Liability insurance cover must start no later than 1st February 2024.</InArgument>
+                                  </Assign.Value>
+                                </Assign>
                                 <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_656">
                                   <Assign.To>
-                                    <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
+                                    <OutArgument x:TypeArguments="x:String">[out_strApplicationStatus]</OutArgument>
                                   </Assign.To>
                                   <Assign.Value>
                                     <InArgument x:TypeArguments="x:String">Hard Fail</InArgument>
@@ -4276,7 +4648,7 @@
                           </If>
                         </Sequence>
                       </Sequence>
-                      <TryCatch DisplayName="Try getting Payment Ref for Dog 3" sap:VirtualizedContainerService.HintSize="1710,2550" sap2010:WorkflowViewState.IdRef="TryCatch_21">
+                      <TryCatch DisplayName="Try getting Payment Ref for Dog 3" sap:VirtualizedContainerService.HintSize="1710,188" sap2010:WorkflowViewState.IdRef="TryCatch_21">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -4284,7 +4656,7 @@
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                         <TryCatch.Try>
-                          <Sequence DisplayName="Get Payment Ref" sap:VirtualizedContainerService.HintSize="1308,2318" sap2010:WorkflowViewState.IdRef="Sequence_312">
+                          <Sequence DisplayName="Get Payment Ref" sap:VirtualizedContainerService.HintSize="1308,68" sap2010:WorkflowViewState.IdRef="Sequence_312">
                             <Sequence.Variables>
                               <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ieDog3PaymentRef" />
                               <Variable x:TypeArguments="x:String" Name="strResponse" />
@@ -4294,7 +4666,7 @@
                             </Sequence.Variables>
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
@@ -4350,9 +4722,9 @@
                                 </scg:List>
                               </ui:FilterDataTable.SelectColumns>
                             </ui:FilterDataTable>
-                            <If Condition="[dtPayment3Check.RowCount &gt; 0]" sap:VirtualizedContainerService.HintSize="1266,1525" sap2010:WorkflowViewState.IdRef="If_95">
+                            <If Condition="[dtPayment3Check.RowCount &gt; 0]" sap:VirtualizedContainerService.HintSize="1266,1625" sap2010:WorkflowViewState.IdRef="If_95">
                               <If.Then>
-                                <Sequence sap:VirtualizedContainerService.HintSize="304,552" sap2010:WorkflowViewState.IdRef="Sequence_400">
+                                <Sequence sap:VirtualizedContainerService.HintSize="304,652" sap2010:WorkflowViewState.IdRef="Sequence_400">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -4371,7 +4743,7 @@
                                       <OutArgument x:TypeArguments="x:String">[strFollowUpReasonDog3]</OutArgument>
                                     </Assign.To>
                                     <Assign.Value>
-                                      <InArgument x:TypeArguments="x:String">Payment reference found multiple times on spreadsheat</InArgument>
+                                      <InArgument x:TypeArguments="x:String">We cannot match the payment reference you provided with a valid payment in our records.</InArgument>
                                     </Assign.Value>
                                   </Assign>
                                   <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_755">
@@ -4390,9 +4762,17 @@
                                       <InArgument x:TypeArguments="x:String">No</InArgument>
                                     </Assign.Value>
                                   </Assign>
+                                  <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_819">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:String">[Reason4]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:String">The payment reference you provided has already been used for another application for exemption.</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
                                   <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_757">
                                     <Assign.To>
-                                      <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
+                                      <OutArgument x:TypeArguments="x:String">[out_strApplicationStatus]</OutArgument>
                                     </Assign.To>
                                     <Assign.Value>
                                       <InArgument x:TypeArguments="x:String">Hard Fail</InArgument>
@@ -4401,7 +4781,7 @@
                                 </Sequence>
                               </If.Then>
                               <If.Else>
-                                <Sequence sap:VirtualizedContainerService.HintSize="917,1365" sap2010:WorkflowViewState.IdRef="Sequence_399">
+                                <Sequence sap:VirtualizedContainerService.HintSize="917,1465" sap2010:WorkflowViewState.IdRef="Sequence_399">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -4425,7 +4805,7 @@
                                       <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
                                     </ui:HttpClient.UrlSegments>
                                   </ui:HttpClient>
-                                  <If Condition="[intStatusCode = 200]" sap:VirtualizedContainerService.HintSize="875,1163" sap2010:WorkflowViewState.IdRef="If_76">
+                                  <If Condition="[intStatusCode = 200]" sap:VirtualizedContainerService.HintSize="875,1263" sap2010:WorkflowViewState.IdRef="If_76">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -4433,7 +4813,7 @@
                                       </scg:Dictionary>
                                     </sap:WorkflowViewStateService.ViewState>
                                     <If.Then>
-                                      <Sequence sap:VirtualizedContainerService.HintSize="526,1003" sap2010:WorkflowViewState.IdRef="Sequence_310">
+                                      <Sequence sap:VirtualizedContainerService.HintSize="526,1103" sap2010:WorkflowViewState.IdRef="Sequence_310">
                                         <Sequence.Variables>
                                           <Variable x:TypeArguments="njl:JArray" Name="arrResponse" />
                                           <Variable x:TypeArguments="njl:JObject" Name="jsonObject" />
@@ -4453,9 +4833,9 @@
                                             <InArgument x:TypeArguments="x:String">[jsonObject("total").ToString]</InArgument>
                                           </Assign.Value>
                                         </Assign>
-                                        <If Condition="[CInt(totalValue) = 1]" sap:VirtualizedContainerService.HintSize="484,712" sap2010:WorkflowViewState.IdRef="If_75">
+                                        <If Condition="[CInt(totalValue) = 1]" sap:VirtualizedContainerService.HintSize="484,812" sap2010:WorkflowViewState.IdRef="If_75">
                                           <If.Else>
-                                            <Sequence sap:VirtualizedContainerService.HintSize="304,552" sap2010:WorkflowViewState.IdRef="Sequence_309">
+                                            <Sequence sap:VirtualizedContainerService.HintSize="304,652" sap2010:WorkflowViewState.IdRef="Sequence_309">
                                               <sap:WorkflowViewStateService.ViewState>
                                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -4493,9 +4873,17 @@
                                                   <InArgument x:TypeArguments="x:String">No</InArgument>
                                                 </Assign.Value>
                                               </Assign>
+                                              <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_820">
+                                                <Assign.To>
+                                                  <OutArgument x:TypeArguments="x:String">[Reason4]</OutArgument>
+                                                </Assign.To>
+                                                <Assign.Value>
+                                                  <InArgument x:TypeArguments="x:String">We cannot match the payment reference you provided with a valid payment in our records.</InArgument>
+                                                </Assign.Value>
+                                              </Assign>
                                               <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_665">
                                                 <Assign.To>
-                                                  <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
+                                                  <OutArgument x:TypeArguments="x:String">[out_strApplicationStatus]</OutArgument>
                                                 </Assign.To>
                                                 <Assign.Value>
                                                   <InArgument x:TypeArguments="x:String">Hard Fail</InArgument>
@@ -4507,7 +4895,7 @@
                                       </Sequence>
                                     </If.Then>
                                     <If.Else>
-                                      <Sequence sap:VirtualizedContainerService.HintSize="304,552" sap2010:WorkflowViewState.IdRef="Sequence_311">
+                                      <Sequence sap:VirtualizedContainerService.HintSize="304,652" sap2010:WorkflowViewState.IdRef="Sequence_311">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -4545,9 +4933,17 @@
                                             <InArgument x:TypeArguments="x:String">No</InArgument>
                                           </Assign.Value>
                                         </Assign>
+                                        <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_821">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:String">[Reason4]</OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:String">We cannot match the payment reference you provided with a valid payment in our records.</InArgument>
+                                          </Assign.Value>
+                                        </Assign>
                                         <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_671">
                                           <Assign.To>
-                                            <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
+                                            <OutArgument x:TypeArguments="x:String">[out_strApplicationStatus]</OutArgument>
                                           </Assign.To>
                                           <Assign.Value>
                                             <InArgument x:TypeArguments="x:String">Hard Fail</InArgument>
@@ -4562,7 +4958,7 @@
                           </Sequence>
                         </TryCatch.Try>
                         <TryCatch.Catches>
-                          <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="1312,22" sap2010:WorkflowViewState.IdRef="Catch`1_21">
+                          <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,22" sap2010:WorkflowViewState.IdRef="Catch`1_21">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -4573,7 +4969,7 @@
                               <ActivityAction.Argument>
                                 <DelegateInArgument x:TypeArguments="s:Exception" Name="Nothing" />
                               </ActivityAction.Argument>
-                              <Sequence sap:VirtualizedContainerService.HintSize="304,648" sap2010:WorkflowViewState.IdRef="Sequence_313">
+                              <Sequence sap:VirtualizedContainerService.HintSize="304,742" sap2010:WorkflowViewState.IdRef="Sequence_313">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -4621,9 +5017,17 @@
                                     <InArgument x:TypeArguments="x:String">No</InArgument>
                                   </Assign.Value>
                                 </Assign>
+                                <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_824">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[Reason4]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">We cannot match the payment reference you provided with a valid payment in our records.</InArgument>
+                                  </Assign.Value>
+                                </Assign>
                                 <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_677">
                                   <Assign.To>
-                                    <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
+                                    <OutArgument x:TypeArguments="x:String">[out_strApplicationStatus]</OutArgument>
                                   </Assign.To>
                                   <Assign.Value>
                                     <InArgument x:TypeArguments="x:String">Hard Fail</InArgument>
@@ -4765,7 +5169,7 @@
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
-                                  <If Condition="[strApplicationStatus.Contains(&quot;Hard Fail&quot;)]" sap:VirtualizedContainerService.HintSize="484,712" sap2010:WorkflowViewState.IdRef="If_91">
+                                  <If Condition="[out_strApplicationStatus.Contains(&quot;Hard Fail&quot;)]" sap:VirtualizedContainerService.HintSize="484,712" sap2010:WorkflowViewState.IdRef="If_91">
                                     <If.Else>
                                       <Sequence sap:VirtualizedContainerService.HintSize="304,552" sap2010:WorkflowViewState.IdRef="Sequence_349">
                                         <sap:WorkflowViewStateService.ViewState>
@@ -4809,7 +5213,7 @@
                                         </Assign>
                                         <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_691">
                                           <Assign.To>
-                                            <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
+                                            <OutArgument x:TypeArguments="x:String">[out_strApplicationStatus]</OutArgument>
                                           </Assign.To>
                                           <Assign.Value>
                                             <InArgument x:TypeArguments="x:String">Passed</InArgument>
@@ -4827,7 +5231,7 @@
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
-                                  <If Condition="[strApplicationStatus.Contains(&quot;Hard Fail&quot;)]" sap:VirtualizedContainerService.HintSize="484,712" sap2010:WorkflowViewState.IdRef="If_90">
+                                  <If Condition="[out_strApplicationStatus.Contains(&quot;Hard Fail&quot;)]" sap:VirtualizedContainerService.HintSize="484,712" sap2010:WorkflowViewState.IdRef="If_90">
                                     <If.Else>
                                       <Sequence sap:VirtualizedContainerService.HintSize="304,552" sap2010:WorkflowViewState.IdRef="Sequence_348">
                                         <sap:WorkflowViewStateService.ViewState>
@@ -4869,7 +5273,7 @@
                                         </Assign>
                                         <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_696">
                                           <Assign.To>
-                                            <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
+                                            <OutArgument x:TypeArguments="x:String">[out_strApplicationStatus]</OutArgument>
                                           </Assign.To>
                                           <Assign.Value>
                                             <InArgument x:TypeArguments="x:String">Soft Fail</InArgument>
@@ -4890,7 +5294,7 @@
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <If Condition="[strApplicationStatus.Contains(&quot;Hard Fail&quot;)]" sap:VirtualizedContainerService.HintSize="484,712" sap2010:WorkflowViewState.IdRef="If_89">
+                            <If Condition="[out_strApplicationStatus.Contains(&quot;Hard Fail&quot;)]" sap:VirtualizedContainerService.HintSize="484,712" sap2010:WorkflowViewState.IdRef="If_89">
                               <If.Else>
                                 <Sequence sap:VirtualizedContainerService.HintSize="304,552" sap2010:WorkflowViewState.IdRef="Sequence_347">
                                   <sap:WorkflowViewStateService.ViewState>
@@ -4932,7 +5336,7 @@
                                   </Assign>
                                   <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_701">
                                     <Assign.To>
-                                      <OutArgument x:TypeArguments="x:String">[strApplicationStatus]</OutArgument>
+                                      <OutArgument x:TypeArguments="x:String">[out_strApplicationStatus]</OutArgument>
                                     </Assign.To>
                                     <Assign.Value>
                                       <InArgument x:TypeArguments="x:String">Soft Fail</InArgument>
@@ -4944,7 +5348,7 @@
                           </Sequence>
                         </If.Else>
                       </If>
-                      <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{strEmailID,strFirstName,strLastName,strAddressLine1,strAddressLine2,strTown,strCounty,strOwnerCountry,strPostCode,strOwnerDoB,strOwnerPhoneNumber,strOwnerEmailAddress,strDog3Name,strDog3DoB,strDog3Colour,strDog3Gender,strDog3InsuranceStartDate,strDog3PaymentRef,strDog3Neutered,strDog3MicroChipped,strDog3MicroChipNumber,strFollowUpNeededDog3,strFollowUpReasonDog3,strIndexNumber,strCertNeededDog3,strCertSentDog3,strApplicationStatus}]" DataTable="[dtCurrentEmail]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="1710,188" sap2010:WorkflowViewState.IdRef="AddDataRow_83" />
+                      <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{strEmailID,strFirstName,strLastName,strAddressLine1,strAddressLine2,strTown,strCounty,strOwnerCountry,strPostCode,strOwnerDoB,strOwnerPhoneNumber,strOwnerEmailAddress,strDog3Name,strDog3DoB,strDog3Colour,strDog3Gender,strDog3InsuranceStartDate,strDog3PaymentRef,strDog3Neutered,strDog3MicroChipped,strDog3MicroChipNumber,strFollowUpNeededDog3,strFollowUpReasonDog3,strIndexNumber,strCertNeededDog3,strCertSentDog3,out_strApplicationStatus,Reason1,Reason2,Reason3,Reason4}]" DataTable="[dtCurrentEmail]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="1710,188" sap2010:WorkflowViewState.IdRef="AddDataRow_83" />
                     </Sequence>
                   </If.Then>
                 </If>
@@ -4971,7 +5375,7 @@
         <ui:SetAsset TimeoutMS="{x:Null}" AssetName="Email ID" DisplayName="Set Asset" sap:VirtualizedContainerService.HintSize="1908,134" sap2010:WorkflowViewState.IdRef="SetAsset_6" Value="[intEmailID.ToString]" />
       </Sequence>
       <FlowStep.Next>
-        <FlowStep x:Name="__ReferenceID5">
+        <FlowStep x:Name="__ReferenceID4">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <av:Point x:Key="ShapeLocation">200,245.5</av:Point>
@@ -4993,13 +5397,13 @@
                 <InArgument x:TypeArguments="x:Int32">[dtCurrentEmail.RowCount]</InArgument>
               </Assign.Value>
             </Assign>
-            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dtCurrentEmail]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="585,1384" sap2010:WorkflowViewState.IdRef="ForEachRow_8">
+            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dtCurrentEmail]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="585,1910" sap2010:WorkflowViewState.IdRef="ForEachRow_8">
               <ui:ForEachRow.Body>
                 <ActivityAction x:TypeArguments="sd1:DataRow">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="sd1:DataRow" Name="CurrentRow" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="539,1263" sap2010:WorkflowViewState.IdRef="Sequence_415">
+                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="539,1789" sap2010:WorkflowViewState.IdRef="Sequence_415">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="sd1:DataTable" Name="dtPaymentChecked" />
                     </Sequence.Variables>
@@ -5027,9 +5431,9 @@
                         </scg:List>
                       </ui:FilterDataTable.SelectColumns>
                     </ui:FilterDataTable>
-                    <If Condition="[dtPaymentChecked.RowCount &gt; 1]" sap:VirtualizedContainerService.HintSize="497,742" sap2010:WorkflowViewState.IdRef="If_97">
+                    <If Condition="[dtPaymentChecked.RowCount &gt; 1]" sap:VirtualizedContainerService.HintSize="497,842" sap2010:WorkflowViewState.IdRef="If_97">
                       <If.Then>
-                        <Sequence sap:VirtualizedContainerService.HintSize="304,552" sap2010:WorkflowViewState.IdRef="Sequence_419">
+                        <Sequence sap:VirtualizedContainerService.HintSize="304,652" sap2010:WorkflowViewState.IdRef="Sequence_419">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -5067,6 +5471,14 @@
                               <InArgument x:TypeArguments="x:Object">["Yes"]</InArgument>
                             </Assign.Value>
                           </Assign>
+                          <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_825">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Object">[CurrentRow.Item("Reason4")]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Object">["The payment reference you provided has already been used for another application for exemption."]</InArgument>
+                            </Assign.Value>
+                          </Assign>
                           <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_788">
                             <Assign.To>
                               <OutArgument x:TypeArguments="x:Object">[CurrentRow.Item("FollowUpRequired")]</OutArgument>
@@ -5078,7 +5490,7 @@
                         </Sequence>
                       </If.Then>
                     </If>
-                    <Switch x:TypeArguments="x:String" DisplayName="Check where we should add the Details" Expression="[CurrentRow.item(&quot;ApplicationStatus&quot;).ToString]" sap:VirtualizedContainerService.HintSize="497,187" sap2010:WorkflowViewState.IdRef="Switch`1_11">
+                    <Switch x:TypeArguments="x:String" DisplayName="Check where we should add the Details" Expression="[CurrentRow.item(&quot;ApplicationStatus&quot;).ToString]" sap:VirtualizedContainerService.HintSize="497,613" sap2010:WorkflowViewState.IdRef="Switch`1_11">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -5192,7 +5604,7 @@
                             <InArgument x:TypeArguments="x:Int32">[intIndexNumber + 1]</InArgument>
                           </Assign.Value>
                         </Assign>
-                        <ui:SetAsset TimeoutMS="{x:Null}" AssetName="Index Number" DisplayName="Set Asset" sap:VirtualizedContainerService.HintSize="334,124" sap2010:WorkflowViewState.IdRef="SetAsset_18" Value="[intIndexNumber.ToString]" />
+                        <ui:SetAsset TimeoutMS="{x:Null}" AssetName="Index Number" DisplayName="Set Asset" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="SetAsset_18" Value="[intIndexNumber.ToString]" />
                       </Sequence>
                     </Switch>
                   </Sequence>
@@ -5566,6 +5978,5 @@
     <x:Reference>__ReferenceID2</x:Reference>
     <x:Reference>__ReferenceID3</x:Reference>
     <x:Reference>__ReferenceID4</x:Reference>
-    <x:Reference>__ReferenceID5</x:Reference>
   </Flowchart>
 </Activity>

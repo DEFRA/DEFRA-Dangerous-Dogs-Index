@@ -95,7 +95,6 @@
       <AssemblyReference>Microsoft.SharePoint.Client.Runtime</AssemblyReference>
       <AssemblyReference>Microsoft.SharePoint.Client</AssemblyReference>
       <AssemblyReference>UiPathTeam.SharePoint.Activities</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <StateMachine InitialState="{x:Reference __ReferenceID5}" sap2010:Annotation.AnnotationText="" DisplayName="Attended Dev Template" sap:VirtualizedContainerService.HintSize="1063,1035.5" sap2010:WorkflowViewState.IdRef="StateMachine_1">
@@ -310,7 +309,7 @@
             <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="TransactionItem IsNot Nothing" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_1" />
           </Transition.Condition>
           <Transition.To>
-            <State x:Name="__ReferenceID4" sap2010:Annotation.AnnotationText="Process a single transaction. &#xA;The result of the processing can be: &#xA;&#xA;1) Success&#xA;2) Business Exception&#xA;3) System Exception&#xA;4) Last Transaction&#xA;&#xA;In the case of a system exception, the transaction can be automatically retried." DisplayName="Process Transaction" sap:VirtualizedContainerService.HintSize="484,2598" sap2010:WorkflowViewState.IdRef="State_3">
+            <State x:Name="__ReferenceID4" sap2010:Annotation.AnnotationText="Process a single transaction. &#xA;The result of the processing can be: &#xA;&#xA;1) Success&#xA;2) Business Exception&#xA;3) System Exception&#xA;4) Last Transaction&#xA;&#xA;In the case of a system exception, the transaction can be automatically retried." DisplayName="Process Transaction" sap:VirtualizedContainerService.HintSize="231,274" sap2010:WorkflowViewState.IdRef="State_3">
               <State.Entry>
                 <TryCatch DisplayName="Try to process transaction" sap:VirtualizedContainerService.HintSize="438,1759" sap2010:WorkflowViewState.IdRef="TryCatch_9">
                   <sap:WorkflowViewStateService.ViewState>
@@ -419,60 +418,24 @@
                       </Sequence>
                       <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Process Transaction workflow" sap:VirtualizedContainerService.HintSize="346,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Process\Process Transaction.xaml">
                         <ui:InvokeWorkflowFile.Arguments>
-                          <InOutArgument x:TypeArguments="s:Int32[]" x:Key="io_arrExitPoint">
-                            <mva:VisualBasicReference x:TypeArguments="s:Int32[]" ExpressionText="arrExitPoint" />
-                          </InOutArgument>
-                          <InOutArgument x:TypeArguments="sd:Stopwatch" x:Key="io_swProcessingTimer">
-                            <mva:VisualBasicReference x:TypeArguments="sd:Stopwatch" ExpressionText="swProcessingTimer" />
-                          </InOutArgument>
-                          <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="io_Config">
-                            <mva:VisualBasicReference x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="Config" />
-                          </InOutArgument>
-                          <InOutArgument x:TypeArguments="s:String[]" x:Key="io_arrCaseID">
-                            <mva:VisualBasicReference x:TypeArguments="s:String[]" ExpressionText="arrCaseID" />
-                          </InOutArgument>
-                          <InOutArgument x:TypeArguments="x:String" x:Key="in_strSharepointLockFilePath">
-                            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="strSharepointLockFilePath" />
-                          </InOutArgument>
-                          <InArgument x:TypeArguments="x:Int32" x:Key="in_TransactionNumber">
-                            <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="TransactionNumber" />
-                          </InArgument>
-                          <InArgument x:TypeArguments="s:DateTime" x:Key="in_dateCaseStartTime">
-                            <mva:VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="dateCaseStartTime" />
-                          </InArgument>
-                          <InArgument x:TypeArguments="s:String[]" x:Key="in_arrCaseID">
-                            <mva:VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="arrCaseID" />
-                          </InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="in_strWorkLogFilepath">
-                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strWorkLogFilepath" />
-                          </InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="in_strSQLFilePath">
-                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strSQLFilePath" />
-                          </InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="in_strFolderPath">
-                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strFolderPath" />
-                          </InArgument>
-                          <InOutArgument x:TypeArguments="sd1:DataTable" x:Key="io_dtDogInformationPass">
-                            <mva:VisualBasicReference x:TypeArguments="sd1:DataTable" ExpressionText="dtDogInformationPass" />
-                          </InOutArgument>
-                          <InOutArgument x:TypeArguments="sd1:DataTable" x:Key="io_dtDogInformationHardFail">
-                            <mva:VisualBasicReference x:TypeArguments="sd1:DataTable" ExpressionText="dtDogInformationPassHardFail" />
-                          </InOutArgument>
-                          <InOutArgument x:TypeArguments="sd1:DataTable" x:Key="io_dtDogInformationSoftFail">
-                            <mva:VisualBasicReference x:TypeArguments="sd1:DataTable" ExpressionText="dtDogInformationPassSoftFail" />
-                          </InOutArgument>
-                          <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_TransactionItem">
-                            <mva:VisualBasicValue x:TypeArguments="snm:MailMessage" ExpressionText="TransactionItem" />
-                          </InArgument>
-                          <OutArgument x:TypeArguments="x:Int32" x:Key="out_intNoOfDogs">
-                            <mva:VisualBasicReference x:TypeArguments="x:Int32" ExpressionText="intNoOfDogs" />
-                          </OutArgument>
-                          <InArgument x:TypeArguments="sd1:DataTable" x:Key="in_dtSwearWords">
-                            <mva:VisualBasicValue x:TypeArguments="sd1:DataTable" ExpressionText="dtSwearWords" />
-                          </InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="out_strApplicationStatus">
-                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strApplicationStatus" />
-                          </InArgument>
+                          <InOutArgument x:TypeArguments="s:Int32[]" x:Key="io_arrExitPoint">[arrExitPoint]</InOutArgument>
+                          <InOutArgument x:TypeArguments="sd:Stopwatch" x:Key="io_swProcessingTimer">[swProcessingTimer]</InOutArgument>
+                          <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="io_Config">[Config]</InOutArgument>
+                          <InOutArgument x:TypeArguments="s:String[]" x:Key="io_arrCaseID">[arrCaseID]</InOutArgument>
+                          <InOutArgument x:TypeArguments="x:String" x:Key="in_strSharepointLockFilePath">[strSharepointLockFilePath]</InOutArgument>
+                          <InArgument x:TypeArguments="x:Int32" x:Key="in_TransactionNumber">[TransactionNumber]</InArgument>
+                          <InArgument x:TypeArguments="s:DateTime" x:Key="in_dateCaseStartTime">[dateCaseStartTime]</InArgument>
+                          <InArgument x:TypeArguments="s:String[]" x:Key="in_arrCaseID">[arrCaseID]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_strWorkLogFilepath">[strWorkLogFilepath]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_strSQLFilePath">[strSQLFilePath]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_strFolderPath">[strFolderPath]</InArgument>
+                          <InOutArgument x:TypeArguments="sd1:DataTable" x:Key="io_dtDogInformationPass">[dtDogInformationPass]</InOutArgument>
+                          <InOutArgument x:TypeArguments="sd1:DataTable" x:Key="io_dtDogInformationHardFail">[dtDogInformationPassHardFail]</InOutArgument>
+                          <InOutArgument x:TypeArguments="sd1:DataTable" x:Key="io_dtDogInformationSoftFail">[dtDogInformationPassSoftFail]</InOutArgument>
+                          <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_TransactionItem">[TransactionItem]</InArgument>
+                          <OutArgument x:TypeArguments="x:Int32" x:Key="out_intNoOfDogs">[intNoOfDogs]</OutArgument>
+                          <InArgument x:TypeArguments="sd1:DataTable" x:Key="in_dtSwearWords">[dtSwearWords]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="out_strApplicationStatus">[strApplicationStatus]</InArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                       </ui:InvokeWorkflowFile>
                     </Sequence>
@@ -538,54 +501,22 @@
                   <TryCatch.Try>
                     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke SetTransactionStatus workflow" sap:VirtualizedContainerService.HintSize="334,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_13" UnSafe="False" WorkflowFileName="Framework\SetTransactionStatus.xaml">
                       <ui:InvokeWorkflowFile.Arguments>
-                        <InArgument x:TypeArguments="s:String[]" x:Key="in_arrCaseID">
-                          <mva:VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="arrCaseID" />
-                        </InArgument>
-                        <InArgument x:TypeArguments="s:Int32[]" x:Key="in_arrExitPoint">
-                          <mva:VisualBasicValue x:TypeArguments="s:Int32[]" ExpressionText="arrExitPoint" />
-                        </InArgument>
-                        <InArgument x:TypeArguments="ui:BusinessRuleException" x:Key="in_BusinessException">
-                          <mva:VisualBasicValue x:TypeArguments="ui:BusinessRuleException" ExpressionText="BusinessException" />
-                        </InArgument>
-                        <InArgument x:TypeArguments="s:DateTime" x:Key="in_dateCaseStartTime">
-                          <mva:VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="dateCaseStartTime" />
-                        </InArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="in_strWorkLogFilepath">
-                          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strWorkLogFilepath" />
-                        </InArgument>
-                        <InArgument x:TypeArguments="sd:Stopwatch" x:Key="in_swProcessingTimer">
-                          <mva:VisualBasicValue x:TypeArguments="sd:Stopwatch" ExpressionText="swProcessingTimer" />
-                        </InArgument>
-                        <InArgument x:TypeArguments="s:Exception" x:Key="in_SystemException">
-                          <mva:VisualBasicValue x:TypeArguments="s:Exception" ExpressionText="SystemException" />
-                        </InArgument>
-                        <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_TransactionItem">
-                          <mva:VisualBasicValue x:TypeArguments="snm:MailMessage" ExpressionText="TransactionItem" />
-                        </InArgument>
-                        <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="io_Config">
-                          <mva:VisualBasicReference x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="Config" />
-                        </InOutArgument>
-                        <InOutArgument x:TypeArguments="x:Int32" x:Key="io_intConSysEx">
-                          <mva:VisualBasicReference x:TypeArguments="x:Int32" ExpressionText="intConSysEx" />
-                        </InOutArgument>
-                        <InOutArgument x:TypeArguments="x:Int32" x:Key="io_RetryNumber">
-                          <mva:VisualBasicReference x:TypeArguments="x:Int32" ExpressionText="RetryNumber" />
-                        </InOutArgument>
-                        <InOutArgument x:TypeArguments="x:Int32" x:Key="io_TransactionNumber">
-                          <mva:VisualBasicReference x:TypeArguments="x:Int32" ExpressionText="TransactionNumber" />
-                        </InOutArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="in_strSQLFilePath">
-                          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strSQLFilePath" />
-                        </InArgument>
-                        <InArgument x:TypeArguments="x:Int32" x:Key="in_NoOfDogs">
-                          <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="intNoOfDogs" />
-                        </InArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="in_strApplicationStatus">
-                          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strApplicationStatus" />
-                        </InArgument>
-                        <InOutArgument x:TypeArguments="sd1:DataTable" x:Key="io_dtDogInformationHardFail">
-                          <mva:VisualBasicReference x:TypeArguments="sd1:DataTable" ExpressionText="dtDogInformationPassHardFail" />
-                        </InOutArgument>
+                        <InArgument x:TypeArguments="s:String[]" x:Key="in_arrCaseID">[arrCaseID]</InArgument>
+                        <InArgument x:TypeArguments="s:Int32[]" x:Key="in_arrExitPoint">[arrExitPoint]</InArgument>
+                        <InArgument x:TypeArguments="ui:BusinessRuleException" x:Key="in_BusinessException">[BusinessException]</InArgument>
+                        <InArgument x:TypeArguments="s:DateTime" x:Key="in_dateCaseStartTime">[dateCaseStartTime]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_strWorkLogFilepath">[strWorkLogFilepath]</InArgument>
+                        <InArgument x:TypeArguments="sd:Stopwatch" x:Key="in_swProcessingTimer">[swProcessingTimer]</InArgument>
+                        <InArgument x:TypeArguments="s:Exception" x:Key="in_SystemException">[SystemException]</InArgument>
+                        <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_TransactionItem">[TransactionItem]</InArgument>
+                        <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="io_Config">[Config]</InOutArgument>
+                        <InOutArgument x:TypeArguments="x:Int32" x:Key="io_intConSysEx">[intConSysEx]</InOutArgument>
+                        <InOutArgument x:TypeArguments="x:Int32" x:Key="io_RetryNumber">[RetryNumber]</InOutArgument>
+                        <InOutArgument x:TypeArguments="x:Int32" x:Key="io_TransactionNumber">[TransactionNumber]</InOutArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_strSQLFilePath">[strSQLFilePath]</InArgument>
+                        <InArgument x:TypeArguments="x:Int32" x:Key="in_NoOfDogs">[intNoOfDogs]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_strApplicationStatus">[strApplicationStatus]</InArgument>
+                        <InOutArgument x:TypeArguments="sd1:DataTable" x:Key="io_dtDogInformationHardFail">[dtDogInformationPassHardFail]</InOutArgument>
                       </ui:InvokeWorkflowFile.Arguments>
                     </ui:InvokeWorkflowFile>
                   </TryCatch.Try>
@@ -708,7 +639,7 @@
                           </sap:WorkflowViewStateService.ViewState>
                           <Transition.Condition>[boolContinue AND SystemException IsNot Nothing]</Transition.Condition>
                           <Transition.To>
-                            <State x:Name="__ReferenceID2" sap2010:Annotation.AnnotationText="Read configuration file and initialize applications used in the process." DisplayName="Initialization" sap:VirtualizedContainerService.HintSize="254,105" sap2010:WorkflowViewState.IdRef="State_2">
+                            <State x:Name="__ReferenceID2" sap2010:Annotation.AnnotationText="Read configuration file and initialize applications used in the process." DisplayName="Initialization" sap:VirtualizedContainerService.HintSize="706,3817" sap2010:WorkflowViewState.IdRef="State_2">
                               <State.Entry>
                                 <TryCatch DisplayName="Try initializing settings and applications" sap:VirtualizedContainerService.HintSize="660,3366" sap2010:WorkflowViewState.IdRef="TryCatch_2">
                                   <sap:WorkflowViewStateService.ViewState>
@@ -854,7 +785,7 @@
                                                         </scg:Dictionary>
                                                       </sap:WorkflowViewStateService.ViewState>
                                                       <usal:GetFile AttachmentsAction="{x:Null}" RelativeUrlHintText="{x:Null}" ChooseFile="False" DisplayName="Download Main Spreadsheet" sap:VirtualizedContainerService.HintSize="384,104" sap2010:WorkflowViewState.IdRef="GetFile_1" LocalPath="[strFolderPath + Config(&quot;Dangerous Dogs Swear Words Location&quot;).ToString]" LocalPathHintText="Local path where the file will be saved" RelativeUrl="[Config(&quot;Dangerous Dogs Swear Words&quot;).ToString]" ShowAttachFiles="False" ShowCAMLQuery="False" ShowCAMLWarning="False" ShowGroupDescription="False" ShowGroupName="False" ShowLibraryName="False" ShowListName="False" ShowLocalPath="True" ShowMove="False" ShowPermissionDropdown="False" ShowPropertiesDictionary="False" ShowRelativeUrl="True" ShowRename="False" ShowUserName="False" />
-                                                      <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[dtSwearWords]" DisplayName="Read Passed Workbook" sap:VirtualizedContainerService.HintSize="384,87" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Words" WorkbookPath="[strFolderPath + Config(&quot;Dangerous Dogs Swear Words Location&quot;).ToString]" />
+                                                      <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[dtSwearWords]" DisplayName="Read Workbook" sap:VirtualizedContainerService.HintSize="384,87" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Words" WorkbookPath="[strFolderPath + Config(&quot;Dangerous Dogs Swear Words Location&quot;).ToString]" />
                                                       <ui:DeleteFileX DisplayName="Delete Spreadsheet after DT created" sap:VirtualizedContainerService.HintSize="384,80" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[strFolderPath + Config(&quot;Dangerous Dogs Swear Words Location&quot;).ToString]" />
                                                     </Sequence>
                                                   </ActivityAction>

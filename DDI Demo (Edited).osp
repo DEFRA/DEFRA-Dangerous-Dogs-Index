@@ -681,7 +681,7 @@
    "waveform": false,
    "file_id": "GE60NIW02P",
    "title": "DDI Demo.mp4",
-   "image": "DDI Demo (Edited)_assets/thumbnail/GE60NIW02P.png"
+   "image": "thumbnail/GE60NIW02P.png"
   },
   {
    "alpha": {
@@ -1608,7 +1608,7 @@
    "file_id": "GE60NIW02P",
    "title": "DDI Demo.mp4",
    "id": "0GXS71WZUN",
-   "image": "DDI Demo (Edited)_assets/thumbnail/GE60NIW02P.png"
+   "image": "thumbnail/GE60NIW02P.png"
   },
   {
    "alpha": {
@@ -2418,7 +2418,7 @@
    "file_id": "GE60NIW02P",
    "title": "DDI Demo.mp4",
    "id": "6L5VC54ZV7",
-   "image": "DDI Demo (Edited)_assets/thumbnail/GE60NIW02P.png"
+   "image": "thumbnail/GE60NIW02P.png"
   },
   {
    "alpha": {
@@ -3082,7 +3082,7 @@
    "file_id": "GE60NIW02P",
    "title": "DDI Demo.mp4",
    "id": "3PTI6QS5N9",
-   "image": "DDI Demo (Edited)_assets/thumbnail/GE60NIW02P.png"
+   "image": "thumbnail/GE60NIW02P.png"
   },
   {
    "alpha": {
@@ -3892,7 +3892,7 @@
    "file_id": "GE60NIW02P",
    "title": "DDI Demo.mp4",
    "id": "F8NVMX2PDH",
-   "image": "DDI Demo (Edited)_assets/thumbnail/GE60NIW02P.png"
+   "image": "thumbnail/GE60NIW02P.png"
   },
   {
    "alpha": {
@@ -4556,7 +4556,7 @@
    "file_id": "GE60NIW02P",
    "title": "DDI Demo.mp4",
    "id": "61EVWT8Z1K",
-   "image": "DDI Demo (Edited)_assets/thumbnail/GE60NIW02P.png"
+   "image": "thumbnail/GE60NIW02P.png"
   },
   {
    "alpha": {
@@ -5366,7 +5366,7 @@
    "file_id": "GE60NIW02P",
    "title": "DDI Demo.mp4",
    "id": "6SG6NNEA8V",
-   "image": "DDI Demo (Edited)_assets/thumbnail/GE60NIW02P.png"
+   "image": "thumbnail/GE60NIW02P.png"
   }
  ],
  "effects": [],
@@ -5425,7 +5425,7 @@
    "width": 1920,
    "media_type": "video",
    "id": "GE60NIW02P",
-   "image": "DDI Demo (Edited)_assets/thumbnail/GE60NIW02P.png"
+   "image": "thumbnail/GE60NIW02P.png"
   }
  ],
  "duration": 300,
@@ -5646,7 +5646,7 @@
      },
      "type": "Pixelate"
     },
-    "transaction": "36cfbd6c-8822-4b17-8551-7c566b473958"
+    "transaction": "321b2bab-588a-4b6b-9ec8-301d36fc0f49"
    },
    {
     "type": "update",
@@ -5834,7 +5834,7 @@
      },
      "type": "Pixelate"
     },
-    "transaction": "ef296c5f-d7c5-4178-82b6-5ed52954d71e"
+    "transaction": "58b886f4-ca8f-4686-b797-a0fcd91bb334"
    },
    {
     "type": "update",
@@ -6015,7 +6015,7 @@
      },
      "type": "Pixelate"
     },
-    "transaction": "c481e758-5d73-49c4-a408-b774ed85c89c"
+    "transaction": "9d808117-75f3-44e3-abf5-0a868ed5eb65"
    },
    {
     "type": "update",
@@ -6203,7 +6203,7 @@
      },
      "type": "Pixelate"
     },
-    "transaction": "bc01c0b6-e30d-41b0-a285-e1cd428d2ed0"
+    "transaction": "bc855fd3-6e03-4590-9f1a-356150c38988"
    },
    {
     "type": "update",
@@ -6391,7 +6391,7 @@
      },
      "type": "Pixelate"
     },
-    "transaction": "e58bd1eb-a000-4b83-add3-68b3c46b7dbb"
+    "transaction": "71373436-9747-4ea8-be02-33e18bba5acb"
    },
    {
     "type": "update",
@@ -6579,7 +6579,7 @@
      },
      "type": "Pixelate"
     },
-    "transaction": "020338e4-bfad-4110-b20f-71d1c09b4f4d"
+    "transaction": "d9a1f22a-6f1c-4a08-add0-39a6624949bb"
    },
    {
     "type": "update",
@@ -8006,7 +8006,7 @@
      "title": "DDI Demo.mp4",
      "id": "6SG6NNEA8V"
     },
-    "transaction": "65ea00f7-bd98-4338-823c-c80216d059b1"
+    "transaction": "8e49a699-990e-48cf-a23c-c938d7e90ff4"
    },
    {
     "type": "update",
@@ -8173,7 +8173,7 @@
      },
      "type": "Pixelate"
     },
-    "transaction": "61999946-e77e-4d3c-8c9c-7040e3e83e80"
+    "transaction": "f3c88318-651b-4862-8d81-294f23979abf"
    },
    {
     "type": "update",
@@ -8189,925 +8189,6 @@
     ],
     "value": {
      "bottom": {
-      "Points": [
-       {
-        "co": {
-         "X": 1.0,
-         "Y": 0.0
-        },
-        "handle_left": {
-         "X": 0.5,
-         "Y": 1.0
-        },
-        "handle_right": {
-         "X": 0.5,
-         "Y": 0.0
-        },
-        "handle_type": 0,
-        "interpolation": 0
-       },
-       {
-        "co": {
-         "X": 3136,
-         "Y": 0.31386861313868614
-        },
-        "interpolation": 1
-       }
-      ]
-     }
-    },
-    "old_values": {
-     "bottom": {
-      "Points": [
-       {
-        "co": {
-         "X": 1.0,
-         "Y": 0.0
-        },
-        "handle_left": {
-         "X": 0.5,
-         "Y": 1.0
-        },
-        "handle_right": {
-         "X": 0.5,
-         "Y": 0.0
-        },
-        "handle_type": 0,
-        "interpolation": 0
-       },
-       {
-        "co": {
-         "X": 3136,
-         "Y": 0.31386861313868614
-        },
-        "interpolation": 1
-       }
-      ]
-     },
-     "class_name": "Pixelate",
-     "description": "Pixelate (increase or decrease) the number of visible pixels.",
-     "duration": 0.0,
-     "end": 0.0,
-     "has_audio": false,
-     "has_tracked_object": false,
-     "has_video": true,
-     "id": "66Q3M1EJSY",
-     "layer": 0,
-     "left": {
-      "Points": [
-       {
-        "co": {
-         "X": 1.0,
-         "Y": 0.0
-        },
-        "handle_left": {
-         "X": 0.5,
-         "Y": 1.0
-        },
-        "handle_right": {
-         "X": 0.5,
-         "Y": 0.0
-        },
-        "handle_type": 0,
-        "interpolation": 0
-       },
-       {
-        "co": {
-         "X": 3136,
-         "Y": 0.6277372262773723
-        },
-        "interpolation": 1
-       }
-      ]
-     },
-     "name": "Pixelate",
-     "order": 0,
-     "parent_effect_id": "",
-     "pixelization": {
-      "Points": [
-       {
-        "co": {
-         "X": 1.0,
-         "Y": 0.5
-        },
-        "handle_left": {
-         "X": 0.5,
-         "Y": 1.0
-        },
-        "handle_right": {
-         "X": 0.5,
-         "Y": 0.0
-        },
-        "handle_type": 0,
-        "interpolation": 0
-       }
-      ]
-     },
-     "position": 0.0,
-     "right": {
-      "Points": [
-       {
-        "co": {
-         "X": 1.0,
-         "Y": 0.0
-        },
-        "handle_left": {
-         "X": 0.5,
-         "Y": 1.0
-        },
-        "handle_right": {
-         "X": 0.5,
-         "Y": 0.0
-        },
-        "handle_type": 0,
-        "interpolation": 0
-       },
-       {
-        "co": {
-         "X": 3136,
-         "Y": 0.23357664233576642
-        },
-        "interpolation": 1
-       }
-      ]
-     },
-     "start": 0.0,
-     "top": {
-      "Points": [
-       {
-        "co": {
-         "X": 1.0,
-         "Y": 0.0
-        },
-        "handle_left": {
-         "X": 0.5,
-         "Y": 1.0
-        },
-        "handle_right": {
-         "X": 0.5,
-         "Y": 0.0
-        },
-        "handle_type": 0,
-        "interpolation": 0
-       },
-       {
-        "co": {
-         "X": 3136,
-         "Y": 0.31386861313868614
-        },
-        "interpolation": 1
-       }
-      ]
-     },
-     "type": "Pixelate"
-    },
-    "transaction": "64b92c35-20dc-4c66-bfa5-a7ea6e81935a"
-   },
-   {
-    "type": "update",
-    "key": [
-     "clips",
-     {
-      "id": "6SG6NNEA8V"
-     },
-     "effects",
-     {
-      "id": "66Q3M1EJSY"
-     }
-    ],
-    "value": {
-     "left": {
-      "Points": [
-       {
-        "co": {
-         "X": 1.0,
-         "Y": 0.0
-        },
-        "handle_left": {
-         "X": 0.5,
-         "Y": 1.0
-        },
-        "handle_right": {
-         "X": 0.5,
-         "Y": 0.0
-        },
-        "handle_type": 0,
-        "interpolation": 0
-       },
-       {
-        "co": {
-         "X": 3136,
-         "Y": 0.6277372262773723
-        },
-        "interpolation": 1
-       }
-      ]
-     }
-    },
-    "old_values": {
-     "bottom": {
-      "Points": [
-       {
-        "co": {
-         "X": 1.0,
-         "Y": 0.0
-        },
-        "handle_left": {
-         "X": 0.5,
-         "Y": 1.0
-        },
-        "handle_right": {
-         "X": 0.5,
-         "Y": 0.0
-        },
-        "handle_type": 0,
-        "interpolation": 0
-       },
-       {
-        "co": {
-         "X": 3136,
-         "Y": 0.31386861313868614
-        },
-        "interpolation": 1
-       }
-      ]
-     },
-     "class_name": "Pixelate",
-     "description": "Pixelate (increase or decrease) the number of visible pixels.",
-     "duration": 0.0,
-     "end": 0.0,
-     "has_audio": false,
-     "has_tracked_object": false,
-     "has_video": true,
-     "id": "66Q3M1EJSY",
-     "layer": 0,
-     "left": {
-      "Points": [
-       {
-        "co": {
-         "X": 1.0,
-         "Y": 0.0
-        },
-        "handle_left": {
-         "X": 0.5,
-         "Y": 1.0
-        },
-        "handle_right": {
-         "X": 0.5,
-         "Y": 0.0
-        },
-        "handle_type": 0,
-        "interpolation": 0
-       },
-       {
-        "co": {
-         "X": 3136,
-         "Y": 1.0
-        },
-        "interpolation": 1
-       }
-      ]
-     },
-     "name": "Pixelate",
-     "order": 0,
-     "parent_effect_id": "",
-     "pixelization": {
-      "Points": [
-       {
-        "co": {
-         "X": 1.0,
-         "Y": 0.5
-        },
-        "handle_left": {
-         "X": 0.5,
-         "Y": 1.0
-        },
-        "handle_right": {
-         "X": 0.5,
-         "Y": 0.0
-        },
-        "handle_type": 0,
-        "interpolation": 0
-       }
-      ]
-     },
-     "position": 0.0,
-     "right": {
-      "Points": [
-       {
-        "co": {
-         "X": 1.0,
-         "Y": 0.0
-        },
-        "handle_left": {
-         "X": 0.5,
-         "Y": 1.0
-        },
-        "handle_right": {
-         "X": 0.5,
-         "Y": 0.0
-        },
-        "handle_type": 0,
-        "interpolation": 0
-       }
-      ]
-     },
-     "start": 0.0,
-     "top": {
-      "Points": [
-       {
-        "co": {
-         "X": 1.0,
-         "Y": 0.0
-        },
-        "handle_left": {
-         "X": 0.5,
-         "Y": 1.0
-        },
-        "handle_right": {
-         "X": 0.5,
-         "Y": 0.0
-        },
-        "handle_type": 0,
-        "interpolation": 0
-       }
-      ]
-     },
-     "type": "Pixelate"
-    },
-    "transaction": "d2d55ae2-2738-4c57-989a-214a8e9cee83"
-   },
-   {
-    "type": "update",
-    "key": [
-     "clips",
-     {
-      "id": "6SG6NNEA8V"
-     },
-     "effects",
-     {
-      "id": "66Q3M1EJSY"
-     }
-    ],
-    "value": {
-     "left": {
-      "Points": [
-       {
-        "co": {
-         "X": 1.0,
-         "Y": 0.0
-        },
-        "handle_left": {
-         "X": 0.5,
-         "Y": 1.0
-        },
-        "handle_right": {
-         "X": 0.5,
-         "Y": 0.0
-        },
-        "handle_type": 0,
-        "interpolation": 0
-       },
-       {
-        "co": {
-         "X": 3136,
-         "Y": 0.6277372262773723
-        },
-        "interpolation": 1
-       }
-      ]
-     }
-    },
-    "old_values": {
-     "bottom": {
-      "Points": [
-       {
-        "co": {
-         "X": 1.0,
-         "Y": 0.0
-        },
-        "handle_left": {
-         "X": 0.5,
-         "Y": 1.0
-        },
-        "handle_right": {
-         "X": 0.5,
-         "Y": 0.0
-        },
-        "handle_type": 0,
-        "interpolation": 0
-       },
-       {
-        "co": {
-         "X": 3136,
-         "Y": 0.31386861313868614
-        },
-        "interpolation": 1
-       }
-      ]
-     },
-     "class_name": "Pixelate",
-     "description": "Pixelate (increase or decrease) the number of visible pixels.",
-     "duration": 0.0,
-     "end": 0.0,
-     "has_audio": false,
-     "has_tracked_object": false,
-     "has_video": true,
-     "id": "66Q3M1EJSY",
-     "layer": 0,
-     "left": {
-      "Points": [
-       {
-        "co": {
-         "X": 1.0,
-         "Y": 0.0
-        },
-        "handle_left": {
-         "X": 0.5,
-         "Y": 1.0
-        },
-        "handle_right": {
-         "X": 0.5,
-         "Y": 0.0
-        },
-        "handle_type": 0,
-        "interpolation": 0
-       },
-       {
-        "co": {
-         "X": 3136,
-         "Y": 0.6277372262773723
-        },
-        "interpolation": 1
-       }
-      ]
-     },
-     "name": "Pixelate",
-     "order": 0,
-     "parent_effect_id": "",
-     "pixelization": {
-      "Points": [
-       {
-        "co": {
-         "X": 1.0,
-         "Y": 0.5
-        },
-        "handle_left": {
-         "X": 0.5,
-         "Y": 1.0
-        },
-        "handle_right": {
-         "X": 0.5,
-         "Y": 0.0
-        },
-        "handle_type": 0,
-        "interpolation": 0
-       }
-      ]
-     },
-     "position": 0.0,
-     "right": {
-      "Points": [
-       {
-        "co": {
-         "X": 1.0,
-         "Y": 0.0
-        },
-        "handle_left": {
-         "X": 0.5,
-         "Y": 1.0
-        },
-        "handle_right": {
-         "X": 0.5,
-         "Y": 0.0
-        },
-        "handle_type": 0,
-        "interpolation": 0
-       },
-       {
-        "co": {
-         "X": 3136,
-         "Y": 0.23357664233576642
-        },
-        "interpolation": 1
-       }
-      ]
-     },
-     "start": 0.0,
-     "top": {
-      "Points": [
-       {
-        "co": {
-         "X": 1.0,
-         "Y": 0.0
-        },
-        "handle_left": {
-         "X": 0.5,
-         "Y": 1.0
-        },
-        "handle_right": {
-         "X": 0.5,
-         "Y": 0.0
-        },
-        "handle_type": 0,
-        "interpolation": 0
-       },
-       {
-        "co": {
-         "X": 3136,
-         "Y": 0.31386861313868614
-        },
-        "interpolation": 1
-       }
-      ]
-     },
-     "type": "Pixelate"
-    },
-    "transaction": "b6c26b77-9b18-4756-8f73-d6c2c5ded381"
-   },
-   {
-    "type": "update",
-    "key": [
-     "clips",
-     {
-      "id": "6SG6NNEA8V"
-     },
-     "effects",
-     {
-      "id": "66Q3M1EJSY"
-     }
-    ],
-    "value": {
-     "right": {
-      "Points": [
-       {
-        "co": {
-         "X": 1.0,
-         "Y": 0.0
-        },
-        "handle_left": {
-         "X": 0.5,
-         "Y": 1.0
-        },
-        "handle_right": {
-         "X": 0.5,
-         "Y": 0.0
-        },
-        "handle_type": 0,
-        "interpolation": 0
-       },
-       {
-        "co": {
-         "X": 3136,
-         "Y": 0.23357664233576642
-        },
-        "interpolation": 1
-       }
-      ]
-     }
-    },
-    "old_values": {
-     "bottom": {
-      "Points": [
-       {
-        "co": {
-         "X": 1.0,
-         "Y": 0.0
-        },
-        "handle_left": {
-         "X": 0.5,
-         "Y": 1.0
-        },
-        "handle_right": {
-         "X": 0.5,
-         "Y": 0.0
-        },
-        "handle_type": 0,
-        "interpolation": 0
-       },
-       {
-        "co": {
-         "X": 3136,
-         "Y": 0.31386861313868614
-        },
-        "interpolation": 1
-       }
-      ]
-     },
-     "class_name": "Pixelate",
-     "description": "Pixelate (increase or decrease) the number of visible pixels.",
-     "duration": 0.0,
-     "end": 0.0,
-     "has_audio": false,
-     "has_tracked_object": false,
-     "has_video": true,
-     "id": "66Q3M1EJSY",
-     "layer": 0,
-     "left": {
-      "Points": [
-       {
-        "co": {
-         "X": 1.0,
-         "Y": 0.0
-        },
-        "handle_left": {
-         "X": 0.5,
-         "Y": 1.0
-        },
-        "handle_right": {
-         "X": 0.5,
-         "Y": 0.0
-        },
-        "handle_type": 0,
-        "interpolation": 0
-       },
-       {
-        "co": {
-         "X": 3136,
-         "Y": 0.6277372262773723
-        },
-        "interpolation": 1
-       }
-      ]
-     },
-     "name": "Pixelate",
-     "order": 0,
-     "parent_effect_id": "",
-     "pixelization": {
-      "Points": [
-       {
-        "co": {
-         "X": 1.0,
-         "Y": 0.5
-        },
-        "handle_left": {
-         "X": 0.5,
-         "Y": 1.0
-        },
-        "handle_right": {
-         "X": 0.5,
-         "Y": 0.0
-        },
-        "handle_type": 0,
-        "interpolation": 0
-       }
-      ]
-     },
-     "position": 0.0,
-     "right": {
-      "Points": [
-       {
-        "co": {
-         "X": 1.0,
-         "Y": 0.0
-        },
-        "handle_left": {
-         "X": 0.5,
-         "Y": 1.0
-        },
-        "handle_right": {
-         "X": 0.5,
-         "Y": 0.0
-        },
-        "handle_type": 0,
-        "interpolation": 0
-       },
-       {
-        "co": {
-         "X": 3136,
-         "Y": 1.0
-        },
-        "interpolation": 1
-       }
-      ]
-     },
-     "start": 0.0,
-     "top": {
-      "Points": [
-       {
-        "co": {
-         "X": 1.0,
-         "Y": 0.0
-        },
-        "handle_left": {
-         "X": 0.5,
-         "Y": 1.0
-        },
-        "handle_right": {
-         "X": 0.5,
-         "Y": 0.0
-        },
-        "handle_type": 0,
-        "interpolation": 0
-       }
-      ]
-     },
-     "type": "Pixelate"
-    },
-    "transaction": "7fd34d52-2047-4357-9c18-e70aec3987ef"
-   },
-   {
-    "type": "update",
-    "key": [
-     "clips",
-     {
-      "id": "6SG6NNEA8V"
-     },
-     "effects",
-     {
-      "id": "66Q3M1EJSY"
-     }
-    ],
-    "value": {
-     "right": {
-      "Points": [
-       {
-        "co": {
-         "X": 1.0,
-         "Y": 0.0
-        },
-        "handle_left": {
-         "X": 0.5,
-         "Y": 1.0
-        },
-        "handle_right": {
-         "X": 0.5,
-         "Y": 0.0
-        },
-        "handle_type": 0,
-        "interpolation": 0
-       },
-       {
-        "co": {
-         "X": 3136,
-         "Y": 0.23357664233576642
-        },
-        "interpolation": 1
-       }
-      ]
-     }
-    },
-    "old_values": {
-     "bottom": {
-      "Points": [
-       {
-        "co": {
-         "X": 1.0,
-         "Y": 0.0
-        },
-        "handle_left": {
-         "X": 0.5,
-         "Y": 1.0
-        },
-        "handle_right": {
-         "X": 0.5,
-         "Y": 0.0
-        },
-        "handle_type": 0,
-        "interpolation": 0
-       },
-       {
-        "co": {
-         "X": 3136,
-         "Y": 0.31386861313868614
-        },
-        "interpolation": 1
-       }
-      ]
-     },
-     "class_name": "Pixelate",
-     "description": "Pixelate (increase or decrease) the number of visible pixels.",
-     "duration": 0.0,
-     "end": 0.0,
-     "has_audio": false,
-     "has_tracked_object": false,
-     "has_video": true,
-     "id": "66Q3M1EJSY",
-     "layer": 0,
-     "left": {
-      "Points": [
-       {
-        "co": {
-         "X": 1.0,
-         "Y": 0.0
-        },
-        "handle_left": {
-         "X": 0.5,
-         "Y": 1.0
-        },
-        "handle_right": {
-         "X": 0.5,
-         "Y": 0.0
-        },
-        "handle_type": 0,
-        "interpolation": 0
-       },
-       {
-        "co": {
-         "X": 3136,
-         "Y": 0.6277372262773723
-        },
-        "interpolation": 1
-       }
-      ]
-     },
-     "name": "Pixelate",
-     "order": 0,
-     "parent_effect_id": "",
-     "pixelization": {
-      "Points": [
-       {
-        "co": {
-         "X": 1.0,
-         "Y": 0.5
-        },
-        "handle_left": {
-         "X": 0.5,
-         "Y": 1.0
-        },
-        "handle_right": {
-         "X": 0.5,
-         "Y": 0.0
-        },
-        "handle_type": 0,
-        "interpolation": 0
-       }
-      ]
-     },
-     "position": 0.0,
-     "right": {
-      "Points": [
-       {
-        "co": {
-         "X": 1.0,
-         "Y": 0.0
-        },
-        "handle_left": {
-         "X": 0.5,
-         "Y": 1.0
-        },
-        "handle_right": {
-         "X": 0.5,
-         "Y": 0.0
-        },
-        "handle_type": 0,
-        "interpolation": 0
-       },
-       {
-        "co": {
-         "X": 3136,
-         "Y": 0.23357664233576642
-        },
-        "interpolation": 1
-       }
-      ]
-     },
-     "start": 0.0,
-     "top": {
-      "Points": [
-       {
-        "co": {
-         "X": 1.0,
-         "Y": 0.0
-        },
-        "handle_left": {
-         "X": 0.5,
-         "Y": 1.0
-        },
-        "handle_right": {
-         "X": 0.5,
-         "Y": 0.0
-        },
-        "handle_type": 0,
-        "interpolation": 0
-       },
-       {
-        "co": {
-         "X": 3136,
-         "Y": 0.31386861313868614
-        },
-        "interpolation": 1
-       }
-      ]
-     },
-     "type": "Pixelate"
-    },
-    "transaction": "17014bc3-9e4c-46f2-b8d9-e4c3a7183d23"
-   },
-   {
-    "type": "update",
-    "key": [
-     "clips",
-     {
-      "id": "6SG6NNEA8V"
-     },
-     "effects",
-     {
-      "id": "66Q3M1EJSY"
-     }
-    ],
-    "value": {
-     "top": {
       "Points": [
        {
         "co": {
@@ -9272,7 +8353,7 @@
        {
         "co": {
          "X": 3136,
-         "Y": 1.0
+         "Y": 0.31386861313868614
         },
         "interpolation": 1
        }
@@ -9280,7 +8361,738 @@
      },
      "type": "Pixelate"
     },
-    "transaction": "41cd4b82-89ab-45fd-8427-43977db3f905"
+    "transaction": "ba7d50db-438e-4a49-b641-f092a347dd46"
+   },
+   {
+    "type": "update",
+    "key": [
+     "clips",
+     {
+      "id": "6SG6NNEA8V"
+     },
+     "effects",
+     {
+      "id": "66Q3M1EJSY"
+     }
+    ],
+    "value": {
+     "left": {
+      "Points": [
+       {
+        "co": {
+         "X": 1.0,
+         "Y": 0.0
+        },
+        "handle_left": {
+         "X": 0.5,
+         "Y": 1.0
+        },
+        "handle_right": {
+         "X": 0.5,
+         "Y": 0.0
+        },
+        "handle_type": 0,
+        "interpolation": 0
+       },
+       {
+        "co": {
+         "X": 3136,
+         "Y": 0.6277372262773723
+        },
+        "interpolation": 1
+       }
+      ]
+     }
+    },
+    "old_values": {
+     "bottom": {
+      "Points": [
+       {
+        "co": {
+         "X": 1.0,
+         "Y": 0.0
+        },
+        "handle_left": {
+         "X": 0.5,
+         "Y": 1.0
+        },
+        "handle_right": {
+         "X": 0.5,
+         "Y": 0.0
+        },
+        "handle_type": 0,
+        "interpolation": 0
+       },
+       {
+        "co": {
+         "X": 3136,
+         "Y": 0.31386861313868614
+        },
+        "interpolation": 1
+       }
+      ]
+     },
+     "class_name": "Pixelate",
+     "description": "Pixelate (increase or decrease) the number of visible pixels.",
+     "duration": 0.0,
+     "end": 0.0,
+     "has_audio": false,
+     "has_tracked_object": false,
+     "has_video": true,
+     "id": "66Q3M1EJSY",
+     "layer": 0,
+     "left": {
+      "Points": [
+       {
+        "co": {
+         "X": 1.0,
+         "Y": 0.0
+        },
+        "handle_left": {
+         "X": 0.5,
+         "Y": 1.0
+        },
+        "handle_right": {
+         "X": 0.5,
+         "Y": 0.0
+        },
+        "handle_type": 0,
+        "interpolation": 0
+       },
+       {
+        "co": {
+         "X": 3136,
+         "Y": 1.0
+        },
+        "interpolation": 1
+       }
+      ]
+     },
+     "name": "Pixelate",
+     "order": 0,
+     "parent_effect_id": "",
+     "pixelization": {
+      "Points": [
+       {
+        "co": {
+         "X": 1.0,
+         "Y": 0.5
+        },
+        "handle_left": {
+         "X": 0.5,
+         "Y": 1.0
+        },
+        "handle_right": {
+         "X": 0.5,
+         "Y": 0.0
+        },
+        "handle_type": 0,
+        "interpolation": 0
+       }
+      ]
+     },
+     "position": 0.0,
+     "right": {
+      "Points": [
+       {
+        "co": {
+         "X": 1.0,
+         "Y": 0.0
+        },
+        "handle_left": {
+         "X": 0.5,
+         "Y": 1.0
+        },
+        "handle_right": {
+         "X": 0.5,
+         "Y": 0.0
+        },
+        "handle_type": 0,
+        "interpolation": 0
+       }
+      ]
+     },
+     "start": 0.0,
+     "top": {
+      "Points": [
+       {
+        "co": {
+         "X": 1.0,
+         "Y": 0.0
+        },
+        "handle_left": {
+         "X": 0.5,
+         "Y": 1.0
+        },
+        "handle_right": {
+         "X": 0.5,
+         "Y": 0.0
+        },
+        "handle_type": 0,
+        "interpolation": 0
+       }
+      ]
+     },
+     "type": "Pixelate"
+    },
+    "transaction": "7b7f5ace-e2ca-4c44-a91d-ea79ad2ee1c2"
+   },
+   {
+    "type": "update",
+    "key": [
+     "clips",
+     {
+      "id": "6SG6NNEA8V"
+     },
+     "effects",
+     {
+      "id": "66Q3M1EJSY"
+     }
+    ],
+    "value": {
+     "left": {
+      "Points": [
+       {
+        "co": {
+         "X": 1.0,
+         "Y": 0.0
+        },
+        "handle_left": {
+         "X": 0.5,
+         "Y": 1.0
+        },
+        "handle_right": {
+         "X": 0.5,
+         "Y": 0.0
+        },
+        "handle_type": 0,
+        "interpolation": 0
+       },
+       {
+        "co": {
+         "X": 3136,
+         "Y": 0.6277372262773723
+        },
+        "interpolation": 1
+       }
+      ]
+     }
+    },
+    "old_values": {
+     "bottom": {
+      "Points": [
+       {
+        "co": {
+         "X": 1.0,
+         "Y": 0.0
+        },
+        "handle_left": {
+         "X": 0.5,
+         "Y": 1.0
+        },
+        "handle_right": {
+         "X": 0.5,
+         "Y": 0.0
+        },
+        "handle_type": 0,
+        "interpolation": 0
+       },
+       {
+        "co": {
+         "X": 3136,
+         "Y": 0.31386861313868614
+        },
+        "interpolation": 1
+       }
+      ]
+     },
+     "class_name": "Pixelate",
+     "description": "Pixelate (increase or decrease) the number of visible pixels.",
+     "duration": 0.0,
+     "end": 0.0,
+     "has_audio": false,
+     "has_tracked_object": false,
+     "has_video": true,
+     "id": "66Q3M1EJSY",
+     "layer": 0,
+     "left": {
+      "Points": [
+       {
+        "co": {
+         "X": 1.0,
+         "Y": 0.0
+        },
+        "handle_left": {
+         "X": 0.5,
+         "Y": 1.0
+        },
+        "handle_right": {
+         "X": 0.5,
+         "Y": 0.0
+        },
+        "handle_type": 0,
+        "interpolation": 0
+       },
+       {
+        "co": {
+         "X": 3136,
+         "Y": 0.6277372262773723
+        },
+        "interpolation": 1
+       }
+      ]
+     },
+     "name": "Pixelate",
+     "order": 0,
+     "parent_effect_id": "",
+     "pixelization": {
+      "Points": [
+       {
+        "co": {
+         "X": 1.0,
+         "Y": 0.5
+        },
+        "handle_left": {
+         "X": 0.5,
+         "Y": 1.0
+        },
+        "handle_right": {
+         "X": 0.5,
+         "Y": 0.0
+        },
+        "handle_type": 0,
+        "interpolation": 0
+       }
+      ]
+     },
+     "position": 0.0,
+     "right": {
+      "Points": [
+       {
+        "co": {
+         "X": 1.0,
+         "Y": 0.0
+        },
+        "handle_left": {
+         "X": 0.5,
+         "Y": 1.0
+        },
+        "handle_right": {
+         "X": 0.5,
+         "Y": 0.0
+        },
+        "handle_type": 0,
+        "interpolation": 0
+       },
+       {
+        "co": {
+         "X": 3136,
+         "Y": 0.23357664233576642
+        },
+        "interpolation": 1
+       }
+      ]
+     },
+     "start": 0.0,
+     "top": {
+      "Points": [
+       {
+        "co": {
+         "X": 1.0,
+         "Y": 0.0
+        },
+        "handle_left": {
+         "X": 0.5,
+         "Y": 1.0
+        },
+        "handle_right": {
+         "X": 0.5,
+         "Y": 0.0
+        },
+        "handle_type": 0,
+        "interpolation": 0
+       },
+       {
+        "co": {
+         "X": 3136,
+         "Y": 0.31386861313868614
+        },
+        "interpolation": 1
+       }
+      ]
+     },
+     "type": "Pixelate"
+    },
+    "transaction": "d875a684-74bc-4979-bbc3-5b810f4f4048"
+   },
+   {
+    "type": "update",
+    "key": [
+     "clips",
+     {
+      "id": "6SG6NNEA8V"
+     },
+     "effects",
+     {
+      "id": "66Q3M1EJSY"
+     }
+    ],
+    "value": {
+     "right": {
+      "Points": [
+       {
+        "co": {
+         "X": 1.0,
+         "Y": 0.0
+        },
+        "handle_left": {
+         "X": 0.5,
+         "Y": 1.0
+        },
+        "handle_right": {
+         "X": 0.5,
+         "Y": 0.0
+        },
+        "handle_type": 0,
+        "interpolation": 0
+       },
+       {
+        "co": {
+         "X": 3136,
+         "Y": 0.23357664233576642
+        },
+        "interpolation": 1
+       }
+      ]
+     }
+    },
+    "old_values": {
+     "bottom": {
+      "Points": [
+       {
+        "co": {
+         "X": 1.0,
+         "Y": 0.0
+        },
+        "handle_left": {
+         "X": 0.5,
+         "Y": 1.0
+        },
+        "handle_right": {
+         "X": 0.5,
+         "Y": 0.0
+        },
+        "handle_type": 0,
+        "interpolation": 0
+       },
+       {
+        "co": {
+         "X": 3136,
+         "Y": 0.31386861313868614
+        },
+        "interpolation": 1
+       }
+      ]
+     },
+     "class_name": "Pixelate",
+     "description": "Pixelate (increase or decrease) the number of visible pixels.",
+     "duration": 0.0,
+     "end": 0.0,
+     "has_audio": false,
+     "has_tracked_object": false,
+     "has_video": true,
+     "id": "66Q3M1EJSY",
+     "layer": 0,
+     "left": {
+      "Points": [
+       {
+        "co": {
+         "X": 1.0,
+         "Y": 0.0
+        },
+        "handle_left": {
+         "X": 0.5,
+         "Y": 1.0
+        },
+        "handle_right": {
+         "X": 0.5,
+         "Y": 0.0
+        },
+        "handle_type": 0,
+        "interpolation": 0
+       },
+       {
+        "co": {
+         "X": 3136,
+         "Y": 0.6277372262773723
+        },
+        "interpolation": 1
+       }
+      ]
+     },
+     "name": "Pixelate",
+     "order": 0,
+     "parent_effect_id": "",
+     "pixelization": {
+      "Points": [
+       {
+        "co": {
+         "X": 1.0,
+         "Y": 0.5
+        },
+        "handle_left": {
+         "X": 0.5,
+         "Y": 1.0
+        },
+        "handle_right": {
+         "X": 0.5,
+         "Y": 0.0
+        },
+        "handle_type": 0,
+        "interpolation": 0
+       }
+      ]
+     },
+     "position": 0.0,
+     "right": {
+      "Points": [
+       {
+        "co": {
+         "X": 1.0,
+         "Y": 0.0
+        },
+        "handle_left": {
+         "X": 0.5,
+         "Y": 1.0
+        },
+        "handle_right": {
+         "X": 0.5,
+         "Y": 0.0
+        },
+        "handle_type": 0,
+        "interpolation": 0
+       },
+       {
+        "co": {
+         "X": 3136,
+         "Y": 1.0
+        },
+        "interpolation": 1
+       }
+      ]
+     },
+     "start": 0.0,
+     "top": {
+      "Points": [
+       {
+        "co": {
+         "X": 1.0,
+         "Y": 0.0
+        },
+        "handle_left": {
+         "X": 0.5,
+         "Y": 1.0
+        },
+        "handle_right": {
+         "X": 0.5,
+         "Y": 0.0
+        },
+        "handle_type": 0,
+        "interpolation": 0
+       }
+      ]
+     },
+     "type": "Pixelate"
+    },
+    "transaction": "b60aa370-e032-4d3c-8378-e65ec1d97a6e"
+   },
+   {
+    "type": "update",
+    "key": [
+     "clips",
+     {
+      "id": "6SG6NNEA8V"
+     },
+     "effects",
+     {
+      "id": "66Q3M1EJSY"
+     }
+    ],
+    "value": {
+     "right": {
+      "Points": [
+       {
+        "co": {
+         "X": 1.0,
+         "Y": 0.0
+        },
+        "handle_left": {
+         "X": 0.5,
+         "Y": 1.0
+        },
+        "handle_right": {
+         "X": 0.5,
+         "Y": 0.0
+        },
+        "handle_type": 0,
+        "interpolation": 0
+       },
+       {
+        "co": {
+         "X": 3136,
+         "Y": 0.23357664233576642
+        },
+        "interpolation": 1
+       }
+      ]
+     }
+    },
+    "old_values": {
+     "bottom": {
+      "Points": [
+       {
+        "co": {
+         "X": 1.0,
+         "Y": 0.0
+        },
+        "handle_left": {
+         "X": 0.5,
+         "Y": 1.0
+        },
+        "handle_right": {
+         "X": 0.5,
+         "Y": 0.0
+        },
+        "handle_type": 0,
+        "interpolation": 0
+       },
+       {
+        "co": {
+         "X": 3136,
+         "Y": 0.31386861313868614
+        },
+        "interpolation": 1
+       }
+      ]
+     },
+     "class_name": "Pixelate",
+     "description": "Pixelate (increase or decrease) the number of visible pixels.",
+     "duration": 0.0,
+     "end": 0.0,
+     "has_audio": false,
+     "has_tracked_object": false,
+     "has_video": true,
+     "id": "66Q3M1EJSY",
+     "layer": 0,
+     "left": {
+      "Points": [
+       {
+        "co": {
+         "X": 1.0,
+         "Y": 0.0
+        },
+        "handle_left": {
+         "X": 0.5,
+         "Y": 1.0
+        },
+        "handle_right": {
+         "X": 0.5,
+         "Y": 0.0
+        },
+        "handle_type": 0,
+        "interpolation": 0
+       },
+       {
+        "co": {
+         "X": 3136,
+         "Y": 0.6277372262773723
+        },
+        "interpolation": 1
+       }
+      ]
+     },
+     "name": "Pixelate",
+     "order": 0,
+     "parent_effect_id": "",
+     "pixelization": {
+      "Points": [
+       {
+        "co": {
+         "X": 1.0,
+         "Y": 0.5
+        },
+        "handle_left": {
+         "X": 0.5,
+         "Y": 1.0
+        },
+        "handle_right": {
+         "X": 0.5,
+         "Y": 0.0
+        },
+        "handle_type": 0,
+        "interpolation": 0
+       }
+      ]
+     },
+     "position": 0.0,
+     "right": {
+      "Points": [
+       {
+        "co": {
+         "X": 1.0,
+         "Y": 0.0
+        },
+        "handle_left": {
+         "X": 0.5,
+         "Y": 1.0
+        },
+        "handle_right": {
+         "X": 0.5,
+         "Y": 0.0
+        },
+        "handle_type": 0,
+        "interpolation": 0
+       },
+       {
+        "co": {
+         "X": 3136,
+         "Y": 0.23357664233576642
+        },
+        "interpolation": 1
+       }
+      ]
+     },
+     "start": 0.0,
+     "top": {
+      "Points": [
+       {
+        "co": {
+         "X": 1.0,
+         "Y": 0.0
+        },
+        "handle_left": {
+         "X": 0.5,
+         "Y": 1.0
+        },
+        "handle_right": {
+         "X": 0.5,
+         "Y": 0.0
+        },
+        "handle_type": 0,
+        "interpolation": 0
+       },
+       {
+        "co": {
+         "X": 3136,
+         "Y": 0.31386861313868614
+        },
+        "interpolation": 1
+       }
+      ]
+     },
+     "type": "Pixelate"
+    },
+    "transaction": "6d1202e1-571e-414a-bbe3-6d63cf32648d"
    },
    {
     "type": "update",
@@ -9460,6 +9272,194 @@
        {
         "co": {
          "X": 3136,
+         "Y": 1.0
+        },
+        "interpolation": 1
+       }
+      ]
+     },
+     "type": "Pixelate"
+    },
+    "transaction": "5d1e6d28-e296-4e1b-bf46-63b11cef8439"
+   },
+   {
+    "type": "update",
+    "key": [
+     "clips",
+     {
+      "id": "6SG6NNEA8V"
+     },
+     "effects",
+     {
+      "id": "66Q3M1EJSY"
+     }
+    ],
+    "value": {
+     "top": {
+      "Points": [
+       {
+        "co": {
+         "X": 1.0,
+         "Y": 0.0
+        },
+        "handle_left": {
+         "X": 0.5,
+         "Y": 1.0
+        },
+        "handle_right": {
+         "X": 0.5,
+         "Y": 0.0
+        },
+        "handle_type": 0,
+        "interpolation": 0
+       },
+       {
+        "co": {
+         "X": 3136,
+         "Y": 0.31386861313868614
+        },
+        "interpolation": 1
+       }
+      ]
+     }
+    },
+    "old_values": {
+     "bottom": {
+      "Points": [
+       {
+        "co": {
+         "X": 1.0,
+         "Y": 0.0
+        },
+        "handle_left": {
+         "X": 0.5,
+         "Y": 1.0
+        },
+        "handle_right": {
+         "X": 0.5,
+         "Y": 0.0
+        },
+        "handle_type": 0,
+        "interpolation": 0
+       },
+       {
+        "co": {
+         "X": 3136,
+         "Y": 0.31386861313868614
+        },
+        "interpolation": 1
+       }
+      ]
+     },
+     "class_name": "Pixelate",
+     "description": "Pixelate (increase or decrease) the number of visible pixels.",
+     "duration": 0.0,
+     "end": 0.0,
+     "has_audio": false,
+     "has_tracked_object": false,
+     "has_video": true,
+     "id": "66Q3M1EJSY",
+     "layer": 0,
+     "left": {
+      "Points": [
+       {
+        "co": {
+         "X": 1.0,
+         "Y": 0.0
+        },
+        "handle_left": {
+         "X": 0.5,
+         "Y": 1.0
+        },
+        "handle_right": {
+         "X": 0.5,
+         "Y": 0.0
+        },
+        "handle_type": 0,
+        "interpolation": 0
+       },
+       {
+        "co": {
+         "X": 3136,
+         "Y": 0.6277372262773723
+        },
+        "interpolation": 1
+       }
+      ]
+     },
+     "name": "Pixelate",
+     "order": 0,
+     "parent_effect_id": "",
+     "pixelization": {
+      "Points": [
+       {
+        "co": {
+         "X": 1.0,
+         "Y": 0.5
+        },
+        "handle_left": {
+         "X": 0.5,
+         "Y": 1.0
+        },
+        "handle_right": {
+         "X": 0.5,
+         "Y": 0.0
+        },
+        "handle_type": 0,
+        "interpolation": 0
+       }
+      ]
+     },
+     "position": 0.0,
+     "right": {
+      "Points": [
+       {
+        "co": {
+         "X": 1.0,
+         "Y": 0.0
+        },
+        "handle_left": {
+         "X": 0.5,
+         "Y": 1.0
+        },
+        "handle_right": {
+         "X": 0.5,
+         "Y": 0.0
+        },
+        "handle_type": 0,
+        "interpolation": 0
+       },
+       {
+        "co": {
+         "X": 3136,
+         "Y": 0.23357664233576642
+        },
+        "interpolation": 1
+       }
+      ]
+     },
+     "start": 0.0,
+     "top": {
+      "Points": [
+       {
+        "co": {
+         "X": 1.0,
+         "Y": 0.0
+        },
+        "handle_left": {
+         "X": 0.5,
+         "Y": 1.0
+        },
+        "handle_right": {
+         "X": 0.5,
+         "Y": 0.0
+        },
+        "handle_type": 0,
+        "interpolation": 0
+       },
+       {
+        "co": {
+         "X": 3136,
          "Y": 0.31386861313868614
         },
         "interpolation": 1
@@ -9468,7 +9468,7 @@
      },
      "type": "Pixelate"
     },
-    "transaction": "afc9212f-a6c0-43ed-a1b4-0de43df5baa3"
+    "transaction": "f5467fa2-040b-48bb-a58f-079e095c5681"
    }
   ],
   "redo": []

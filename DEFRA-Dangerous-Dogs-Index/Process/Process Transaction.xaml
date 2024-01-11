@@ -102,7 +102,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="57">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="114">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -159,6 +159,8 @@
       <AssemblyReference>UiPath.Form.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Persistence.Activities</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <sap:WorkflowViewStateService.ViewState>
@@ -242,292 +244,76 @@
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <av:Point x:Key="ShapeLocation">200,363.5</av:Point>
-          <av:Size x:Key="ShapeSize">200,52</av:Size>
-          <av:PointCollection x:Key="ConnectorLocation">300,415.5 300,481.5</av:PointCollection>
+          <av:Size x:Key="ShapeSize">200,68</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">300,431.5 300,481.5</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:CommentOut sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="CommentOut_18">
-        <ui:CommentOut.Body>
-          <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_470">
-            <Sequence DisplayName="Update Backup Index" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_85">
-              <Sequence.Variables>
-                <Variable x:TypeArguments="x:String" Name="strDDIBackupLogSharepointFilepath" />
-              </Sequence.Variables>
+      <Sequence DisplayName="Update Backup Index" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_85">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="x:String" Name="strDDIBackupLogSharepointFilepath" />
+        </Sequence.Variables>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" Condition="[exeException isNot Nothing]" DisplayName="Check Out Master Index - Do While" sap:VirtualizedContainerService.HintSize="1069,1155" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_3">
+          <ui:InterruptibleDoWhile.Body>
+            <Sequence DisplayName="Check Out Master Log or Present User Assistance Form" sap:VirtualizedContainerService.HintSize="480,988" sap2010:WorkflowViewState.IdRef="Sequence_102">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" Condition="[exeException isNot Nothing]" DisplayName="Check Out Master Index - Do While" sap:VirtualizedContainerService.HintSize="1069,1570" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_3">
-                <ui:InterruptibleDoWhile.Body>
-                  <Sequence DisplayName="Check Out Master Log or Present User Assistance Form" sap:VirtualizedContainerService.HintSize="632,1403" sap2010:WorkflowViewState.IdRef="Sequence_102">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                    <Assign DisplayName="Reset Exception" sap:VirtualizedContainerService.HintSize="590,60" sap2010:WorkflowViewState.IdRef="Assign_160">
-                      <Assign.To>
-                        <OutArgument x:TypeArguments="s:Exception">[exeException]</OutArgument>
-                      </Assign.To>
-                      <Assign.Value>
-                        <InArgument x:TypeArguments="s:Exception">[Nothing]</InArgument>
-                      </Assign.Value>
-                    </Assign>
-                    <Assign DisplayName="Assign  Sharepoint Filepath" sap:VirtualizedContainerService.HintSize="590,60" sap2010:WorkflowViewState.IdRef="Assign_163">
-                      <Assign.To>
-                        <OutArgument x:TypeArguments="x:String">[strDDIBackupLogSharepointFilepath]</OutArgument>
-                      </Assign.To>
-                      <Assign.Value>
-                        <InArgument x:TypeArguments="x:String">[io_Config("Backup Log Sharepoint Filepath").ToString]</InArgument>
-                      </Assign.Value>
-                    </Assign>
-                    <TryCatch DisplayName="Try Check Out Master Log" sap:VirtualizedContainerService.HintSize="590,1111" sap2010:WorkflowViewState.IdRef="TryCatch_6">
-                      <TryCatch.Try>
-                        <Sequence DisplayName="Handle Stopwatch &amp; Check Out File" sap:VirtualizedContainerService.HintSize="280.5,464" sap2010:WorkflowViewState.IdRef="Sequence_99">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                          <InvokeMethod DisplayName="Stop Stopwatch" sap:VirtualizedContainerService.HintSize="238.5,135" sap2010:WorkflowViewState.IdRef="InvokeMethod_17" MethodName="Stop">
-                            <InvokeMethod.TargetObject>
-                              <InArgument x:TypeArguments="sd:Stopwatch">[io_swProcessingTimer]</InArgument>
-                            </InvokeMethod.TargetObject>
-                          </InvokeMethod>
-                          <su:Check_Out_Sharepoint_File DisplayName="Check Out Sharepoint File" sap:VirtualizedContainerService.HintSize="238.5,22" sap2010:WorkflowViewState.IdRef="Check_Out_Sharepoint_File_5" in_intNumRetries="12" in_strAssetName="Backup Logs Checked Out" in_strSharepointFilePath="[strDDIBackupLogSharepointFilepath]" in_strSharepointLockFilePath="[in_strSharepointLockFilePath]" in_strSharepointURL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <su:Check_Out_Sharepoint_File.in_credADCredentials>
-                              <InArgument x:TypeArguments="sn:NetworkCredential" />
-                            </su:Check_Out_Sharepoint_File.in_credADCredentials>
-                          </su:Check_Out_Sharepoint_File>
-                          <InvokeMethod DisplayName="Start Stopwatch" sap:VirtualizedContainerService.HintSize="238.5,135" sap2010:WorkflowViewState.IdRef="InvokeMethod_18" MethodName="Start">
-                            <InvokeMethod.TargetObject>
-                              <InArgument x:TypeArguments="sd:Stopwatch">[io_swProcessingTimer]</InArgument>
-                            </InvokeMethod.TargetObject>
-                          </InvokeMethod>
-                        </Sequence>
-                      </TryCatch.Try>
-                      <TryCatch.Catches>
-                        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="556,22" sap2010:WorkflowViewState.IdRef="Catch`1_5">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                          <ActivityAction x:TypeArguments="s:Exception">
-                            <ActivityAction.Argument>
-                              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
-                            </ActivityAction.Argument>
-                            <Sequence DisplayName="Capture Exception" sap:VirtualizedContainerService.HintSize="304,151" sap2010:WorkflowViewState.IdRef="Sequence_100">
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                              <Assign DisplayName="Assign Exception" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_161">
-                                <Assign.To>
-                                  <OutArgument x:TypeArguments="s:Exception">[exeException]</OutArgument>
-                                </Assign.To>
-                                <Assign.Value>
-                                  <InArgument x:TypeArguments="s:Exception">[exception]</InArgument>
-                                </Assign.Value>
-                              </Assign>
-                            </Sequence>
-                          </ActivityAction>
-                        </Catch>
-                      </TryCatch.Catches>
-                      <TryCatch.Finally>
-                        <If Condition="[exeException isNot Nothing]" DisplayName="Encountered Exception?" sap:VirtualizedContainerService.HintSize="552,879" sap2010:WorkflowViewState.IdRef="If_26">
-                          <If.Then>
-                            <TryCatch DisplayName="Request User Intervention" sap:VirtualizedContainerService.HintSize="516,690" sap2010:WorkflowViewState.IdRef="TryCatch_5">
-                              <TryCatch.Try>
-                                <Sequence sap:VirtualizedContainerService.HintSize="478,458" sap2010:WorkflowViewState.IdRef="Sequence_469">
-                                  <sap:WorkflowViewStateService.ViewState>
-                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                    </scg:Dictionary>
-                                  </sap:WorkflowViewStateService.ViewState>
-                                  <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,192" sap2010:WorkflowViewState.IdRef="CommentOut_17">
-                                    <ui:CommentOut.Body>
-                                      <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_468">
-                                        <sap:WorkflowViewStateService.ViewState>
-                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                          </scg:Dictionary>
-                                        </sap:WorkflowViewStateService.ViewState>
-                                        <p:Generic_PopUp OUT_ProcessType="{x:Null}" OUT_strButtonSelected="{x:Null}" DisplayName="User Assistance Form" sap:VirtualizedContainerService.HintSize="200,22" IN_CSS_filepath="[&quot;/file://&quot; + Directory.GetCurrentDirectory + &quot;\Assets\Generic\InitialisationException.css&quot;]" IN_ErrorMessage="File checkout loop aborted by user" IN_PopupMessage="[&quot;&lt;h1&gt;User assistance required&lt;/h1&gt;&lt;P&gt; I've encountered a problem checking out the file: '&quot; + strDDIBackupLogSharepointFilepath + &quot;'&lt;/P&gt;&lt;P&gt; Exception message: &quot;+exeException.Message+&quot;&lt;/P&gt;&lt;P&gt;Please attempt to manually rectify the issue and click Continue for the robot to retry.&lt;/P&gt;&lt;BR&gt;&quot;]" IN_PopupTitle="Department for Environment, Food and Rural Affairs" IN_WidthHeight="[{500,500}]" sap2010:WorkflowViewState.IdRef="Generic_PopUp_9" />
-                                      </Sequence>
-                                    </ui:CommentOut.Body>
-                                  </ui:CommentOut>
-                                  <ui:SetAsset TimeoutMS="{x:Null}" AssetName="Backup Logs Checked Out" DisplayName="Set Asset" sap:VirtualizedContainerService.HintSize="436,134" sap2010:WorkflowViewState.IdRef="SetAsset_20" Value="[&quot;None&quot;]" />
-                                </Sequence>
-                              </TryCatch.Try>
-                              <TryCatch.Catches>
-                                <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="482,22" sap2010:WorkflowViewState.IdRef="Catch`1_6">
-                                  <sap:WorkflowViewStateService.ViewState>
-                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                    </scg:Dictionary>
-                                  </sap:WorkflowViewStateService.ViewState>
-                                  <ActivityAction x:TypeArguments="ui:BusinessRuleException">
-                                    <ActivityAction.Argument>
-                                      <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="exception" />
-                                    </ActivityAction.Argument>
-                                    <Sequence DisplayName="Assign ShouldStop &amp; Rethrow" sap:VirtualizedContainerService.HintSize="304,213" sap2010:WorkflowViewState.IdRef="Sequence_101">
-                                      <sap:WorkflowViewStateService.ViewState>
-                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                        </scg:Dictionary>
-                                      </sap:WorkflowViewStateService.ViewState>
-                                      <Assign DisplayName="Assign ShouldStop" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_162">
-                                        <Assign.To>
-                                          <OutArgument x:TypeArguments="x:Object">[io_Config("ShouldStop")]</OutArgument>
-                                        </Assign.To>
-                                        <Assign.Value>
-                                          <InArgument x:TypeArguments="x:Object">[True]</InArgument>
-                                        </Assign.Value>
-                                      </Assign>
-                                      <Rethrow sap:VirtualizedContainerService.HintSize="262,22" sap2010:WorkflowViewState.IdRef="Rethrow_3" />
-                                    </Sequence>
-                                  </ActivityAction>
-                                </Catch>
-                              </TryCatch.Catches>
-                            </TryCatch>
-                          </If.Then>
-                        </If>
-                      </TryCatch.Finally>
-                    </TryCatch>
-                  </Sequence>
-                </ui:InterruptibleDoWhile.Body>
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-              </ui:InterruptibleDoWhile>
-              <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="1069,2522" sap2010:WorkflowViewState.IdRef="TryCatch_23">
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
+              <Assign DisplayName="Reset Exception" sap:VirtualizedContainerService.HintSize="438,60" sap2010:WorkflowViewState.IdRef="Assign_160">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="s:Exception">[exeException]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="s:Exception">[Nothing]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign DisplayName="Assign  Sharepoint Filepath" sap:VirtualizedContainerService.HintSize="438,60" sap2010:WorkflowViewState.IdRef="Assign_163">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[strDDIBackupLogSharepointFilepath]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[io_Config("Backup Log Sharepoint Filepath").ToString]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <TryCatch DisplayName="Try Check Out Master Log" sap:VirtualizedContainerService.HintSize="438,696" sap2010:WorkflowViewState.IdRef="TryCatch_6">
                 <TryCatch.Try>
-                  <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" UserName="{x:Null}" AzureAppPermissions="None" DisplayName="Sharepoint application scope" sap:VirtualizedContainerService.HintSize="1031,2290" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_1" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SharePointInstanceType="WebLogin" URL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
-                    <usa:SharepointApplicationScope.Body>
-                      <ActivityAction x:TypeArguments="us:SharePointContextInfo">
-                        <ActivityAction.Argument>
-                          <DelegateInArgument x:TypeArguments="us:SharePointContextInfo" Name="SharePointContextInfoTag" />
-                        </ActivityAction.Argument>
-                        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="997,2148" sap2010:WorkflowViewState.IdRef="Sequence_158">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                          <usal:GetFile AttachmentsAction="{x:Null}" RelativeUrlHintText="{x:Null}" ChooseFile="False" DisplayName="Get Master Log" sap:VirtualizedContainerService.HintSize="955,104" sap2010:WorkflowViewState.IdRef="GetFile_1" LocalPath="[in_strFolderPath+io_Config(&quot;DDI Backup Log Path&quot;).ToString]" LocalPathHintText="Local path where the file will be saved" RelativeUrl="[strDDIBackupLogSharepointFilepath]" ShowAttachFiles="False" ShowCAMLQuery="False" ShowCAMLWarning="False" ShowGroupDescription="False" ShowGroupName="False" ShowLibraryName="False" ShowListName="False" ShowLocalPath="True" ShowMove="False" ShowPermissionDropdown="False" ShowPropertiesDictionary="False" ShowRelativeUrl="True" ShowRename="False" ShowUserName="False" />
-                          <Delay DisplayName=" Delay 2 seconds" Duration="00:00:02" sap:VirtualizedContainerService.HintSize="955,22" sap2010:WorkflowViewState.IdRef="Delay_2" />
-                          <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="955,134" sap2010:WorkflowViewState.IdRef="KillProcess_1" ProcessName="EXCEL" />
-                          <Sequence DisplayName="Populate Index" sap:VirtualizedContainerService.HintSize="955,1298" sap2010:WorkflowViewState.IdRef="Sequence_98">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <If Condition="[CBool(io_Config(&quot;boolPausePoint2&quot;))]" DisplayName="Pause Point 2 Enabled?" sap:VirtualizedContainerService.HintSize="913,1206" sap2010:WorkflowViewState.IdRef="If_25">
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                              <If.Then>
-                                <ui:ExcelApplicationScope Password="{x:Null}" CreateNewFile="False" DisplayName="Populate Master Log - Excel Application Scope" sap:VirtualizedContainerService.HintSize="434,1046" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_7" InstanceCachePeriod="3000" WorkbookPath="[in_strFolderPath+io_Config(&quot;DDI Backup Log Path&quot;).ToString]">
-                                  <ui:ExcelApplicationScope.Body>
-                                    <ActivityAction x:TypeArguments="ui:WorkbookApplication">
-                                      <ActivityAction.Argument>
-                                        <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
-                                      </ActivityAction.Argument>
-                                      <Sequence DisplayName="Populate Master Log" sap:VirtualizedContainerService.HintSize="376,937" sap2010:WorkflowViewState.IdRef="Sequence_96">
-                                        <sap:WorkflowViewStateService.ViewState>
-                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                          </scg:Dictionary>
-                                        </sap:WorkflowViewStateService.ViewState>
-                                        <ui:ExcelAppendRange DataTable="[io_dtDogInformationPass]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_9" SheetName="Passed" />
-                                        <ui:ExcelAppendRange DataTable="[io_dtDogInformationSoftFail]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_11" SheetName="Soft Fail" />
-                                        <ui:ExcelAppendRange DataTable="[io_dtDogInformationHardFail]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_12" SheetName="Hard Fail" />
-                                        <Sequence DisplayName="Present Pause Point" sap:VirtualizedContainerService.HintSize="334,464" sap2010:WorkflowViewState.IdRef="Sequence_95">
-                                          <sap:WorkflowViewStateService.ViewState>
-                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                            </scg:Dictionary>
-                                          </sap:WorkflowViewStateService.ViewState>
-                                          <InvokeMethod DisplayName="Stop Stopwatch" sap:VirtualizedContainerService.HintSize="238.5,135" sap2010:WorkflowViewState.IdRef="InvokeMethod_15" MethodName="Stop">
-                                            <InvokeMethod.TargetObject>
-                                              <InArgument x:TypeArguments="sd:Stopwatch">[io_swProcessingTimer]</InArgument>
-                                            </InvokeMethod.TargetObject>
-                                          </InvokeMethod>
-                                          <p:Generic_PopUp OUT_ProcessType="{x:Null}" OUT_strButtonSelected="{x:Null}" DisplayName="Pause Point 2" sap:VirtualizedContainerService.HintSize="238.5,22" IN_CSS_filepath="[&quot;/file://&quot; + Directory.GetCurrentDirectory + &quot;\Assets\Generic\YesNo.css&quot;]" IN_ErrorMessage="The stop button was pressed" IN_PopupMessage="&lt;h1&gt;Please Check Index Data&lt;/h1&gt;&lt;br&gt;Please check the data in the excel log to make sure it is all correct.&lt;br&gt;&lt;br&gt;" IN_PopupTitle="Pause Point 2" IN_WidthHeight="[{600,400}]" sap2010:WorkflowViewState.IdRef="Generic_PopUp_8" />
-                                          <InvokeMethod DisplayName="Start Stopwatch" sap:VirtualizedContainerService.HintSize="238.5,135" sap2010:WorkflowViewState.IdRef="InvokeMethod_16" MethodName="Start">
-                                            <InvokeMethod.TargetObject>
-                                              <InArgument x:TypeArguments="sd:Stopwatch">[io_swProcessingTimer]</InArgument>
-                                            </InvokeMethod.TargetObject>
-                                          </InvokeMethod>
-                                        </Sequence>
-                                      </Sequence>
-                                    </ActivityAction>
-                                  </ui:ExcelApplicationScope.Body>
-                                </ui:ExcelApplicationScope>
-                              </If.Then>
-                              <If.Else>
-                                <ui:ExcelApplicationScope Password="{x:Null}" CreateNewFile="False" DisplayName="Populate Master Log - Excel Application Scope" sap:VirtualizedContainerService.HintSize="434,542" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_8" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[in_strFolderPath+io_Config(&quot;DDI Backup Log Path&quot;).ToString]">
-                                  <ui:ExcelApplicationScope.Body>
-                                    <ActivityAction x:TypeArguments="ui:WorkbookApplication">
-                                      <ActivityAction.Argument>
-                                        <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
-                                      </ActivityAction.Argument>
-                                      <Sequence DisplayName="Populate Master Log" sap:VirtualizedContainerService.HintSize="376,433" sap2010:WorkflowViewState.IdRef="Sequence_97">
-                                        <sap:WorkflowViewStateService.ViewState>
-                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                          </scg:Dictionary>
-                                        </sap:WorkflowViewStateService.ViewState>
-                                        <ui:ExcelAppendRange DataTable="[io_dtDogInformationPass]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_13" SheetName="Passed" />
-                                        <ui:ExcelAppendRange DataTable="[io_dtDogInformationSoftFail]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_14" SheetName="Soft Fail" />
-                                        <ui:ExcelAppendRange DataTable="[io_dtDogInformationHardFail]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_15" SheetName="Hard Fail" />
-                                      </Sequence>
-                                    </ActivityAction>
-                                  </ui:ExcelApplicationScope.Body>
-                                </ui:ExcelApplicationScope>
-                              </If.Else>
-                            </If>
-                          </Sequence>
-                          <Delay DisplayName=" Delay 2 seconds" Duration="00:00:02" sap:VirtualizedContainerService.HintSize="955,22" sap2010:WorkflowViewState.IdRef="Delay_4" />
-                          <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="955,134" sap2010:WorkflowViewState.IdRef="KillProcess_4" ProcessName="EXCEL" />
-                          <usal:UploadFile AttachmentsAction="{x:Null}" PropertiesToAdd="{x:Null}" RelativeUrlHintText="{x:Null}" AllowOperationsOnASPXFiles="False" AllowOverwrite="True" CheckInFileAfterCreation="False" CheckOutFileBeforeOverwrite="False" ChooseFile="True" DisplayName="Upload file" sap:VirtualizedContainerService.HintSize="955,102" sap2010:WorkflowViewState.IdRef="UploadFile_1" LocalPath="[in_strFolderPath+io_Config(&quot;DDI Backup Log Path&quot;).ToString]" LocalPathHintText="The current local path of the file" RelativeUrl="[strDDIBackupLogSharepointFilepath]" ShowAttachFiles="False" ShowCAMLQuery="False" ShowCAMLWarning="False" ShowGroupDescription="False" ShowGroupName="False" ShowLibraryName="False" ShowListName="False" ShowLocalPath="True" ShowMove="False" ShowPermissionDropdown="False" ShowPropertiesDictionary="False" ShowRelativeUrl="True" ShowRename="False" ShowUserName="False" />
-                        </Sequence>
-                      </ActivityAction>
-                    </usa:SharepointApplicationScope.Body>
+                  <Sequence DisplayName="Handle Stopwatch &amp; Check Out File" sap:VirtualizedContainerService.HintSize="280.5,464" sap2010:WorkflowViewState.IdRef="Sequence_99">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                  </usa:SharepointApplicationScope>
+                    <InvokeMethod DisplayName="Stop Stopwatch" sap:VirtualizedContainerService.HintSize="238.5,135" sap2010:WorkflowViewState.IdRef="InvokeMethod_17" MethodName="Stop">
+                      <InvokeMethod.TargetObject>
+                        <InArgument x:TypeArguments="sd:Stopwatch">[io_swProcessingTimer]</InArgument>
+                      </InvokeMethod.TargetObject>
+                    </InvokeMethod>
+                    <su:Check_Out_Sharepoint_File DisplayName="Check Out Sharepoint File" sap:VirtualizedContainerService.HintSize="238.5,22" sap2010:WorkflowViewState.IdRef="Check_Out_Sharepoint_File_5" in_intNumRetries="12" in_strAssetName="Backup Logs Checked Out" in_strSharepointFilePath="[strDDIBackupLogSharepointFilepath]" in_strSharepointLockFilePath="[in_strSharepointLockFilePath]" in_strSharepointURL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <su:Check_Out_Sharepoint_File.in_credADCredentials>
+                        <InArgument x:TypeArguments="sn:NetworkCredential" />
+                      </su:Check_Out_Sharepoint_File.in_credADCredentials>
+                    </su:Check_Out_Sharepoint_File>
+                    <InvokeMethod DisplayName="Start Stopwatch" sap:VirtualizedContainerService.HintSize="238.5,135" sap2010:WorkflowViewState.IdRef="InvokeMethod_18" MethodName="Start">
+                      <InvokeMethod.TargetObject>
+                        <InArgument x:TypeArguments="sd:Stopwatch">[io_swProcessingTimer]</InArgument>
+                      </InvokeMethod.TargetObject>
+                    </InvokeMethod>
+                  </Sequence>
                 </TryCatch.Try>
                 <TryCatch.Catches>
-                  <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="1035,22" sap2010:WorkflowViewState.IdRef="Catch`1_23">
+                  <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,22" sap2010:WorkflowViewState.IdRef="Catch`1_5">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -538,24 +324,13 @@
                       <ActivityAction.Argument>
                         <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                       </ActivityAction.Argument>
-                      <Sequence sap:VirtualizedContainerService.HintSize="376,378" sap2010:WorkflowViewState.IdRef="Sequence_428">
+                      <Sequence DisplayName="Capture Exception" sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_100">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="KillProcess_6" ProcessName="EXCEL" />
-                        <su:Check_In_Sharepoint_File DisplayName="Check In Sharepoint File" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Check_In_Sharepoint_File_4" in_strAssetName="Backup Logs Checked Out" in_strSharepointFilePath="[strDDIBackupLogSharepointFilepath]" in_strSharepointLockFilePath="[in_strSharepointLockFilePath]" in_strSharepointURL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                          <su:Check_In_Sharepoint_File.in_credADCredentials>
-                            <InArgument x:TypeArguments="sn:NetworkCredential" />
-                          </su:Check_In_Sharepoint_File.in_credADCredentials>
-                        </su:Check_In_Sharepoint_File>
-                        <Assign DisplayName="Assign Exception" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_800">
+                        <Assign DisplayName="Assign Exception" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_161">
                           <Assign.To>
                             <OutArgument x:TypeArguments="s:Exception">[exeException]</OutArgument>
                           </Assign.To>
@@ -567,256 +342,315 @@
                     </ActivityAction>
                   </Catch>
                 </TryCatch.Catches>
-              </TryCatch>
-              <su:Check_In_Sharepoint_File DisplayName="Check In Sharepoint File" sap:VirtualizedContainerService.HintSize="1069,22" sap2010:WorkflowViewState.IdRef="Check_In_Sharepoint_File_3" in_strAssetName="Backup Logs Checked Out" in_strSharepointFilePath="[strDDIBackupLogSharepointFilepath]" in_strSharepointLockFilePath="[in_strSharepointLockFilePath]" in_strSharepointURL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-                <su:Check_In_Sharepoint_File.in_credADCredentials>
-                  <InArgument x:TypeArguments="sn:NetworkCredential" />
-                </su:Check_In_Sharepoint_File.in_credADCredentials>
-              </su:Check_In_Sharepoint_File>
-              <ui:DeleteFileX DisplayName="Delete Excel Spreadsheet" sap:VirtualizedContainerService.HintSize="1069,80" sap2010:WorkflowViewState.IdRef="DeleteFileX_4" Path="[in_strFolderPath+io_Config(&quot;DDI Backup Log Path&quot;).ToString]" />
-            </Sequence>
-          </Sequence>
-        </ui:CommentOut.Body>
-      </ui:CommentOut>
-      <FlowStep.Next>
-        <FlowStep x:Name="__ReferenceID0">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <av:Point x:Key="ShapeLocation">200,481.5</av:Point>
-              <av:Size x:Key="ShapeSize">200,52</av:Size>
-              <av:PointCollection x:Key="ConnectorLocation">300,533.5 300,599.5</av:PointCollection>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <ui:CommentOut sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="CommentOut_19">
-            <ui:CommentOut.Body>
-              <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_471">
-                <Sequence DisplayName="Check out Main Index" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_94">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" Condition="[exeException isNot Nothing]" DisplayName="Check Out Master Index - Do While" sap:VirtualizedContainerService.HintSize="668,1632" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_2">
-                    <ui:InterruptibleDoWhile.Body>
-                      <Sequence DisplayName="Check Out Master Log or Present User Assistance Form" sap:VirtualizedContainerService.HintSize="632,1465" sap2010:WorkflowViewState.IdRef="Sequence_93">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <Delay DisplayName=" Delay 5 seconds" Duration="00:00:05" sap:VirtualizedContainerService.HintSize="590,22" sap2010:WorkflowViewState.IdRef="Delay_8" />
-                        <Assign DisplayName="Reset Exception" sap:VirtualizedContainerService.HintSize="590,60" sap2010:WorkflowViewState.IdRef="Assign_157">
-                          <Assign.To>
-                            <OutArgument x:TypeArguments="s:Exception">[exeException]</OutArgument>
-                          </Assign.To>
-                          <Assign.Value>
-                            <InArgument x:TypeArguments="s:Exception">[Nothing]</InArgument>
-                          </Assign.Value>
-                        </Assign>
-                        <Assign DisplayName="Assign  Sharepoint Filepath" sap:VirtualizedContainerService.HintSize="590,60" sap2010:WorkflowViewState.IdRef="Assign_164">
-                          <Assign.To>
-                            <OutArgument x:TypeArguments="x:String">[strDDILogSharepointFilepath]</OutArgument>
-                          </Assign.To>
-                          <Assign.Value>
-                            <InArgument x:TypeArguments="x:String">[io_Config("Log Sharepoint Filepath").ToString]</InArgument>
-                          </Assign.Value>
-                        </Assign>
-                        <TryCatch DisplayName="Try Check Out Master Log" sap:VirtualizedContainerService.HintSize="590,1111" sap2010:WorkflowViewState.IdRef="TryCatch_4">
-                          <TryCatch.Try>
-                            <Sequence DisplayName="Handle Stopwatch &amp; Check Out File" sap:VirtualizedContainerService.HintSize="280.5,464" sap2010:WorkflowViewState.IdRef="Sequence_90">
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                              <InvokeMethod DisplayName="Stop Stopwatch" sap:VirtualizedContainerService.HintSize="238.5,135" sap2010:WorkflowViewState.IdRef="InvokeMethod_13" MethodName="Stop">
-                                <InvokeMethod.TargetObject>
-                                  <InArgument x:TypeArguments="sd:Stopwatch">[io_swProcessingTimer]</InArgument>
-                                </InvokeMethod.TargetObject>
-                              </InvokeMethod>
-                              <su:Check_Out_Sharepoint_File DisplayName="Check Out Sharepoint File" sap:VirtualizedContainerService.HintSize="238.5,22" sap2010:WorkflowViewState.IdRef="Check_Out_Sharepoint_File_4" in_intNumRetries="12" in_strAssetName="Logs Checked Out" in_strSharepointFilePath="[strDDILogSharepointFilepath]" in_strSharepointLockFilePath="[in_strSharepointLockFilePath]" in_strSharepointURL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
-                                <sap:WorkflowViewStateService.ViewState>
-                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                  </scg:Dictionary>
-                                </sap:WorkflowViewStateService.ViewState>
-                                <su:Check_Out_Sharepoint_File.in_credADCredentials>
-                                  <InArgument x:TypeArguments="sn:NetworkCredential" />
-                                </su:Check_Out_Sharepoint_File.in_credADCredentials>
-                              </su:Check_Out_Sharepoint_File>
-                              <InvokeMethod DisplayName="Start Stopwatch" sap:VirtualizedContainerService.HintSize="238.5,135" sap2010:WorkflowViewState.IdRef="InvokeMethod_14" MethodName="Start">
-                                <InvokeMethod.TargetObject>
-                                  <InArgument x:TypeArguments="sd:Stopwatch">[io_swProcessingTimer]</InArgument>
-                                </InvokeMethod.TargetObject>
-                              </InvokeMethod>
-                            </Sequence>
-                          </TryCatch.Try>
-                          <TryCatch.Catches>
-                            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="556,22" sap2010:WorkflowViewState.IdRef="Catch`1_3">
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                              <ActivityAction x:TypeArguments="s:Exception">
-                                <ActivityAction.Argument>
-                                  <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
-                                </ActivityAction.Argument>
-                                <Sequence DisplayName="Capture Exception" sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_91">
+                <TryCatch.Finally>
+                  <If Condition="[exeException isNot Nothing]" DisplayName="Encountered Exception?" sap:VirtualizedContainerService.HintSize="552,879" sap2010:WorkflowViewState.IdRef="If_26">
+                    <If.Then>
+                      <TryCatch DisplayName="Request User Intervention" sap:VirtualizedContainerService.HintSize="516,690" sap2010:WorkflowViewState.IdRef="TryCatch_5">
+                        <TryCatch.Try>
+                          <Sequence sap:VirtualizedContainerService.HintSize="478,458" sap2010:WorkflowViewState.IdRef="Sequence_469">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,192" sap2010:WorkflowViewState.IdRef="CommentOut_17">
+                              <ui:CommentOut.Body>
+                                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_468">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
-                                  <Assign DisplayName="Assign Exception" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_158">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="s:Exception">[exeException]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="s:Exception">[exception]</InArgument>
-                                    </Assign.Value>
-                                  </Assign>
+                                  <p:Generic_PopUp OUT_ProcessType="{x:Null}" OUT_strButtonSelected="{x:Null}" DisplayName="User Assistance Form" sap:VirtualizedContainerService.HintSize="200,22" IN_CSS_filepath="[&quot;/file://&quot; + Directory.GetCurrentDirectory + &quot;\Assets\Generic\InitialisationException.css&quot;]" IN_ErrorMessage="File checkout loop aborted by user" IN_PopupMessage="[&quot;&lt;h1&gt;User assistance required&lt;/h1&gt;&lt;P&gt; I've encountered a problem checking out the file: '&quot; + strDDIBackupLogSharepointFilepath + &quot;'&lt;/P&gt;&lt;P&gt; Exception message: &quot;+exeException.Message+&quot;&lt;/P&gt;&lt;P&gt;Please attempt to manually rectify the issue and click Continue for the robot to retry.&lt;/P&gt;&lt;BR&gt;&quot;]" IN_PopupTitle="Department for Environment, Food and Rural Affairs" IN_WidthHeight="[{500,500}]" sap2010:WorkflowViewState.IdRef="Generic_PopUp_9" />
                                 </Sequence>
-                              </ActivityAction>
-                            </Catch>
-                          </TryCatch.Catches>
-                          <TryCatch.Finally>
-                            <If Condition="[exeException isNot Nothing]" DisplayName="Encountered Exception?" sap:VirtualizedContainerService.HintSize="552,879" sap2010:WorkflowViewState.IdRef="If_24">
-                              <If.Then>
-                                <TryCatch DisplayName="Request User Intervention" sap:VirtualizedContainerService.HintSize="516,690" sap2010:WorkflowViewState.IdRef="TryCatch_3">
-                                  <TryCatch.Try>
-                                    <Sequence sap:VirtualizedContainerService.HintSize="478,458" sap2010:WorkflowViewState.IdRef="Sequence_463">
-                                      <sap:WorkflowViewStateService.ViewState>
-                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                        </scg:Dictionary>
-                                      </sap:WorkflowViewStateService.ViewState>
-                                      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,192" sap2010:WorkflowViewState.IdRef="CommentOut_16">
-                                        <ui:CommentOut.Body>
-                                          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_467">
-                                            <sap:WorkflowViewStateService.ViewState>
-                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                              </scg:Dictionary>
-                                            </sap:WorkflowViewStateService.ViewState>
-                                            <p:Generic_PopUp OUT_ProcessType="{x:Null}" OUT_strButtonSelected="{x:Null}" DisplayName="User Assistance Form" sap:VirtualizedContainerService.HintSize="200,22" IN_CSS_filepath="[&quot;/file://&quot; + Directory.GetCurrentDirectory + &quot;\Assets\Generic\InitialisationException.css&quot;]" IN_ErrorMessage="File checkout loop aborted by user" IN_PopupMessage="[&quot;&lt;h1&gt;User assistance required&lt;/h1&gt;&lt;P&gt; I've encountered a problem checking out the file: '&quot;+strDDILogSharepointFilepath+&quot;'&lt;/P&gt;&lt;P&gt; Exception message: &quot;+exeException.Message+&quot;&lt;/P&gt;&lt;P&gt;Please attempt to manually rectify the issue and click Continue for the robot to retry.&lt;/P&gt;&lt;BR&gt;&quot;]" IN_PopupTitle="Department for Environment, Food and Rural Affairs" IN_WidthHeight="[{500,500}]" sap2010:WorkflowViewState.IdRef="Generic_PopUp_7" />
-                                          </Sequence>
-                                        </ui:CommentOut.Body>
-                                      </ui:CommentOut>
-                                      <ui:SetAsset TimeoutMS="{x:Null}" AssetName="Logs Checked Out" DisplayName="Set Asset" sap:VirtualizedContainerService.HintSize="436,134" sap2010:WorkflowViewState.IdRef="SetAsset_19" Value="[&quot;None&quot;]" />
-                                    </Sequence>
-                                  </TryCatch.Try>
-                                  <TryCatch.Catches>
-                                    <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="482,22" sap2010:WorkflowViewState.IdRef="Catch`1_4">
-                                      <sap:WorkflowViewStateService.ViewState>
-                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                        </scg:Dictionary>
-                                      </sap:WorkflowViewStateService.ViewState>
-                                      <ActivityAction x:TypeArguments="ui:BusinessRuleException">
-                                        <ActivityAction.Argument>
-                                          <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="exception" />
-                                        </ActivityAction.Argument>
-                                        <Sequence DisplayName="Assign ShouldStop &amp; Rethrow" sap:VirtualizedContainerService.HintSize="304,213" sap2010:WorkflowViewState.IdRef="Sequence_92">
-                                          <sap:WorkflowViewStateService.ViewState>
-                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                            </scg:Dictionary>
-                                          </sap:WorkflowViewStateService.ViewState>
-                                          <Assign DisplayName="Assign ShouldStop" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_159">
-                                            <Assign.To>
-                                              <OutArgument x:TypeArguments="x:Object">[io_Config("ShouldStop")]</OutArgument>
-                                            </Assign.To>
-                                            <Assign.Value>
-                                              <InArgument x:TypeArguments="x:Object">[True]</InArgument>
-                                            </Assign.Value>
-                                          </Assign>
-                                          <Rethrow sap:VirtualizedContainerService.HintSize="262,22" sap2010:WorkflowViewState.IdRef="Rethrow_2" />
-                                        </Sequence>
-                                      </ActivityAction>
-                                    </Catch>
-                                  </TryCatch.Catches>
-                                </TryCatch>
-                              </If.Then>
-                            </If>
-                          </TryCatch.Finally>
-                        </TryCatch>
-                      </Sequence>
-                    </ui:InterruptibleDoWhile.Body>
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </ui:InterruptibleDoWhile>
-                  <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="668,1860" sap2010:WorkflowViewState.IdRef="TryCatch_24">
-                    <TryCatch.Try>
-                      <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" UserName="{x:Null}" AzureAppPermissions="None" DisplayName="Sharepoint application scope" sap:VirtualizedContainerService.HintSize="552,1628" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_2" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SharePointInstanceType="WebLogin" URL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
-                        <usa:SharepointApplicationScope.Body>
-                          <ActivityAction x:TypeArguments="us:SharePointContextInfo">
-                            <ActivityAction.Argument>
-                              <DelegateInArgument x:TypeArguments="us:SharePointContextInfo" Name="SharePointContextInfoTag" />
-                            </ActivityAction.Argument>
-                            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="518,1486" sap2010:WorkflowViewState.IdRef="Sequence_159">
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                              <usal:GetFile AttachmentsAction="{x:Null}" RelativeUrlHintText="{x:Null}" ChooseFile="False" DisplayName="Get Master Log" sap:VirtualizedContainerService.HintSize="476,104" sap2010:WorkflowViewState.IdRef="GetFile_2" LocalPath="[in_strFolderPath+io_Config(&quot;DDI Log Path&quot;).ToString]" LocalPathHintText="Local path where the file will be saved" RelativeUrl="[strDDILogSharepointFilepath]" ShowAttachFiles="False" ShowCAMLQuery="False" ShowCAMLWarning="False" ShowGroupDescription="False" ShowGroupName="False" ShowLibraryName="False" ShowListName="False" ShowLocalPath="True" ShowMove="False" ShowPermissionDropdown="False" ShowPropertiesDictionary="False" ShowRelativeUrl="True" ShowRename="False" ShowUserName="False" />
-                              <Delay DisplayName=" Delay 2 seconds" Duration="00:00:02" sap:VirtualizedContainerService.HintSize="476,22" sap2010:WorkflowViewState.IdRef="Delay_1" />
-                              <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="476,134" sap2010:WorkflowViewState.IdRef="KillProcess_2" ProcessName="EXCEL" />
-                              <Sequence DisplayName="Populate Index" sap:VirtualizedContainerService.HintSize="476,634" sap2010:WorkflowViewState.IdRef="Sequence_89">
+                              </ui:CommentOut.Body>
+                            </ui:CommentOut>
+                            <ui:SetAsset TimeoutMS="{x:Null}" AssetName="Backup Logs Checked Out" DisplayName="Set Asset" sap:VirtualizedContainerService.HintSize="436,134" sap2010:WorkflowViewState.IdRef="SetAsset_20" Value="[&quot;None&quot;]" />
+                          </Sequence>
+                        </TryCatch.Try>
+                        <TryCatch.Catches>
+                          <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="482,22" sap2010:WorkflowViewState.IdRef="Catch`1_6">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ActivityAction x:TypeArguments="ui:BusinessRuleException">
+                              <ActivityAction.Argument>
+                                <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="exception" />
+                              </ActivityAction.Argument>
+                              <Sequence DisplayName="Assign ShouldStop &amp; Rethrow" sap:VirtualizedContainerService.HintSize="304,213" sap2010:WorkflowViewState.IdRef="Sequence_101">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <ui:ExcelApplicationScope Password="{x:Null}" CreateNewFile="False" DisplayName="Populate Master Log - Excel Application Scope" sap:VirtualizedContainerService.HintSize="434,542" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_6" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[in_strFolderPath+io_Config(&quot;DDI Log Path&quot;).ToString]">
-                                  <ui:ExcelApplicationScope.Body>
-                                    <ActivityAction x:TypeArguments="ui:WorkbookApplication">
-                                      <ActivityAction.Argument>
-                                        <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
-                                      </ActivityAction.Argument>
-                                      <Sequence DisplayName="Populate Master Log" sap:VirtualizedContainerService.HintSize="376,433" sap2010:WorkflowViewState.IdRef="Sequence_88">
-                                        <sap:WorkflowViewStateService.ViewState>
-                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                          </scg:Dictionary>
-                                        </sap:WorkflowViewStateService.ViewState>
-                                        <ui:ExcelAppendRange DataTable="[io_dtDogInformationPass]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_19" SheetName="Passed" />
-                                        <ui:ExcelAppendRange DataTable="[io_dtDogInformationSoftFail]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_20" SheetName="Soft Fail" />
-                                        <ui:ExcelAppendRange DataTable="[io_dtDogInformationHardFail]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_21" SheetName="Hard Fail" />
-                                      </Sequence>
-                                    </ActivityAction>
-                                  </ui:ExcelApplicationScope.Body>
-                                </ui:ExcelApplicationScope>
+                                <Assign DisplayName="Assign ShouldStop" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_162">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Object">[io_Config("ShouldStop")]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Object">[True]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Rethrow sap:VirtualizedContainerService.HintSize="262,22" sap2010:WorkflowViewState.IdRef="Rethrow_3" />
                               </Sequence>
-                              <Delay DisplayName=" Delay 2 seconds" Duration="00:00:02" sap:VirtualizedContainerService.HintSize="476,22" sap2010:WorkflowViewState.IdRef="Delay_3" />
-                              <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="476,134" sap2010:WorkflowViewState.IdRef="KillProcess_3" ProcessName="EXCEL" />
-                              <usal:UploadFile AttachmentsAction="{x:Null}" PropertiesToAdd="{x:Null}" RelativeUrlHintText="{x:Null}" AllowOperationsOnASPXFiles="False" AllowOverwrite="True" CheckInFileAfterCreation="False" CheckOutFileBeforeOverwrite="False" ChooseFile="True" DisplayName="Upload file" sap:VirtualizedContainerService.HintSize="476,104" sap2010:WorkflowViewState.IdRef="UploadFile_2" LocalPath="[in_strFolderPath+io_Config(&quot;DDI Log Path&quot;).ToString]" LocalPathHintText="The current local path of the file" RelativeUrl="[strDDILogSharepointFilepath]" ShowAttachFiles="False" ShowCAMLQuery="False" ShowCAMLWarning="False" ShowGroupDescription="False" ShowGroupName="False" ShowLibraryName="False" ShowListName="False" ShowLocalPath="True" ShowMove="False" ShowPermissionDropdown="False" ShowPropertiesDictionary="False" ShowRelativeUrl="True" ShowRename="False" ShowUserName="False" />
-                            </Sequence>
-                          </ActivityAction>
-                        </usa:SharepointApplicationScope.Body>
+                            </ActivityAction>
+                          </Catch>
+                        </TryCatch.Catches>
+                      </TryCatch>
+                    </If.Then>
+                  </If>
+                </TryCatch.Finally>
+              </TryCatch>
+            </Sequence>
+          </ui:InterruptibleDoWhile.Body>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </ui:InterruptibleDoWhile>
+        <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="1069,2522" sap2010:WorkflowViewState.IdRef="TryCatch_23">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <TryCatch.Try>
+            <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" UserName="{x:Null}" AzureAppPermissions="None" DisplayName="Sharepoint application scope" sap:VirtualizedContainerService.HintSize="1031,2290" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_1" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SharePointInstanceType="WebLogin" URL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
+              <usa:SharepointApplicationScope.Body>
+                <ActivityAction x:TypeArguments="us:SharePointContextInfo">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="us:SharePointContextInfo" Name="SharePointContextInfoTag" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="997,2148" sap2010:WorkflowViewState.IdRef="Sequence_158">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <usal:GetFile AttachmentsAction="{x:Null}" RelativeUrlHintText="{x:Null}" ChooseFile="False" DisplayName="Get Master Log" sap:VirtualizedContainerService.HintSize="955,104" sap2010:WorkflowViewState.IdRef="GetFile_1" LocalPath="[in_strFolderPath+io_Config(&quot;DDI Backup Log Path&quot;).ToString]" LocalPathHintText="Local path where the file will be saved" RelativeUrl="[strDDIBackupLogSharepointFilepath]" ShowAttachFiles="False" ShowCAMLQuery="False" ShowCAMLWarning="False" ShowGroupDescription="False" ShowGroupName="False" ShowLibraryName="False" ShowListName="False" ShowLocalPath="True" ShowMove="False" ShowPermissionDropdown="False" ShowPropertiesDictionary="False" ShowRelativeUrl="True" ShowRename="False" ShowUserName="False" />
+                    <Delay DisplayName=" Delay 2 seconds" Duration="00:00:02" sap:VirtualizedContainerService.HintSize="955,22" sap2010:WorkflowViewState.IdRef="Delay_2" />
+                    <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="955,134" sap2010:WorkflowViewState.IdRef="KillProcess_1" ProcessName="EXCEL" />
+                    <Sequence DisplayName="Populate Index" sap:VirtualizedContainerService.HintSize="955,1298" sap2010:WorkflowViewState.IdRef="Sequence_98">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If Condition="[CBool(io_Config(&quot;boolPausePoint2&quot;))]" DisplayName="Pause Point 2 Enabled?" sap:VirtualizedContainerService.HintSize="913,1206" sap2010:WorkflowViewState.IdRef="If_25">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                      </usa:SharepointApplicationScope>
+                        <If.Then>
+                          <ui:ExcelApplicationScope Password="{x:Null}" CreateNewFile="False" DisplayName="Populate Master Log - Excel Application Scope" sap:VirtualizedContainerService.HintSize="434,1046" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_7" InstanceCachePeriod="3000" WorkbookPath="[in_strFolderPath+io_Config(&quot;DDI Backup Log Path&quot;).ToString]">
+                            <ui:ExcelApplicationScope.Body>
+                              <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                                </ActivityAction.Argument>
+                                <Sequence DisplayName="Populate Master Log" sap:VirtualizedContainerService.HintSize="376,937" sap2010:WorkflowViewState.IdRef="Sequence_96">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ui:ExcelAppendRange DataTable="[io_dtDogInformationPass]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_9" SheetName="Passed" />
+                                  <ui:ExcelAppendRange DataTable="[io_dtDogInformationSoftFail]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_11" SheetName="Soft Fail" />
+                                  <ui:ExcelAppendRange DataTable="[io_dtDogInformationHardFail]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_12" SheetName="Hard Fail" />
+                                  <Sequence DisplayName="Present Pause Point" sap:VirtualizedContainerService.HintSize="334,464" sap2010:WorkflowViewState.IdRef="Sequence_95">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <InvokeMethod DisplayName="Stop Stopwatch" sap:VirtualizedContainerService.HintSize="238.5,135" sap2010:WorkflowViewState.IdRef="InvokeMethod_15" MethodName="Stop">
+                                      <InvokeMethod.TargetObject>
+                                        <InArgument x:TypeArguments="sd:Stopwatch">[io_swProcessingTimer]</InArgument>
+                                      </InvokeMethod.TargetObject>
+                                    </InvokeMethod>
+                                    <p:Generic_PopUp OUT_ProcessType="{x:Null}" OUT_strButtonSelected="{x:Null}" DisplayName="Pause Point 2" sap:VirtualizedContainerService.HintSize="238.5,22" IN_CSS_filepath="[&quot;/file://&quot; + Directory.GetCurrentDirectory + &quot;\Assets\Generic\YesNo.css&quot;]" IN_ErrorMessage="The stop button was pressed" IN_PopupMessage="&lt;h1&gt;Please Check Index Data&lt;/h1&gt;&lt;br&gt;Please check the data in the excel log to make sure it is all correct.&lt;br&gt;&lt;br&gt;" IN_PopupTitle="Pause Point 2" IN_WidthHeight="[{600,400}]" sap2010:WorkflowViewState.IdRef="Generic_PopUp_8" />
+                                    <InvokeMethod DisplayName="Start Stopwatch" sap:VirtualizedContainerService.HintSize="238.5,135" sap2010:WorkflowViewState.IdRef="InvokeMethod_16" MethodName="Start">
+                                      <InvokeMethod.TargetObject>
+                                        <InArgument x:TypeArguments="sd:Stopwatch">[io_swProcessingTimer]</InArgument>
+                                      </InvokeMethod.TargetObject>
+                                    </InvokeMethod>
+                                  </Sequence>
+                                </Sequence>
+                              </ActivityAction>
+                            </ui:ExcelApplicationScope.Body>
+                          </ui:ExcelApplicationScope>
+                        </If.Then>
+                        <If.Else>
+                          <ui:ExcelApplicationScope Password="{x:Null}" CreateNewFile="False" DisplayName="Populate Master Log - Excel Application Scope" sap:VirtualizedContainerService.HintSize="434,542" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_8" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[in_strFolderPath+io_Config(&quot;DDI Backup Log Path&quot;).ToString]">
+                            <ui:ExcelApplicationScope.Body>
+                              <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                                </ActivityAction.Argument>
+                                <Sequence DisplayName="Populate Master Log" sap:VirtualizedContainerService.HintSize="376,433" sap2010:WorkflowViewState.IdRef="Sequence_97">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ui:ExcelAppendRange DataTable="[io_dtDogInformationPass]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_13" SheetName="Passed" />
+                                  <ui:ExcelAppendRange DataTable="[io_dtDogInformationSoftFail]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_14" SheetName="Soft Fail" />
+                                  <ui:ExcelAppendRange DataTable="[io_dtDogInformationHardFail]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_15" SheetName="Hard Fail" />
+                                </Sequence>
+                              </ActivityAction>
+                            </ui:ExcelApplicationScope.Body>
+                          </ui:ExcelApplicationScope>
+                        </If.Else>
+                      </If>
+                    </Sequence>
+                    <Delay DisplayName=" Delay 2 seconds" Duration="00:00:02" sap:VirtualizedContainerService.HintSize="955,22" sap2010:WorkflowViewState.IdRef="Delay_4" />
+                    <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="955,134" sap2010:WorkflowViewState.IdRef="KillProcess_4" ProcessName="EXCEL" />
+                    <usal:UploadFile AttachmentsAction="{x:Null}" PropertiesToAdd="{x:Null}" RelativeUrlHintText="{x:Null}" AllowOperationsOnASPXFiles="False" AllowOverwrite="True" CheckInFileAfterCreation="False" CheckOutFileBeforeOverwrite="False" ChooseFile="True" DisplayName="Upload file" sap:VirtualizedContainerService.HintSize="955,102" sap2010:WorkflowViewState.IdRef="UploadFile_1" LocalPath="[in_strFolderPath+io_Config(&quot;DDI Backup Log Path&quot;).ToString]" LocalPathHintText="The current local path of the file" RelativeUrl="[strDDIBackupLogSharepointFilepath]" ShowAttachFiles="False" ShowCAMLQuery="False" ShowCAMLWarning="False" ShowGroupDescription="False" ShowGroupName="False" ShowLibraryName="False" ShowListName="False" ShowLocalPath="True" ShowMove="False" ShowPermissionDropdown="False" ShowPropertiesDictionary="False" ShowRelativeUrl="True" ShowRename="False" ShowUserName="False" />
+                  </Sequence>
+                </ActivityAction>
+              </usa:SharepointApplicationScope.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </usa:SharepointApplicationScope>
+          </TryCatch.Try>
+          <TryCatch.Catches>
+            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="1035,22" sap2010:WorkflowViewState.IdRef="Catch`1_23">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ActivityAction x:TypeArguments="s:Exception">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                </ActivityAction.Argument>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,378" sap2010:WorkflowViewState.IdRef="Sequence_428">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="KillProcess_6" ProcessName="EXCEL" />
+                  <su:Check_In_Sharepoint_File DisplayName="Check In Sharepoint File" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Check_In_Sharepoint_File_4" in_strAssetName="Backup Logs Checked Out" in_strSharepointFilePath="[strDDIBackupLogSharepointFilepath]" in_strSharepointLockFilePath="[in_strSharepointLockFilePath]" in_strSharepointURL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <su:Check_In_Sharepoint_File.in_credADCredentials>
+                      <InArgument x:TypeArguments="sn:NetworkCredential" />
+                    </su:Check_In_Sharepoint_File.in_credADCredentials>
+                  </su:Check_In_Sharepoint_File>
+                  <Assign DisplayName="Assign Exception" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_800">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="s:Exception">[exeException]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="s:Exception">[exception]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </ActivityAction>
+            </Catch>
+          </TryCatch.Catches>
+        </TryCatch>
+        <su:Check_In_Sharepoint_File DisplayName="Check In Sharepoint File" sap:VirtualizedContainerService.HintSize="1069,22" sap2010:WorkflowViewState.IdRef="Check_In_Sharepoint_File_3" in_strAssetName="Backup Logs Checked Out" in_strSharepointFilePath="[strDDIBackupLogSharepointFilepath]" in_strSharepointLockFilePath="[in_strSharepointLockFilePath]" in_strSharepointURL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <su:Check_In_Sharepoint_File.in_credADCredentials>
+            <InArgument x:TypeArguments="sn:NetworkCredential" />
+          </su:Check_In_Sharepoint_File.in_credADCredentials>
+        </su:Check_In_Sharepoint_File>
+        <ui:DeleteFileX DisplayName="Delete Excel Spreadsheet" sap:VirtualizedContainerService.HintSize="1069,80" sap2010:WorkflowViewState.IdRef="DeleteFileX_4" Path="[in_strFolderPath+io_Config(&quot;DDI Backup Log Path&quot;).ToString]" />
+      </Sequence>
+      <FlowStep.Next>
+        <FlowStep x:Name="__ReferenceID0">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:Point x:Key="ShapeLocation">200,481.5</av:Point>
+              <av:Size x:Key="ShapeSize">200,68</av:Size>
+              <av:PointCollection x:Key="ConnectorLocation">300,549.5 300,599.5</av:PointCollection>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Sequence DisplayName="Check out Main Index" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_94">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" Condition="[exeException isNot Nothing]" DisplayName="Check Out Master Index - Do While" sap:VirtualizedContainerService.HintSize="668,1632" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_2">
+              <ui:InterruptibleDoWhile.Body>
+                <Sequence DisplayName="Check Out Master Log or Present User Assistance Form" sap:VirtualizedContainerService.HintSize="632,1465" sap2010:WorkflowViewState.IdRef="Sequence_93">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Delay DisplayName=" Delay 5 seconds" Duration="00:00:05" sap:VirtualizedContainerService.HintSize="590,22" sap2010:WorkflowViewState.IdRef="Delay_8" />
+                  <Assign DisplayName="Reset Exception" sap:VirtualizedContainerService.HintSize="590,60" sap2010:WorkflowViewState.IdRef="Assign_157">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="s:Exception">[exeException]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="s:Exception">[Nothing]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign DisplayName="Assign  Sharepoint Filepath" sap:VirtualizedContainerService.HintSize="590,60" sap2010:WorkflowViewState.IdRef="Assign_164">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[strDDILogSharepointFilepath]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[io_Config("Log Sharepoint Filepath").ToString]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <TryCatch DisplayName="Try Check Out Master Log" sap:VirtualizedContainerService.HintSize="590,1111" sap2010:WorkflowViewState.IdRef="TryCatch_4">
+                    <TryCatch.Try>
+                      <Sequence DisplayName="Handle Stopwatch &amp; Check Out File" sap:VirtualizedContainerService.HintSize="280.5,464" sap2010:WorkflowViewState.IdRef="Sequence_90">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <InvokeMethod DisplayName="Stop Stopwatch" sap:VirtualizedContainerService.HintSize="238.5,135" sap2010:WorkflowViewState.IdRef="InvokeMethod_13" MethodName="Stop">
+                          <InvokeMethod.TargetObject>
+                            <InArgument x:TypeArguments="sd:Stopwatch">[io_swProcessingTimer]</InArgument>
+                          </InvokeMethod.TargetObject>
+                        </InvokeMethod>
+                        <su:Check_Out_Sharepoint_File DisplayName="Check Out Sharepoint File" sap:VirtualizedContainerService.HintSize="238.5,22" sap2010:WorkflowViewState.IdRef="Check_Out_Sharepoint_File_4" in_intNumRetries="12" in_strAssetName="Logs Checked Out" in_strSharepointFilePath="[strDDILogSharepointFilepath]" in_strSharepointLockFilePath="[in_strSharepointLockFilePath]" in_strSharepointURL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <su:Check_Out_Sharepoint_File.in_credADCredentials>
+                            <InArgument x:TypeArguments="sn:NetworkCredential" />
+                          </su:Check_Out_Sharepoint_File.in_credADCredentials>
+                        </su:Check_Out_Sharepoint_File>
+                        <InvokeMethod DisplayName="Start Stopwatch" sap:VirtualizedContainerService.HintSize="238.5,135" sap2010:WorkflowViewState.IdRef="InvokeMethod_14" MethodName="Start">
+                          <InvokeMethod.TargetObject>
+                            <InArgument x:TypeArguments="sd:Stopwatch">[io_swProcessingTimer]</InArgument>
+                          </InvokeMethod.TargetObject>
+                        </InvokeMethod>
+                      </Sequence>
                     </TryCatch.Try>
                     <TryCatch.Catches>
-                      <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="556,22" sap2010:WorkflowViewState.IdRef="Catch`1_24">
+                      <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="556,22" sap2010:WorkflowViewState.IdRef="Catch`1_3">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -827,24 +661,13 @@
                           <ActivityAction.Argument>
                             <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                           </ActivityAction.Argument>
-                          <Sequence DisplayName="Capture Exception" sap:VirtualizedContainerService.HintSize="376,388" sap2010:WorkflowViewState.IdRef="Sequence_429">
+                          <Sequence DisplayName="Capture Exception" sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_91">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="KillProcess_7" ProcessName="EXCEL" />
-                            <su:Check_In_Sharepoint_File DisplayName="Check In Sharepoint File" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Check_In_Sharepoint_File_5" in_strAssetName="Logs Checked Out" in_strSharepointFilePath="[strDDILogSharepointFilepath]" in_strSharepointLockFilePath="[in_strSharepointLockFilePath]" in_strSharepointURL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                              <su:Check_In_Sharepoint_File.in_credADCredentials>
-                                <InArgument x:TypeArguments="sn:NetworkCredential" />
-                              </su:Check_In_Sharepoint_File.in_credADCredentials>
-                            </su:Check_In_Sharepoint_File>
-                            <Assign DisplayName="Assign Exception" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_801">
+                            <Assign DisplayName="Assign Exception" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_158">
                               <Assign.To>
                                 <OutArgument x:TypeArguments="s:Exception">[exeException]</OutArgument>
                               </Assign.To>
@@ -856,22 +679,189 @@
                         </ActivityAction>
                       </Catch>
                     </TryCatch.Catches>
+                    <TryCatch.Finally>
+                      <If Condition="[exeException isNot Nothing]" DisplayName="Encountered Exception?" sap:VirtualizedContainerService.HintSize="552,879" sap2010:WorkflowViewState.IdRef="If_24">
+                        <If.Then>
+                          <TryCatch DisplayName="Request User Intervention" sap:VirtualizedContainerService.HintSize="516,690" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+                            <TryCatch.Try>
+                              <Sequence sap:VirtualizedContainerService.HintSize="478,458" sap2010:WorkflowViewState.IdRef="Sequence_463">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,192" sap2010:WorkflowViewState.IdRef="CommentOut_16">
+                                  <ui:CommentOut.Body>
+                                    <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_467">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <p:Generic_PopUp OUT_ProcessType="{x:Null}" OUT_strButtonSelected="{x:Null}" DisplayName="User Assistance Form" sap:VirtualizedContainerService.HintSize="200,22" IN_CSS_filepath="[&quot;/file://&quot; + Directory.GetCurrentDirectory + &quot;\Assets\Generic\InitialisationException.css&quot;]" IN_ErrorMessage="File checkout loop aborted by user" IN_PopupMessage="[&quot;&lt;h1&gt;User assistance required&lt;/h1&gt;&lt;P&gt; I've encountered a problem checking out the file: '&quot;+strDDILogSharepointFilepath+&quot;'&lt;/P&gt;&lt;P&gt; Exception message: &quot;+exeException.Message+&quot;&lt;/P&gt;&lt;P&gt;Please attempt to manually rectify the issue and click Continue for the robot to retry.&lt;/P&gt;&lt;BR&gt;&quot;]" IN_PopupTitle="Department for Environment, Food and Rural Affairs" IN_WidthHeight="[{500,500}]" sap2010:WorkflowViewState.IdRef="Generic_PopUp_7" />
+                                    </Sequence>
+                                  </ui:CommentOut.Body>
+                                </ui:CommentOut>
+                                <ui:SetAsset TimeoutMS="{x:Null}" AssetName="Logs Checked Out" DisplayName="Set Asset" sap:VirtualizedContainerService.HintSize="436,134" sap2010:WorkflowViewState.IdRef="SetAsset_19" Value="[&quot;None&quot;]" />
+                              </Sequence>
+                            </TryCatch.Try>
+                            <TryCatch.Catches>
+                              <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="482,22" sap2010:WorkflowViewState.IdRef="Catch`1_4">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ActivityAction x:TypeArguments="ui:BusinessRuleException">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="exception" />
+                                  </ActivityAction.Argument>
+                                  <Sequence DisplayName="Assign ShouldStop &amp; Rethrow" sap:VirtualizedContainerService.HintSize="304,213" sap2010:WorkflowViewState.IdRef="Sequence_92">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <Assign DisplayName="Assign ShouldStop" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_159">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:Object">[io_Config("ShouldStop")]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:Object">[True]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <Rethrow sap:VirtualizedContainerService.HintSize="262,22" sap2010:WorkflowViewState.IdRef="Rethrow_2" />
+                                  </Sequence>
+                                </ActivityAction>
+                              </Catch>
+                            </TryCatch.Catches>
+                          </TryCatch>
+                        </If.Then>
+                      </If>
+                    </TryCatch.Finally>
                   </TryCatch>
-                  <su:Check_In_Sharepoint_File DisplayName="Check In Sharepoint File" sap:VirtualizedContainerService.HintSize="590,22" sap2010:WorkflowViewState.IdRef="Check_In_Sharepoint_File_2" in_strAssetName="Logs Checked Out" in_strSharepointFilePath="[strDDILogSharepointFilepath]" in_strSharepointLockFilePath="[in_strSharepointLockFilePath]" in_strSharepointURL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                    <su:Check_In_Sharepoint_File.in_credADCredentials>
-                      <InArgument x:TypeArguments="sn:NetworkCredential" />
-                    </su:Check_In_Sharepoint_File.in_credADCredentials>
-                  </su:Check_In_Sharepoint_File>
-                  <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="590,80" sap2010:WorkflowViewState.IdRef="DeleteFileX_5" Path="[in_strFolderPath+io_Config(&quot;DDI Log Path&quot;).ToString]" />
                 </Sequence>
-              </Sequence>
-            </ui:CommentOut.Body>
-          </ui:CommentOut>
+              </ui:InterruptibleDoWhile.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:InterruptibleDoWhile>
+            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="668,1860" sap2010:WorkflowViewState.IdRef="TryCatch_24">
+              <TryCatch.Try>
+                <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" UserName="{x:Null}" AzureAppPermissions="None" DisplayName="Sharepoint application scope" sap:VirtualizedContainerService.HintSize="552,1628" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_2" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SharePointInstanceType="WebLogin" URL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
+                  <usa:SharepointApplicationScope.Body>
+                    <ActivityAction x:TypeArguments="us:SharePointContextInfo">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="us:SharePointContextInfo" Name="SharePointContextInfoTag" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="518,1486" sap2010:WorkflowViewState.IdRef="Sequence_159">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <usal:GetFile AttachmentsAction="{x:Null}" RelativeUrlHintText="{x:Null}" ChooseFile="False" DisplayName="Get Master Log" sap:VirtualizedContainerService.HintSize="476,104" sap2010:WorkflowViewState.IdRef="GetFile_2" LocalPath="[in_strFolderPath+io_Config(&quot;DDI Log Path&quot;).ToString]" LocalPathHintText="Local path where the file will be saved" RelativeUrl="[strDDILogSharepointFilepath]" ShowAttachFiles="False" ShowCAMLQuery="False" ShowCAMLWarning="False" ShowGroupDescription="False" ShowGroupName="False" ShowLibraryName="False" ShowListName="False" ShowLocalPath="True" ShowMove="False" ShowPermissionDropdown="False" ShowPropertiesDictionary="False" ShowRelativeUrl="True" ShowRename="False" ShowUserName="False" />
+                        <Delay DisplayName=" Delay 2 seconds" Duration="00:00:02" sap:VirtualizedContainerService.HintSize="476,22" sap2010:WorkflowViewState.IdRef="Delay_1" />
+                        <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="476,134" sap2010:WorkflowViewState.IdRef="KillProcess_2" ProcessName="EXCEL" />
+                        <Sequence DisplayName="Populate Index" sap:VirtualizedContainerService.HintSize="476,634" sap2010:WorkflowViewState.IdRef="Sequence_89">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:ExcelApplicationScope Password="{x:Null}" CreateNewFile="False" DisplayName="Populate Master Log - Excel Application Scope" sap:VirtualizedContainerService.HintSize="434,542" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_6" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[in_strFolderPath+io_Config(&quot;DDI Log Path&quot;).ToString]">
+                            <ui:ExcelApplicationScope.Body>
+                              <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                                </ActivityAction.Argument>
+                                <Sequence DisplayName="Populate Master Log" sap:VirtualizedContainerService.HintSize="376,433" sap2010:WorkflowViewState.IdRef="Sequence_88">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ui:ExcelAppendRange DataTable="[io_dtDogInformationPass]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_19" SheetName="Passed" />
+                                  <ui:ExcelAppendRange DataTable="[io_dtDogInformationSoftFail]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_20" SheetName="Soft Fail" />
+                                  <ui:ExcelAppendRange DataTable="[io_dtDogInformationHardFail]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_21" SheetName="Hard Fail" />
+                                </Sequence>
+                              </ActivityAction>
+                            </ui:ExcelApplicationScope.Body>
+                          </ui:ExcelApplicationScope>
+                        </Sequence>
+                        <Delay DisplayName=" Delay 2 seconds" Duration="00:00:02" sap:VirtualizedContainerService.HintSize="476,22" sap2010:WorkflowViewState.IdRef="Delay_3" />
+                        <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="476,134" sap2010:WorkflowViewState.IdRef="KillProcess_3" ProcessName="EXCEL" />
+                        <usal:UploadFile AttachmentsAction="{x:Null}" PropertiesToAdd="{x:Null}" RelativeUrlHintText="{x:Null}" AllowOperationsOnASPXFiles="False" AllowOverwrite="True" CheckInFileAfterCreation="False" CheckOutFileBeforeOverwrite="False" ChooseFile="True" DisplayName="Upload file" sap:VirtualizedContainerService.HintSize="476,104" sap2010:WorkflowViewState.IdRef="UploadFile_2" LocalPath="[in_strFolderPath+io_Config(&quot;DDI Log Path&quot;).ToString]" LocalPathHintText="The current local path of the file" RelativeUrl="[strDDILogSharepointFilepath]" ShowAttachFiles="False" ShowCAMLQuery="False" ShowCAMLWarning="False" ShowGroupDescription="False" ShowGroupName="False" ShowLibraryName="False" ShowListName="False" ShowLocalPath="True" ShowMove="False" ShowPermissionDropdown="False" ShowPropertiesDictionary="False" ShowRelativeUrl="True" ShowRename="False" ShowUserName="False" />
+                      </Sequence>
+                    </ActivityAction>
+                  </usa:SharepointApplicationScope.Body>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </usa:SharepointApplicationScope>
+              </TryCatch.Try>
+              <TryCatch.Catches>
+                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="556,22" sap2010:WorkflowViewState.IdRef="Catch`1_24">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ActivityAction x:TypeArguments="s:Exception">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Capture Exception" sap:VirtualizedContainerService.HintSize="376,388" sap2010:WorkflowViewState.IdRef="Sequence_429">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="KillProcess_7" ProcessName="EXCEL" />
+                      <su:Check_In_Sharepoint_File DisplayName="Check In Sharepoint File" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Check_In_Sharepoint_File_5" in_strAssetName="Logs Checked Out" in_strSharepointFilePath="[strDDILogSharepointFilepath]" in_strSharepointLockFilePath="[in_strSharepointLockFilePath]" in_strSharepointURL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <su:Check_In_Sharepoint_File.in_credADCredentials>
+                          <InArgument x:TypeArguments="sn:NetworkCredential" />
+                        </su:Check_In_Sharepoint_File.in_credADCredentials>
+                      </su:Check_In_Sharepoint_File>
+                      <Assign DisplayName="Assign Exception" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_801">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="s:Exception">[exeException]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="s:Exception">[exception]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </Sequence>
+                  </ActivityAction>
+                </Catch>
+              </TryCatch.Catches>
+            </TryCatch>
+            <su:Check_In_Sharepoint_File DisplayName="Check In Sharepoint File" sap:VirtualizedContainerService.HintSize="590,22" sap2010:WorkflowViewState.IdRef="Check_In_Sharepoint_File_2" in_strAssetName="Logs Checked Out" in_strSharepointFilePath="[strDDILogSharepointFilepath]" in_strSharepointLockFilePath="[in_strSharepointLockFilePath]" in_strSharepointURL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <su:Check_In_Sharepoint_File.in_credADCredentials>
+                <InArgument x:TypeArguments="sn:NetworkCredential" />
+              </su:Check_In_Sharepoint_File.in_credADCredentials>
+            </su:Check_In_Sharepoint_File>
+            <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="590,80" sap2010:WorkflowViewState.IdRef="DeleteFileX_5" Path="[in_strFolderPath+io_Config(&quot;DDI Log Path&quot;).ToString]" />
+          </Sequence>
           <FlowStep.Next>
             <FlowStep x:Name="__ReferenceID2">
               <sap:WorkflowViewStateService.ViewState>
@@ -881,323 +871,324 @@
                   <av:PointCollection x:Key="ConnectorLocation">300,651.5 300,701.5</av:PointCollection>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:CommentOut sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="CommentOut_20">
-                <ui:CommentOut.Body>
-                  <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_472">
-                    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[io_dtDogInformationPass]" DisplayName="For Each Row Pass DataTable" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="ForEachRow_5">
-                      <ui:ForEachRow.Body>
-                        <ActivityAction x:TypeArguments="sd1:DataRow">
-                          <ActivityAction.Argument>
-                            <DelegateInArgument x:TypeArguments="sd1:DataRow" Name="CurrentRow" />
-                          </ActivityAction.Argument>
-                          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="686,6609" sap2010:WorkflowViewState.IdRef="Sequence_333">
-                            <Sequence.Variables>
-                              <Variable x:TypeArguments="x:Int32" Name="intFolderNumber" />
-                              <Variable x:TypeArguments="x:String" Name="strMainFolder" />
-                            </Sequence.Variables>
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <Sequence DisplayName="Draft Certificate" sap:VirtualizedContainerService.HintSize="644,3587" sap2010:WorkflowViewState.IdRef="Sequence_332">
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                              <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process - Word" sap:VirtualizedContainerService.HintSize="602,134" sap2010:WorkflowViewState.IdRef="KillProcess_5" ProcessName="WINWORD" />
-                              <ui:CopyFile ContinueOnError="{x:Null}" Destination="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" DisplayName="Copy Cert to make a Draft" sap:VirtualizedContainerService.HintSize="602,160" sap2010:WorkflowViewState.IdRef="CopyFile_5" Overwrite="True" Path="[in_strFolderPath + io_Config(&quot;Cert Location&quot;).ToString]">
-                                <sap:WorkflowViewStateService.ViewState>
-                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                  </scg:Dictionary>
-                                </sap:WorkflowViewStateService.ViewState>
-                              </ui:CopyFile>
-                              <Sequence DisplayName="Reaplace text in Cert" sap:VirtualizedContainerService.HintSize="602,3121" sap2010:WorkflowViewState.IdRef="Sequence_331">
-                                <Sequence.Variables>
-                                  <Variable x:TypeArguments="x:Int32" Name="intIndexNumber" />
-                                </Sequence.Variables>
-                                <sap:WorkflowViewStateService.ViewState>
-                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                  </scg:Dictionary>
-                                </sap:WorkflowViewStateService.ViewState>
-                                <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Owner Name" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="560,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_53" Replace="[CurrentRow(1).ToString + &quot; &quot; + CurrentRow(2).ToString.Trim]" Search="Owner Name" />
-                                <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Address Line 1 " FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="560,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_54" Replace="[CurrentRow(3).ToString.Trim]" Search="Address line 1" />
-                                <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Address Line 2" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="560,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_55" Replace="[CurrentRow(4).ToString.Trim]" Search="Address line 2" />
-                                <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Address Line 3" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="560,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_56" Replace="[CurrentRow(5).ToString.Trim]" Search="Address line 3" />
-                                <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Postcode" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="560,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_57" Replace="[CurrentRow(8).ToString.Trim]" Search="Postcode" />
-                                <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Index Registration Number" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="560,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_58" Replace="[CurrentRow(23).ToString.Trim]" Search="Index registration number" />
-                                <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Microchip No" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="560,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_59" Replace="[CurrentRow(20).ToString.Trim]" Search="Microchip No" />
-                                <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Dog Name" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="560,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_60" Replace="[CurrentRow(12).ToString.Trim]" Search="Dog Name" />
-                                <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Type of Dog" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="560,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_61" Replace="XL Bully" Search="Type of dog" />
-                                <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Sex of Dog" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="560,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_62" Replace="[CurrentRow(15).ToString]" Search="Sex of dog" />
-                                <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Date of birth of dog" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="560,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_63" Replace="[CurrentRow(13).ToString]" Search="Date of birth of dog" />
-                                <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Main colour of dog&quot;" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="560,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_64" Replace="[CurrentRow(14).ToString]" Search="Main colour of dog" />
-                                <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Date" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="560,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_65" Replace="[Today.ToString(&quot;dd MMMM yyyy&quot;)]" Search="Enter date" />
-                                <Delay DisplayName="Delay 2 secs" Duration="00:00:02" sap:VirtualizedContainerService.HintSize="560,22" sap2010:WorkflowViewState.IdRef="Delay_6" />
-                                <p1:WordApplicationScope DisplayName="Word Application Scope" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="560,1251" sap2010:WorkflowViewState.IdRef="WordApplicationScope_5">
-                                  <p1:WordApplicationScope.Body>
-                                    <ActivityAction x:TypeArguments="ui:WordDocument">
-                                      <ActivityAction.Argument>
-                                        <DelegateInArgument x:TypeArguments="ui:WordDocument" Name="WordDocumentScope" />
-                                      </ActivityAction.Argument>
-                                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="526,1142" sap2010:WorkflowViewState.IdRef="Sequence_330">
-                                        <Sequence.Variables>
-                                          <Variable x:TypeArguments="x:String" Name="strButtonSelected" />
-                                        </Sequence.Variables>
+              <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[io_dtDogInformationPass]" DisplayName="For Each Row Pass DataTable" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="ForEachRow_5">
+                <ui:ForEachRow.Body>
+                  <ActivityAction x:TypeArguments="sd1:DataRow">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="sd1:DataRow" Name="CurrentRow" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="686,6604" sap2010:WorkflowViewState.IdRef="Sequence_333">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="x:Int32" Name="intFolderNumber" />
+                        <Variable x:TypeArguments="x:String" Name="strMainFolder" />
+                      </Sequence.Variables>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Sequence DisplayName="Draft Certificate" sap:VirtualizedContainerService.HintSize="644,3582" sap2010:WorkflowViewState.IdRef="Sequence_332">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process - Word" sap:VirtualizedContainerService.HintSize="602,134" sap2010:WorkflowViewState.IdRef="KillProcess_5" ProcessName="WINWORD" />
+                        <ui:CopyFile ContinueOnError="{x:Null}" Destination="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" DisplayName="Copy Cert to make a Draft" sap:VirtualizedContainerService.HintSize="602,155" sap2010:WorkflowViewState.IdRef="CopyFile_5" Overwrite="True" Path="[in_strFolderPath + io_Config(&quot;Cert Location&quot;).ToString]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:CopyFile>
+                        <Sequence DisplayName="Reaplace text in Cert" sap:VirtualizedContainerService.HintSize="602,3121" sap2010:WorkflowViewState.IdRef="Sequence_331">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="x:Int32" Name="intIndexNumber" />
+                          </Sequence.Variables>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Owner Name" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="560,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_53" Replace="[CurrentRow(1).ToString + &quot; &quot; + CurrentRow(2).ToString.Trim]" Search="Owner Name" />
+                          <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Address Line 1 " FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="560,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_54" Replace="[CurrentRow(3).ToString.Trim]" Search="Address line 1" />
+                          <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Address Line 2" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="560,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_55" Replace="[CurrentRow(4).ToString.Trim]" Search="Address line 2" />
+                          <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Address Line 3" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="560,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_56" Replace="[CurrentRow(5).ToString.Trim]" Search="Address line 3" />
+                          <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Postcode" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="560,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_57" Replace="[CurrentRow(8).ToString.Trim]" Search="Postcode" />
+                          <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Index Registration Number" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="560,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_58" Replace="[CurrentRow(23).ToString.Trim]" Search="Index registration number" />
+                          <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Microchip No" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="560,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_59" Replace="[CurrentRow(20).ToString.Trim]" Search="Microchip No" />
+                          <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Dog Name" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="560,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_60" Replace="[CurrentRow(12).ToString.Trim]" Search="Dog Name" />
+                          <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Type of Dog" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="560,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_61" Replace="XL Bully" Search="Type of dog" />
+                          <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Sex of Dog" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="560,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_62" Replace="[CurrentRow(15).ToString]" Search="Sex of dog" />
+                          <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Date of birth of dog" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="560,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_63" Replace="[CurrentRow(13).ToString]" Search="Date of birth of dog" />
+                          <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Main colour of dog&quot;" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="560,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_64" Replace="[CurrentRow(14).ToString]" Search="Main colour of dog" />
+                          <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Date" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="560,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_65" Replace="[Today.ToString(&quot;dd MMMM yyyy&quot;)]" Search="Enter date" />
+                          <Delay DisplayName="Delay 2 secs" Duration="00:00:02" sap:VirtualizedContainerService.HintSize="560,22" sap2010:WorkflowViewState.IdRef="Delay_6" />
+                          <p1:WordApplicationScope DisplayName="Word Application Scope" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="560,1251" sap2010:WorkflowViewState.IdRef="WordApplicationScope_5">
+                            <p1:WordApplicationScope.Body>
+                              <ActivityAction x:TypeArguments="ui:WordDocument">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="ui:WordDocument" Name="WordDocumentScope" />
+                                </ActivityAction.Argument>
+                                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="526,1142" sap2010:WorkflowViewState.IdRef="Sequence_330">
+                                  <Sequence.Variables>
+                                    <Variable x:TypeArguments="x:String" Name="strButtonSelected" />
+                                  </Sequence.Variables>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <If Condition="[CBool(io_Config(&quot;boolPausePoint3&quot;))]" sap:VirtualizedContainerService.HintSize="484,653" sap2010:WorkflowViewState.IdRef="If_82">
+                                    <If.Then>
+                                      <Sequence sap:VirtualizedContainerService.HintSize="280.5,464" sap2010:WorkflowViewState.IdRef="Sequence_329">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                           </scg:Dictionary>
                                         </sap:WorkflowViewStateService.ViewState>
-                                        <If Condition="[CBool(io_Config(&quot;boolPausePoint3&quot;))]" sap:VirtualizedContainerService.HintSize="484,653" sap2010:WorkflowViewState.IdRef="If_82">
-                                          <If.Then>
-                                            <Sequence sap:VirtualizedContainerService.HintSize="280.5,464" sap2010:WorkflowViewState.IdRef="Sequence_329">
-                                              <sap:WorkflowViewStateService.ViewState>
-                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                </scg:Dictionary>
-                                              </sap:WorkflowViewStateService.ViewState>
-                                              <InvokeMethod DisplayName="Stop Stopwatch" sap:VirtualizedContainerService.HintSize="238.5,135" sap2010:WorkflowViewState.IdRef="InvokeMethod_35" MethodName="Stop">
-                                                <InvokeMethod.TargetObject>
-                                                  <InArgument x:TypeArguments="sd:Stopwatch">[io_swProcessingTimer]</InArgument>
-                                                </InvokeMethod.TargetObject>
-                                              </InvokeMethod>
-                                              <p:Generic_PopUp OUT_ProcessType="{x:Null}" DisplayName="Generic PopUp" sap:VirtualizedContainerService.HintSize="238.5,22" IN_CSS_filepath="[&quot;/file://&quot; + Directory.GetCurrentDirectory + &quot;\Assets\Generic\YesNo.css&quot;]" IN_ErrorMessage="Please check the form has been drafted correctly" IN_PopupMessage="&lt;h1&gt;Draft XL Exemption Cert complete&lt;/h1&gt;&lt;P&gt;The Draft Cert has now been drafted. Please check that everything have populated correctly. Once you are happy please click ok to continue.&lt;/P&gt;&lt;BR&gt;" IN_PopupTitle="Department for Environment, Food and Rural Affairs" IN_WidthHeight="[{800,450}]" sap2010:WorkflowViewState.IdRef="Generic_PopUp_17" OUT_strButtonSelected="[strButtonSelected]">
-                                                <sap:WorkflowViewStateService.ViewState>
-                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                  </scg:Dictionary>
-                                                </sap:WorkflowViewStateService.ViewState>
-                                              </p:Generic_PopUp>
-                                              <InvokeMethod DisplayName="Start Stopwatch" sap:VirtualizedContainerService.HintSize="238.5,135" sap2010:WorkflowViewState.IdRef="InvokeMethod_36" MethodName="Start">
-                                                <InvokeMethod.TargetObject>
-                                                  <InArgument x:TypeArguments="sd:Stopwatch">[io_swProcessingTimer]</InArgument>
-                                                </InvokeMethod.TargetObject>
-                                              </InvokeMethod>
-                                            </Sequence>
-                                          </If.Then>
-                                        </If>
-                                        <Delay DisplayName="Delay 2 secs" Duration="00:00:02" sap:VirtualizedContainerService.HintSize="484,22" sap2010:WorkflowViewState.IdRef="Delay_7" />
-                                        <p1:WordExportToPdf DisplayName="Save Document as PDF" FilePath="[in_strFolderPath + io_Config(&quot;PDF Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="484,111" sap2010:WorkflowViewState.IdRef="WordExportToPdf_6" />
-                                        <ui:RenameFileX DisplayName="Rename Cert" FilePath="[in_strFolderPath + io_Config(&quot;PDF Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="484,144" sap2010:WorkflowViewState.IdRef="RenameFileX_1" KeepExtension="True" NewName="[in_strFolderPath + &quot;\DEFRA-Dangerous-Dogs-Index\&quot; + CurrentRow(23).ToString + &quot; - &quot; + CurrentRow(12).ToString + &quot; - Certificate of Exemption XL Bully.pdf&quot;]" />
-                                      </Sequence>
-                                    </ActivityAction>
-                                  </p1:WordApplicationScope.Body>
-                                  <sap:WorkflowViewStateService.ViewState>
-                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                    </scg:Dictionary>
-                                  </sap:WorkflowViewStateService.ViewState>
-                                </p1:WordApplicationScope>
-                              </Sequence>
-                            </Sequence>
-                            <Assign sap:VirtualizedContainerService.HintSize="644,60" sap2010:WorkflowViewState.IdRef="Assign_736">
-                              <Assign.To>
-                                <OutArgument x:TypeArguments="x:Int32">[intFolderNumber]</OutArgument>
-                              </Assign.To>
-                              <Assign.Value>
-                                <InArgument x:TypeArguments="x:Int32">[CInt(CurrentRow(23).ToString) - 1]</InArgument>
-                              </Assign.Value>
-                            </Assign>
-                            <If Condition="[intFolderNumber mod 500 = 0]" sap:VirtualizedContainerService.HintSize="644,516" sap2010:WorkflowViewState.IdRef="If_92">
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                              <If.Then>
-                                <Sequence sap:VirtualizedContainerService.HintSize="326,326" sap2010:WorkflowViewState.IdRef="Sequence_381">
-                                  <sap:WorkflowViewStateService.ViewState>
-                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                    </scg:Dictionary>
-                                  </sap:WorkflowViewStateService.ViewState>
-                                  <Assign sap:VirtualizedContainerService.HintSize="284,60" sap2010:WorkflowViewState.IdRef="Assign_738">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="x:Object">[io_Config("Parent Cert Folder")]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="x:Object">[currentrow(23).tostring + " - " + (CInt(currentrow(23)) + 499).ToString]</InArgument>
-                                    </Assign.Value>
-                                  </Assign>
-                                  <ui:SetAsset TimeoutMS="{x:Null}" AssetName="Parent Cert Folder" DisplayName="Set Asset" sap:VirtualizedContainerService.HintSize="284,134" sap2010:WorkflowViewState.IdRef="SetAsset_16" Value="[io_Config(&quot;Parent Cert Folder&quot;)]" />
-                                </Sequence>
-                              </If.Then>
-                            </If>
-                            <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" UserName="{x:Null}" AzureAppPermissions="None" DisplayName="Sharepoint application scope" sap:VirtualizedContainerService.HintSize="644,748" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_5" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SharePointInstanceType="WebLogin" URL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
-                              <usa:SharepointApplicationScope.Body>
-                                <ActivityAction x:TypeArguments="us:SharePointContextInfo">
-                                  <ActivityAction.Argument>
-                                    <DelegateInArgument x:TypeArguments="us:SharePointContextInfo" Name="SharePointContextInfoTag" />
-                                  </ActivityAction.Argument>
-                                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,606" sap2010:WorkflowViewState.IdRef="Sequence_373">
-                                    <sap:WorkflowViewStateService.ViewState>
-                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                      </scg:Dictionary>
-                                    </sap:WorkflowViewStateService.ViewState>
-                                    <usal:CreateFolder AttachmentsAction="{x:Null}" LocalPathHintText="{x:Null}" RelativeUrlHintText="{x:Null}" ChooseFile="False" DisplayName="Create folder" sap:VirtualizedContainerService.HintSize="334,104" sap2010:WorkflowViewState.IdRef="CreateFolder_8" LibraryName="DD INDEX FILES" RelativeUrl="[io_Config(&quot;Parent Cert Folder&quot;).ToString + &quot;/&quot; + CurrentRow(23).ToString + &quot; - &quot; + CurrentRow(12).ToString + &quot; - &quot; + CurrentRow(1).ToString + &quot; &quot; + CurrentRow(2).ToString]" ShowAttachFiles="False" ShowCAMLQuery="False" ShowCAMLWarning="False" ShowGroupDescription="False" ShowGroupName="False" ShowLibraryName="True" ShowListName="False" ShowLocalPath="False" ShowMove="False" ShowPermissionDropdown="False" ShowPropertiesDictionary="False" ShowRelativeUrl="True" ShowRename="False" ShowUserName="False" />
-                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,93" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[io_Config(&quot;Main Cert Folder&quot;).ToString + &quot;/&quot; + io_Config(&quot;Parent Cert Folder&quot;).ToString + &quot;/&quot; + CurrentRow(23).ToString + &quot; - &quot; + CurrentRow(12).ToString + &quot; - &quot; + CurrentRow(1).ToString + &quot; &quot; + CurrentRow(2).ToString]" />
-                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,93" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[in_strFolderPath + &quot;\DEFRA-Dangerous-Dogs-Index\&quot; + CurrentRow(23).ToString + &quot; - &quot; + CurrentRow(12).ToString + &quot; - Certificate of Exemption XL Bully.pdf&quot;]" />
-                                    <usal:UploadFile AttachmentsAction="{x:Null}" PropertiesToAdd="{x:Null}" RelativeUrlHintText="{x:Null}" AllowOperationsOnASPXFiles="False" AllowOverwrite="True" CheckInFileAfterCreation="False" CheckOutFileBeforeOverwrite="False" ChooseFile="True" DisplayName="Upload file" sap:VirtualizedContainerService.HintSize="334,104" sap2010:WorkflowViewState.IdRef="UploadFile_5" LocalPath="[in_strFolderPath + &quot;\DEFRA-Dangerous-Dogs-Index\&quot; + CurrentRow(23).ToString + &quot; - &quot; + CurrentRow(12).ToString + &quot; - Certificate of Exemption XL Bully.pdf&quot;]" LocalPathHintText="The current local path of the file" RelativeUrl="[io_Config(&quot;Main Cert Folder&quot;).ToString + &quot;/&quot; + io_Config(&quot;Parent Cert Folder&quot;).ToString + &quot;/&quot; + CurrentRow(23).ToString + &quot; - &quot; + CurrentRow(12).ToString + &quot; - &quot; + CurrentRow(1).ToString + &quot; &quot; + CurrentRow(2).ToString]" ShowAttachFiles="False" ShowCAMLQuery="False" ShowCAMLWarning="False" ShowGroupDescription="False" ShowGroupName="False" ShowLibraryName="False" ShowListName="False" ShowLocalPath="True" ShowMove="False" ShowPermissionDropdown="False" ShowPropertiesDictionary="False" ShowRelativeUrl="True" ShowRename="False" ShowUserName="False" />
-                                  </Sequence>
-                                </ActivityAction>
-                              </usa:SharepointApplicationScope.Body>
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                            </usa:SharepointApplicationScope>
-                            <Sequence DisplayName="Draft Email" sap:VirtualizedContainerService.HintSize="644,1446" sap2010:WorkflowViewState.IdRef="Sequence_359">
-                              <Sequence.Variables>
-                                <Variable x:TypeArguments="x:String" Name="EmailText" />
-                                <Variable x:TypeArguments="snm:MailMessage" Name="mailMessage" />
-                                <Variable x:TypeArguments="snm:MailAddress" Name="sentOnBehalfOfAddress" />
-                                <Variable x:TypeArguments="x:String" Name="strSentOnBehalfOf" />
-                              </Sequence.Variables>
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                              <Assign sap:VirtualizedContainerService.HintSize="516,64" sap2010:WorkflowViewState.IdRef="Assign_729">
-                                <Assign.To>
-                                  <OutArgument x:TypeArguments="x:String">[EmailText]</OutArgument>
-                                </Assign.To>
-                                <Assign.Value>
-                                  <InArgument x:TypeArguments="x:String" xml:space="preserve">["&lt;p&gt;Dear " + CurrentRow(1).ToString + " " + CurrentRow(2).ToString + ",&lt;/p&gt;" +
-"&lt;p&gt;Re: Certificate of Exemption for " + CurrentRow(12).ToString + ", Index Number: " + CurrentRow(23).ToString + "&lt;/p&gt;" +
-"&lt;p&gt;Thank you for completing your application for a Certificate of Exemption. Your application has been successful, please find attached your Certificate of Exemption.&lt;/p&gt;"+
-"&lt;p&gt;It is important that you read and understand the following:&lt;/p&gt;"+
-"&lt;ul&gt;"+
-  "&lt;li&gt; The Certificate of Exemption will only be valid provided you comply with the Certificate of Exemption requirements which are found on page 2 of the Certificate.  These requirements are set out in article 7 of The Dangerous Dogs (Compensation and Exemption Schemes) (England and Wales) Order 2023.&lt;/li&gt;"+
-  "&lt;li&gt; If you fail to comply with the Certificate of Exemption requirements the prohibited dog will no longer be exempt.  The dog may be seized by the police, and you may be prosecuted for an offence under the Dangerous Dogs Act 1991.  A court may also order the dog to be destroyed.&lt;/li&gt;"+
-"&lt;/ul&gt;"+
-"&lt;p&gt;We advise that you keep your Certificate of Exemption safe as it is a certificate for life, and you may be required to produce it to a police officer or other authorised person.  We will only issue a new certificate if yours is lost or if you change your name or address.  Please inform the Index team if you have lost your certificate or need to request a change. &lt;/p&gt;"+
-"&lt;p&gt;If you change your address, you must contact the Index team immediately as this is a requirement of the Certificate of Exemption. We will send you a change of address form for you to complete and return to us.&lt;/p&gt;"+
-"&lt;p&gt;You must also let the Index team know if your dog dies. We will send you a form for you to complete and return to us. We require these forms to update our records. &lt;/p&gt;"+
-"&lt;p&gt;If you wish to have your Certificate of Exemption withdrawn in the future, because you are sure that the dog is not in scope of the official definition of an XL Bully published on gov.uk, please contact the Dogs Index team who will guide you through the process.&lt;/p&gt;"+
-"&lt;p&gt;Should you need further advice or guidance please contact the Index team on &lt;a href='mailto:dogsindex@defra.gov.uk'&gt;dogsindex@defra.gov.uk&lt;/a&gt;.&lt;/p&gt;"+
-"&lt;p&gt;Yours sincerely,&lt;/p&gt;"+
-"&lt;p&gt;Index Team&lt;/p&gt;"]</InArgument>
-                                </Assign.Value>
-                              </Assign>
-                              <Assign sap:VirtualizedContainerService.HintSize="516,60" sap2010:WorkflowViewState.IdRef="Assign_730">
-                                <Assign.To>
-                                  <OutArgument x:TypeArguments="snm:MailMessage">[mailMessage]</OutArgument>
-                                </Assign.To>
-                                <Assign.Value>
-                                  <InArgument x:TypeArguments="snm:MailMessage">[New System.Net.Mail.MailMessage()]</InArgument>
-                                </Assign.Value>
-                              </Assign>
-                              <Assign sap:VirtualizedContainerService.HintSize="516,60" sap2010:WorkflowViewState.IdRef="Assign_731">
-                                <Assign.To>
-                                  <OutArgument x:TypeArguments="snm:MailAddress">[sentOnBehalfOfAddress]</OutArgument>
-                                </Assign.To>
-                                <Assign.Value>
-                                  <InArgument x:TypeArguments="snm:MailAddress">[New System.Net.Mail.MailAddress("AWDDI@defra.gov.uk", "XL Bully Exemption Scheme")]</InArgument>
-                                </Assign.Value>
-                              </Assign>
-                              <Assign sap:VirtualizedContainerService.HintSize="516,60" sap2010:WorkflowViewState.IdRef="Assign_732">
-                                <Assign.To>
-                                  <OutArgument x:TypeArguments="x:String">[strSentOnBehalfOf]</OutArgument>
-                                </Assign.To>
-                                <Assign.Value>
-                                  <InArgument x:TypeArguments="x:String">[sentOnBehalfOfAddress.ToString]</InArgument>
-                                </Assign.Value>
-                              </Assign>
-                              <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="516,950" sap2010:WorkflowViewState.IdRef="TryCatch_22">
-                                <TryCatch.Try>
-                                  <Sequence sap:VirtualizedContainerService.HintSize="478,718" sap2010:WorkflowViewState.IdRef="Sequence_427">
-                                    <sap:WorkflowViewStateService.ViewState>
-                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                      </scg:Dictionary>
-                                    </sap:WorkflowViewStateService.ViewState>
-                                    <ui:CommentOut DisplayName="Comment Out - Test" sap:VirtualizedContainerService.HintSize="436,317" sap2010:WorkflowViewState.IdRef="CommentOut_9">
-                                      <ui:CommentOut.Body>
-                                        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,239" sap2010:WorkflowViewState.IdRef="Sequence_458">
+                                        <InvokeMethod DisplayName="Stop Stopwatch" sap:VirtualizedContainerService.HintSize="238.5,135" sap2010:WorkflowViewState.IdRef="InvokeMethod_35" MethodName="Stop">
+                                          <InvokeMethod.TargetObject>
+                                            <InArgument x:TypeArguments="sd:Stopwatch">[io_swProcessingTimer]</InArgument>
+                                          </InvokeMethod.TargetObject>
+                                        </InvokeMethod>
+                                        <p:Generic_PopUp OUT_ProcessType="{x:Null}" DisplayName="Generic PopUp" sap:VirtualizedContainerService.HintSize="238.5,22" IN_CSS_filepath="[&quot;/file://&quot; + Directory.GetCurrentDirectory + &quot;\Assets\Generic\YesNo.css&quot;]" IN_ErrorMessage="Please check the form has been drafted correctly" IN_PopupMessage="&lt;h1&gt;Draft XL Exemption Cert complete&lt;/h1&gt;&lt;P&gt;The Draft Cert has now been drafted. Please check that everything have populated correctly. Once you are happy please click ok to continue.&lt;/P&gt;&lt;BR&gt;" IN_PopupTitle="Department for Environment, Food and Rural Affairs" IN_WidthHeight="[{800,450}]" sap2010:WorkflowViewState.IdRef="Generic_PopUp_17" OUT_strButtonSelected="[strButtonSelected]">
                                           <sap:WorkflowViewStateService.ViewState>
                                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                             </scg:Dictionary>
                                           </sap:WorkflowViewStateService.ViewState>
-                                          <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Account="[io_Config(&quot;AccountName&quot;).ToString]" Body="[EmailText]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="334,147" sap2010:WorkflowViewState.IdRef="SendOutlookMail_10" Importance="Normal" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" SentOnBehalfOfName="[strSentOnBehalfOf]" Subject="Apply for a Certificate of Exemption to keep an XL Bully dog" To="Richard.Jones@defra.gov.uk">
-                                            <ui:SendOutlookMail.Files>
-                                              <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
-                                                <InArgument x:TypeArguments="x:String">[in_strFolderPath + "\DEFRA-Dangerous-Dogs-Index\" + CurrentRow(23).ToString + " - " + CurrentRow(12).ToString + " - Certificate of Exemption XL Bully.pdf"]</InArgument>
-                                              </scg:List>
-                                            </ui:SendOutlookMail.Files>
-                                          </ui:SendOutlookMail>
-                                        </Sequence>
-                                      </ui:CommentOut.Body>
-                                    </ui:CommentOut>
-                                    <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Account="[io_Config(&quot;AccountName&quot;).ToString]" Body="[EmailText]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="436,149" sap2010:WorkflowViewState.IdRef="SendOutlookMail_6" Importance="Normal" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" SentOnBehalfOfName="[strSentOnBehalfOf]" Subject="Apply for a Certificate of Exemption to keep an XL Bully dog" To="[CurrentRow(11).ToString]">
+                                        </p:Generic_PopUp>
+                                        <InvokeMethod DisplayName="Start Stopwatch" sap:VirtualizedContainerService.HintSize="238.5,135" sap2010:WorkflowViewState.IdRef="InvokeMethod_36" MethodName="Start">
+                                          <InvokeMethod.TargetObject>
+                                            <InArgument x:TypeArguments="sd:Stopwatch">[io_swProcessingTimer]</InArgument>
+                                          </InvokeMethod.TargetObject>
+                                        </InvokeMethod>
+                                      </Sequence>
+                                    </If.Then>
+                                  </If>
+                                  <Delay DisplayName="Delay 2 secs" Duration="00:00:02" sap:VirtualizedContainerService.HintSize="484,22" sap2010:WorkflowViewState.IdRef="Delay_7" />
+                                  <p1:WordExportToPdf DisplayName="Save Document as PDF" FilePath="[in_strFolderPath + io_Config(&quot;PDF Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="484,111" sap2010:WorkflowViewState.IdRef="WordExportToPdf_6" />
+                                  <ui:RenameFileX DisplayName="Rename Cert" FilePath="[in_strFolderPath + io_Config(&quot;PDF Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="484,144" sap2010:WorkflowViewState.IdRef="RenameFileX_1" KeepExtension="True" NewName="[in_strFolderPath + &quot;\DEFRA-Dangerous-Dogs-Index\&quot; + CurrentRow(23).ToString + &quot; - &quot; + CurrentRow(12).ToString + &quot; - Certificate of Exemption XL Bully.pdf&quot;]" />
+                                </Sequence>
+                              </ActivityAction>
+                            </p1:WordApplicationScope.Body>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </p1:WordApplicationScope>
+                        </Sequence>
+                      </Sequence>
+                      <Assign sap:VirtualizedContainerService.HintSize="644,60" sap2010:WorkflowViewState.IdRef="Assign_736">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Int32">[intFolderNumber]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Int32">[CInt(CurrentRow(23).ToString) - 1]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <If Condition="[intFolderNumber mod 500 = 0]" sap:VirtualizedContainerService.HintSize="644,516" sap2010:WorkflowViewState.IdRef="If_92">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <If.Then>
+                          <Sequence sap:VirtualizedContainerService.HintSize="326,326" sap2010:WorkflowViewState.IdRef="Sequence_381">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign sap:VirtualizedContainerService.HintSize="284,60" sap2010:WorkflowViewState.IdRef="Assign_738">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Object">[io_Config("Parent Cert Folder")]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Object">[currentrow(23).tostring + " - " + (CInt(currentrow(23)) + 499).ToString]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <ui:SetAsset TimeoutMS="{x:Null}" AssetName="Parent Cert Folder" DisplayName="Set Asset" sap:VirtualizedContainerService.HintSize="284,134" sap2010:WorkflowViewState.IdRef="SetAsset_16" Value="[io_Config(&quot;Parent Cert Folder&quot;)]" />
+                          </Sequence>
+                        </If.Then>
+                      </If>
+                      <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" UserName="{x:Null}" AzureAppPermissions="None" DisplayName="Sharepoint application scope" sap:VirtualizedContainerService.HintSize="644,748" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_5" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SharePointInstanceType="WebLogin" URL="[io_Config(&quot;Sharepoint URL&quot;).ToString]">
+                        <usa:SharepointApplicationScope.Body>
+                          <ActivityAction x:TypeArguments="us:SharePointContextInfo">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="us:SharePointContextInfo" Name="SharePointContextInfoTag" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,606" sap2010:WorkflowViewState.IdRef="Sequence_373">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <usal:CreateFolder AttachmentsAction="{x:Null}" LocalPathHintText="{x:Null}" RelativeUrlHintText="{x:Null}" ChooseFile="False" DisplayName="Create folder" sap:VirtualizedContainerService.HintSize="334,104" sap2010:WorkflowViewState.IdRef="CreateFolder_8" LibraryName="DD INDEX FILES" RelativeUrl="[io_Config(&quot;Parent Cert Folder&quot;).ToString + &quot;/&quot; + CurrentRow(23).ToString + &quot; - &quot; + CurrentRow(12).ToString + &quot; - &quot; + CurrentRow(1).ToString + &quot; &quot; + CurrentRow(2).ToString]" ShowAttachFiles="False" ShowCAMLQuery="False" ShowCAMLWarning="False" ShowGroupDescription="False" ShowGroupName="False" ShowLibraryName="True" ShowListName="False" ShowLocalPath="False" ShowMove="False" ShowPermissionDropdown="False" ShowPropertiesDictionary="False" ShowRelativeUrl="True" ShowRename="False" ShowUserName="False" />
+                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,93" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[io_Config(&quot;Main Cert Folder&quot;).ToString + &quot;/&quot; + io_Config(&quot;Parent Cert Folder&quot;).ToString + &quot;/&quot; + CurrentRow(23).ToString + &quot; - &quot; + CurrentRow(12).ToString + &quot; - &quot; + CurrentRow(1).ToString + &quot; &quot; + CurrentRow(2).ToString]" />
+                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,93" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[in_strFolderPath + &quot;\DEFRA-Dangerous-Dogs-Index\&quot; + CurrentRow(23).ToString + &quot; - &quot; + CurrentRow(12).ToString + &quot; - Certificate of Exemption XL Bully.pdf&quot;]" />
+                              <usal:UploadFile AttachmentsAction="{x:Null}" PropertiesToAdd="{x:Null}" RelativeUrlHintText="{x:Null}" AllowOperationsOnASPXFiles="False" AllowOverwrite="True" CheckInFileAfterCreation="False" CheckOutFileBeforeOverwrite="False" ChooseFile="True" DisplayName="Upload file" sap:VirtualizedContainerService.HintSize="334,104" sap2010:WorkflowViewState.IdRef="UploadFile_5" LocalPath="[in_strFolderPath + &quot;\DEFRA-Dangerous-Dogs-Index\&quot; + CurrentRow(23).ToString + &quot; - &quot; + CurrentRow(12).ToString + &quot; - Certificate of Exemption XL Bully.pdf&quot;]" LocalPathHintText="The current local path of the file" RelativeUrl="[io_Config(&quot;Main Cert Folder&quot;).ToString + &quot;/&quot; + io_Config(&quot;Parent Cert Folder&quot;).ToString + &quot;/&quot; + CurrentRow(23).ToString + &quot; - &quot; + CurrentRow(12).ToString + &quot; - &quot; + CurrentRow(1).ToString + &quot; &quot; + CurrentRow(2).ToString]" ShowAttachFiles="False" ShowCAMLQuery="False" ShowCAMLWarning="False" ShowGroupDescription="False" ShowGroupName="False" ShowLibraryName="False" ShowListName="False" ShowLocalPath="True" ShowMove="False" ShowPermissionDropdown="False" ShowPropertiesDictionary="False" ShowRelativeUrl="True" ShowRename="False" ShowUserName="False" />
+                            </Sequence>
+                          </ActivityAction>
+                        </usa:SharepointApplicationScope.Body>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </usa:SharepointApplicationScope>
+                      <Sequence DisplayName="Draft Email" sap:VirtualizedContainerService.HintSize="644,1446" sap2010:WorkflowViewState.IdRef="Sequence_359">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="x:String" Name="EmailText" />
+                          <Variable x:TypeArguments="snm:MailMessage" Name="mailMessage" />
+                          <Variable x:TypeArguments="snm:MailAddress" Name="sentOnBehalfOfAddress" />
+                          <Variable x:TypeArguments="x:String" Name="strSentOnBehalfOf" />
+                        </Sequence.Variables>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign sap:VirtualizedContainerService.HintSize="516,64" sap2010:WorkflowViewState.IdRef="Assign_729">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[EmailText]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String" xml:space="preserve">["&lt;p&gt;Dear " + CurrentRow(1).ToString + " " + CurrentRow(2).ToString + ",&lt;/p&gt;" +
+"&lt;p&gt;Re: Certificate of Exemption for " + CurrentRow(12).ToString + ", Index Number: " + CurrentRow(23).ToString + "&lt;/p&gt;" +
+"&lt;p&gt;Thank you for completing your application for a Certificate of Exemption. Your application has been successful; please find attached your Certificate of Exemption.&lt;/p&gt;" +
+"&lt;p&gt;It is important that you read and understand the following:&lt;/p&gt;" +
+"&lt;ul&gt;" +
+"  &lt;li&gt;From 31st December 2023, it is against the law to:&lt;/li&gt;" +
+"  &lt;ul&gt;" +
+"    &lt;li&gt;Have an XL Bully in public without a lead and muzzle&lt;/li&gt;" +
+"    &lt;li&gt;Sell an XL Bully dog&lt;/li&gt;" +
+"    &lt;li&gt;Abandon an XL Bully dog or let it stray&lt;/li&gt;" +
+"    &lt;li&gt;Give away an XL Bully dog&lt;/li&gt;" +
+"    &lt;li&gt;Breed from an XL Bully dog&lt;/li&gt;" +
+"  &lt;/ul&gt;" +
+"  &lt;li&gt;From the 1st February 2024, the Certificate of Exemption remains valid provided you comply with the Certificate of Exemption requirements, which are found on page 2 of the Certificate. These requirements are required to be included in the Certificate under article 7 of The Dangerous Dogs (Compensation and Exemption Schemes) (England and Wales) Order 2023.&lt;/li&gt;" +
+"  &lt;li&gt;If you fail to comply with the Certificate of Exemption requirements, the prohibited dog will no longer be exempt from the prohibition in section 1(3) of the Dangerous Dogs Act 1991. The dog may be seized by the police, and you may be prosecuted for an offence under the Dangerous Dogs Act 1991. A court may also order the dog to be destroyed.&lt;/li&gt;" +
+"&lt;/ul&gt;" +
+"&lt;p&gt;We advise that you keep your Certificate of Exemption safe as it is a certificate for life, and you may be required to produce it to a police officer or other authorised person. We will only issue a new certificate if yours is lost or if you change your name or address. Please inform the Index team if you have lost your certificate or need to request a change.&lt;/p&gt;" +
+"&lt;p&gt;If you change your address, you must contact the Index team immediately, as this is a requirement of the Certificate of Exemption. We will send you a change of address form for you to complete and return to us.&lt;/p&gt;" +
+"&lt;p&gt;You must also let the Index team know if your dog dies. We will send you a form for you to complete and return to us. We require these forms to update our records.&lt;/p&gt;" +
+"&lt;p&gt;If you wish to have your Certificate of Exemption withdrawn in the future, because you are later satisfied that your dog is not in scope of the official definition of an XL Bully published on gov.uk, please contact the Dogs Index team who will guide you through the process.&lt;/p&gt;" +
+"&lt;p&gt;Should you need further advice or guidance, please contact the Index team on &lt;a href='mailto:dogsindex@defra.gov.uk'&gt;dogsindex@defra.gov.uk&lt;/a&gt;.&lt;/p&gt;" +
+"&lt;p&gt;Yours sincerely,&lt;br&gt;Index Team&lt;/p&gt;"]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap:VirtualizedContainerService.HintSize="516,60" sap2010:WorkflowViewState.IdRef="Assign_730">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="snm:MailMessage">[mailMessage]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="snm:MailMessage">[New System.Net.Mail.MailMessage()]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap:VirtualizedContainerService.HintSize="516,60" sap2010:WorkflowViewState.IdRef="Assign_731">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="snm:MailAddress">[sentOnBehalfOfAddress]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="snm:MailAddress">[New System.Net.Mail.MailAddress("AWDDI@defra.gov.uk", "XL Bully Exemption Scheme")]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap:VirtualizedContainerService.HintSize="516,60" sap2010:WorkflowViewState.IdRef="Assign_732">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[strSentOnBehalfOf]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[sentOnBehalfOfAddress.ToString]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="516,950" sap2010:WorkflowViewState.IdRef="TryCatch_22">
+                          <TryCatch.Try>
+                            <Sequence sap:VirtualizedContainerService.HintSize="478,718" sap2010:WorkflowViewState.IdRef="Sequence_427">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:CommentOut DisplayName="Comment Out - Test" sap:VirtualizedContainerService.HintSize="436,317" sap2010:WorkflowViewState.IdRef="CommentOut_9">
+                                <ui:CommentOut.Body>
+                                  <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,239" sap2010:WorkflowViewState.IdRef="Sequence_458">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Account="[io_Config(&quot;AccountName&quot;).ToString]" Body="[EmailText]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="334,147" sap2010:WorkflowViewState.IdRef="SendOutlookMail_10" Importance="Normal" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" SentOnBehalfOfName="[strSentOnBehalfOf]" Subject="Apply for a Certificate of Exemption to keep an XL Bully dog" To="Richard.Jones@defra.gov.uk">
                                       <ui:SendOutlookMail.Files>
                                         <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
                                           <InArgument x:TypeArguments="x:String">[in_strFolderPath + "\DEFRA-Dangerous-Dogs-Index\" + CurrentRow(23).ToString + " - " + CurrentRow(12).ToString + " - Certificate of Exemption XL Bully.pdf"]</InArgument>
                                         </scg:List>
                                       </ui:SendOutlookMail.Files>
                                     </ui:SendOutlookMail>
-                                    <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="436,80" sap2010:WorkflowViewState.IdRef="DeleteFileX_3" Path="[in_strFolderPath + &quot;\DEFRA-Dangerous-Dogs-Index\&quot; + CurrentRow(23).ToString + &quot; - &quot; + CurrentRow(12).ToString + &quot; - Certificate of Exemption XL Bully.pdf&quot;]" />
                                   </Sequence>
-                                </TryCatch.Try>
-                                <TryCatch.Catches>
-                                  <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="482,22" sap2010:WorkflowViewState.IdRef="Catch`1_22">
-                                    <sap:WorkflowViewStateService.ViewState>
-                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                      </scg:Dictionary>
-                                    </sap:WorkflowViewStateService.ViewState>
-                                    <ActivityAction x:TypeArguments="s:Exception">
-                                      <ActivityAction.Argument>
-                                        <DelegateInArgument x:TypeArguments="s:Exception" Name="Nothing" />
-                                      </ActivityAction.Argument>
-                                      <Sequence sap:VirtualizedContainerService.HintSize="426,423" sap2010:WorkflowViewState.IdRef="Sequence_426">
-                                        <sap:WorkflowViewStateService.ViewState>
-                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                          </scg:Dictionary>
-                                        </sap:WorkflowViewStateService.ViewState>
-                                        <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Account="[io_Config(&quot;AccountName&quot;).ToString]" Body="[EmailText]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="384,149" sap2010:WorkflowViewState.IdRef="SendOutlookMail_8" Importance="Normal" IsBodyHtml="True" IsDraft="True" Sensitivity="Normal" SentOnBehalfOfName="[strSentOnBehalfOf]" Subject="Apply for a Certificate of Exemption to keep an XL Bully dog" To="[CurrentRow(11).ToString]">
-                                          <ui:SendOutlookMail.Files>
-                                            <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
-                                              <InArgument x:TypeArguments="x:String">[in_strFolderPath + "\DEFRA-Dangerous-Dogs-Index\" + CurrentRow(23).ToString + " - " + CurrentRow(12).ToString + " - Certificate of Exemption XL Bully.pdf"]</InArgument>
-                                            </scg:List>
-                                          </ui:SendOutlookMail.Files>
-                                        </ui:SendOutlookMail>
-                                        <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="384,80" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[in_strFolderPath + &quot;\DEFRA-Dangerous-Dogs-Index\&quot; + CurrentRow(23).ToString + &quot; - &quot; + CurrentRow(12).ToString + &quot; - Certificate of Exemption XL Bully.pdf&quot;]" />
-                                        <Throw Exception="[new BusinessRuleException (&quot;Issue sending email. Please check drafts&quot;)]" sap:VirtualizedContainerService.HintSize="384,22" sap2010:WorkflowViewState.IdRef="Throw_3" />
-                                      </Sequence>
-                                    </ActivityAction>
-                                  </Catch>
-                                </TryCatch.Catches>
-                              </TryCatch>
+                                </ui:CommentOut.Body>
+                              </ui:CommentOut>
+                              <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Account="[io_Config(&quot;AccountName&quot;).ToString]" Body="[EmailText]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="436,149" sap2010:WorkflowViewState.IdRef="SendOutlookMail_6" Importance="Normal" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" SentOnBehalfOfName="[strSentOnBehalfOf]" Subject="Apply for a Certificate of Exemption to keep an XL Bully dog" To="[CurrentRow(11).ToString]">
+                                <ui:SendOutlookMail.Files>
+                                  <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                                    <InArgument x:TypeArguments="x:String">[in_strFolderPath + "\DEFRA-Dangerous-Dogs-Index\" + CurrentRow(23).ToString + " - " + CurrentRow(12).ToString + " - Certificate of Exemption XL Bully.pdf"]</InArgument>
+                                  </scg:List>
+                                </ui:SendOutlookMail.Files>
+                              </ui:SendOutlookMail>
+                              <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="436,80" sap2010:WorkflowViewState.IdRef="DeleteFileX_3" Path="[in_strFolderPath + &quot;\DEFRA-Dangerous-Dogs-Index\&quot; + CurrentRow(23).ToString + &quot; - &quot; + CurrentRow(12).ToString + &quot; - Certificate of Exemption XL Bully.pdf&quot;]" />
                             </Sequence>
-                          </Sequence>
-                        </ActivityAction>
-                      </ui:ForEachRow.Body>
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                    </ui:ForEachRow>
-                  </Sequence>
-                </ui:CommentOut.Body>
-              </ui:CommentOut>
+                          </TryCatch.Try>
+                          <TryCatch.Catches>
+                            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="482,22" sap2010:WorkflowViewState.IdRef="Catch`1_22">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ActivityAction x:TypeArguments="s:Exception">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="s:Exception" Name="Nothing" />
+                                </ActivityAction.Argument>
+                                <Sequence sap:VirtualizedContainerService.HintSize="426,423" sap2010:WorkflowViewState.IdRef="Sequence_426">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Account="[io_Config(&quot;AccountName&quot;).ToString]" Body="[EmailText]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="384,149" sap2010:WorkflowViewState.IdRef="SendOutlookMail_8" Importance="Normal" IsBodyHtml="True" IsDraft="True" Sensitivity="Normal" SentOnBehalfOfName="[strSentOnBehalfOf]" Subject="Apply for a Certificate of Exemption to keep an XL Bully dog" To="[CurrentRow(11).ToString]">
+                                    <ui:SendOutlookMail.Files>
+                                      <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                                        <InArgument x:TypeArguments="x:String">[in_strFolderPath + "\DEFRA-Dangerous-Dogs-Index\" + CurrentRow(23).ToString + " - " + CurrentRow(12).ToString + " - Certificate of Exemption XL Bully.pdf"]</InArgument>
+                                      </scg:List>
+                                    </ui:SendOutlookMail.Files>
+                                  </ui:SendOutlookMail>
+                                  <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="384,80" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[in_strFolderPath + &quot;\DEFRA-Dangerous-Dogs-Index\&quot; + CurrentRow(23).ToString + &quot; - &quot; + CurrentRow(12).ToString + &quot; - Certificate of Exemption XL Bully.pdf&quot;]" />
+                                  <Throw Exception="[new BusinessRuleException (&quot;Issue sending email. Please check drafts&quot;)]" sap:VirtualizedContainerService.HintSize="384,22" sap2010:WorkflowViewState.IdRef="Throw_3" />
+                                </Sequence>
+                              </ActivityAction>
+                            </Catch>
+                          </TryCatch.Catches>
+                        </TryCatch>
+                      </Sequence>
+                    </Sequence>
+                  </ActivityAction>
+                </ui:ForEachRow.Body>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:ForEachRow>
               <FlowStep.Next>
                 <FlowStep x:Name="__ReferenceID3">
                   <sap:WorkflowViewStateService.ViewState>
@@ -1206,20 +1197,20 @@
                       <av:Size x:Key="ShapeSize">200,52</av:Size>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[io_dtDogInformationHardFail]" DisplayName="For Each Row Hard Fail DataTable" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="ForEachRow_6">
+                  <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[io_dtDogInformationHardFail]" DisplayName="For Each Row Hard Fail DataTable" sap:VirtualizedContainerService.HintSize="636,3238" sap2010:WorkflowViewState.IdRef="ForEachRow_6">
                     <ui:ForEachRow.Body>
                       <ActivityAction x:TypeArguments="sd1:DataRow">
                         <ActivityAction.Argument>
                           <DelegateInArgument x:TypeArguments="sd1:DataRow" Name="CurrentRow" />
                         </ActivityAction.Argument>
-                        <Sequence sap:VirtualizedContainerService.HintSize="602,3127" sap2010:WorkflowViewState.IdRef="Sequence_433">
+                        <Sequence sap:VirtualizedContainerService.HintSize="602,3122" sap2010:WorkflowViewState.IdRef="Sequence_433">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               <x:Boolean x:Key="IsPinned">False</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[in_dtSwearWords]" DisplayName="Check whether email is abusive " sap:VirtualizedContainerService.HintSize="560,563" sap2010:WorkflowViewState.IdRef="ForEachRow_11">
+                          <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[in_dtSwearWords]" DisplayName="Check whether email is abusive " sap:VirtualizedContainerService.HintSize="560,558" sap2010:WorkflowViewState.IdRef="ForEachRow_11">
                             <ui:ForEachRow.Body>
                               <ActivityAction x:TypeArguments="sd1:DataRow">
                                 <ActivityAction.Argument>
@@ -1358,6 +1349,7 @@
                                       <InArgument x:TypeArguments="x:String" xml:space="preserve">[EmailBody + "&lt;p&gt;You can re-apply for a Certificate of Exemption before the closing date of midday on 31 January 2024.&lt;/p&gt;" +
                       "&lt;p&gt;From 1 February 2024, it will be a criminal offence to own an XL Bully dog in England and Wales unless you have a Certificate of Exemption for your dog. Find out how to prepare for the ban on XL Bully dogs.&lt;/p&gt;" +
                       "&lt;p&gt;Please do not reply to this email. This response has been automatically generated, and the inbox is not monitored.&lt;/p&gt;" +
+					  "&lt;p&gt;For any queries in relation to your application, please contact &lt;a href='mailto:dogsindex@defra.gov.uk'&gt;dogsindex@defra.gov.uk&lt;/a&gt;.&lt;/p&gt;" +
                       "&lt;p&gt;Regards,&lt;br&gt;Index Team&lt;/p&gt;"]</InArgument>
                                     </ui:AssignOperation.Value>
                                   </ui:AssignOperation>

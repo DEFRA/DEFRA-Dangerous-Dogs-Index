@@ -14,10 +14,10 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>838,1135.5</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1108,1135.5</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Process_Transaction_2_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="98">
+    <scg:List x:TypeArguments="x:String" Capacity="50">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -1550,7 +1550,7 @@
           <av:PointCollection x:Key="ConnectorLocation">300,195.5 300,245.5</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Sequence DisplayName="Draft Certificate" sap:VirtualizedContainerService.HintSize="1081,5224" sap2010:WorkflowViewState.IdRef="Sequence_9">
+      <Sequence DisplayName="Draft Certificate" sap:VirtualizedContainerService.HintSize="1081,5684" sap2010:WorkflowViewState.IdRef="Sequence_9">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -1566,10 +1566,13 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </ui:CopyFile>
-        <Sequence DisplayName="Darft new Certificate" sap:VirtualizedContainerService.HintSize="1039,4758" sap2010:WorkflowViewState.IdRef="Sequence_8">
+        <Sequence DisplayName="Darft new Certificate" sap:VirtualizedContainerService.HintSize="1039,5218" sap2010:WorkflowViewState.IdRef="Sequence_8">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Name="strDogDoB" />
             <Variable x:TypeArguments="s:DateTime" Name="dateDogDoB" />
+            <Variable x:TypeArguments="s:DateTime" Name="targetDate" />
+            <Variable x:TypeArguments="s:DateTime" Name="currentDate" />
+            <Variable x:TypeArguments="x:Int32" Name="comparrisonDate" />
           </Sequence.Variables>
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1737,7 +1740,38 @@
           </TryCatch>
           <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="997,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_11" Replace="[strDogDoB]" Search="Date of birth of dog" />
           <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="997,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_12" Replace="[in_TransactionItem(&quot;DogColour&quot;).ToString]" Search="Main colour of dog" />
-          <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="997,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_13" Replace="[Today.ToString(&quot;dd MMMM yyyy&quot;)]" Search="Enter date" />
+          <Assign DisplayName="Assign Target Date" sap:VirtualizedContainerService.HintSize="997,60" sap2010:WorkflowViewState.IdRef="Assign_41">
+            <Assign.To>
+              <OutArgument x:TypeArguments="s:DateTime">[targetDate]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="s:DateTime">[DateTime.ParseExact("31/01/2024", "dd/MM/yyyy", CultureInfo.InvariantCulture)]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign DisplayName="Assign Current Date" sap:VirtualizedContainerService.HintSize="997,60" sap2010:WorkflowViewState.IdRef="Assign_42">
+            <Assign.To>
+              <OutArgument x:TypeArguments="s:DateTime">[currentDate]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="s:DateTime">[Today]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign DisplayName="Assign Comparison Date" sap:VirtualizedContainerService.HintSize="997,60" sap2010:WorkflowViewState.IdRef="Assign_43">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Int32">[comparrisonDate]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Int32">[DateTime.Compare(currentDate, targetDate)]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <If Condition="[comparrisonDate &gt; 0]" DisplayName="Check if the current date is past the target date" sap:VirtualizedContainerService.HintSize="997,252" sap2010:WorkflowViewState.IdRef="If_15">
+            <If.Then>
+              <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Date" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="434,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_18" Replace="31 January 2024" Search="Enter date" />
+            </If.Then>
+            <If.Else>
+              <p1:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Date" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="434,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_19" Replace="[Today.ToString(&quot;dd MMMM yyyy&quot;)]" Search="Enter date" />
+            </If.Else>
+          </If>
           <Delay DisplayName="Delay 2 secs" Duration="00:00:02" sap:VirtualizedContainerService.HintSize="997,22" sap2010:WorkflowViewState.IdRef="Delay_1" />
           <p1:WordApplicationScope DisplayName="Word Application Scope" FilePath="[in_strFolderPath + io_Config(&quot;Draft Cert Location&quot;).ToString]" sap:VirtualizedContainerService.HintSize="997,1067" sap2010:WorkflowViewState.IdRef="WordApplicationScope_1">
             <p1:WordApplicationScope.Body>

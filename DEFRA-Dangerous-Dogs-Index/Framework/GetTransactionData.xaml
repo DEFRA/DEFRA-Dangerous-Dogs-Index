@@ -89,7 +89,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:GetOutlookMailMessages FilterByMessageIds="{x:Null}" TimeoutMS="{x:Null}" Account="[in_Config(&quot;AccountName&quot;).ToString]" DisplayName="Get &quot;To Process&quot; Email" Filter="[Subject] = 'Form submission: Apply for a Certificate of Exemption to keep an XL Bully dog'" GetAttachements="False" sap:VirtualizedContainerService.HintSize="918,22" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_1" MailFolder="[in_Config(&quot;ToProcess&quot;).ToString]" MarkAsRead="False" Messages="[listMailMessages]" OnlyUnreadMessages="False" OrderByDate="OldestFirst" Top="2" />
+    <ui:GetOutlookMailMessages FilterByMessageIds="{x:Null}" TimeoutMS="{x:Null}" Account="[in_Config(&quot;AccountName&quot;).ToString]" DisplayName="Get &quot;To Process&quot; Email" Filter="([Subject] = 'Form submission: Apply for a Certificate of Exemption to keep an XL Bully dog') OR ([Subject] = 'TEST FORM SUBMISSION: Apply for a Certificate of Exemption to keep an XL Bully dog')" GetAttachements="False" sap:VirtualizedContainerService.HintSize="918,22" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_1" MailFolder="[in_Config(&quot;ToProcess&quot;).ToString]" MarkAsRead="False" Messages="[listMailMessages]" OnlyUnreadMessages="False" OrderByDate="OldestFirst" Top="2" />
     <If Condition="[listMailMessages.Count &gt; 0]" DisplayName="Retrieved Emails?" sap:VirtualizedContainerService.HintSize="918,1830" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
         <Sequence sap:VirtualizedContainerService.HintSize="611,1670" sap2010:WorkflowViewState.IdRef="Sequence_2">

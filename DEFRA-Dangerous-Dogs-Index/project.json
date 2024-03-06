@@ -12,8 +12,8 @@
     "UiPath.FormActivityLibrary": "[2.0.7]",
     "UiPath.Mail.Activities": "[1.21.2]",
     "UiPath.PDF.Activities": "[3.16.0]",
-    "UiPath.System.Activities": "[22.10.8]",
-    "UiPath.UIAutomation.Activities": "[22.4.11]",
+    "UiPath.System.Activities": "[23.10.4]",
+    "UiPath.UIAutomation.Activities": "[23.10.8]",
     "UiPath.WebAPI.Activities": "[1.18.0]",
     "UiPath.Word.Activities": "[1.18.1]",
     "UiPathTeam.SharePoint.Activities": "[1.7.0]"
@@ -22,7 +22,7 @@
   "entitiesStores": [],
   "schemaVersion": "4.0",
   "studioVersion": "22.4.6.0",
-  "projectVersion": "1.0.55",
+  "projectVersion": "1.0.56-alpha.9",
   "runtimeOptions": {
     "autoDispose": false,
     "netFrameworkLazyLoading": false,
